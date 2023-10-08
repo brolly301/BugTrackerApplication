@@ -1,0 +1,8 @@
+.register-page-container {
+  margin: 0 auto;
+  width: 25%;
+}
+
+register-page-text-container > h1 {
+  text-align: center;
+}

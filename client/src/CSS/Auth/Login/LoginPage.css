@@ -1,0 +1,8 @@
+.login-page-container {
+  margin: 0 auto;
+  width: 25%;
+}
+
+login-page-text-container > h1 {
+  text-align: center;
+}
