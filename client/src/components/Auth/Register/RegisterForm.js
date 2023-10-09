@@ -3,6 +3,7 @@ import Input from "../../Input";
 import Button from "../../Button";
 import useUserContext from "../../../hooks/useUserContext";
 import { validation } from "../../../functions/Validation/registerValidation";
+import { Link } from "react-router-dom";
 
 export default function RegisterForm() {
   const { register } = useUserContext();
@@ -66,7 +67,10 @@ export default function RegisterForm() {
           handleChangeText={handleChangeText}
           errors={errors.password}
         />
-        <Button label={"Register"} />
+        <Button type="submit" label={"Register"} />
+        <Link to={"/"}>
+          <Button type="button" label={"Login"} />
+        </Link>
       </form>
     </div>
   );

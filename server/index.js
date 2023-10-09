@@ -7,6 +7,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const mongoSanitize = require("express-mongo-sanitize");
 const expressValidator = require("express-validator");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(mongoSanitize());
 app.use(express.json());
+app.use(cookieParser());
 app.use(expressValidator());
 
 //Port & Listener
