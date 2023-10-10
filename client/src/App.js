@@ -4,6 +4,7 @@ import "./index.css";
 import { Routes, Route } from "react-router-dom";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 import useUserContext from "./hooks/useUserContext";
 
 function App() {
@@ -12,11 +13,14 @@ function App() {
   return (
     <>
       {state.token ? <Navbar /> : null}
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/adminDashboard" element={<AdminDashboardPage />} />
-      </Routes>
+      <div className='route-container'>
+        {state.token ? <Sidebar /> : null}
+        <Routes>
+          <Route path='/' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/adminDashboard' element={<AdminDashboardPage />} />
+        </Routes>
+      </div>
     </>
   );
 }

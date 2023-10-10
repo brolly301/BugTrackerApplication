@@ -9,6 +9,8 @@ const reducer = (state, action) => {
       return { token: action.payload, errorMessage: "" };
     case "register":
       return { token: action.payload, errorMessage: "" };
+    case "logout":
+      return { token: null, errorMessage: "", userDetails: {} };
     case "get_user_details":
       return { ...state, userDetails: action.payload };
     default:
@@ -37,6 +39,18 @@ const register = (dispatch) => async (registerDetails) => {
   }
 };
 
+const logout = (dispatch) => async (callback) => {
+  try {
+    await Server.get("/logout");
+    dispatch({ type: "logout" });
+    if (callback) {
+      callback();
+    }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
 const getUserDetails = (dispatch) => async () => {
   try {
     const res = await Server.get("/userDetails");
@@ -48,6 +62,6 @@ const getUserDetails = (dispatch) => async () => {
 
 export const { Provider, Context } = createDataContext(
   reducer,
-  { login, register, getUserDetails },
+  { login, register, logout, getUserDetails },
   { errorMessage: "", token: null, userDetails: null }
 );

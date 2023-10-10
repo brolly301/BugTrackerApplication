@@ -51,6 +51,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/logout", (req, res) => {
+  try {
+    res.clearCookie("jwt");
+    res.send({ message: "Logged out successfully" });
+  } catch (e) {
+    res.status(422).send({ error: "Unable to logout" });
+  }
+});
+
 router.get("/userDetails", requireAuth, async (req, res) => {
   try {
     const user = await User.findById(req.user._id);

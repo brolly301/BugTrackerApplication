@@ -1,8 +1,40 @@
 .navbar-container {
+    display: flex;
+    background-color: #333;
+    padding: 0 80px 0 80px;
+}
+
+.navbar-title {
+    width: 100%;
+    font-size: 2.5rem;
+    color: white;
 }
 
 .navbar-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style-type: none;
+    width: 100%;
 }
 
 .navbar-list-item {
+   font-size: 1.25rem;
+   color: white;
+   padding: 5px 0;
+   margin: 0px 30px; 
+   text-decoration: none;
+}
+
+.navbar-icon{
+    height: 50px;
+    width: 50px;
+    margin-right: 60px;
+}
+
+.navbar-title-container {
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+    align-items: center;
 }
