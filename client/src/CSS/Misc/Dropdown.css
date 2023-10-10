@@ -1,0 +1,22 @@
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdown-label {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 15px 0 5px 0;
+  }
+  
+  .dropdown-select {
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .dropdown-error {
+    color: red;
+    margin: 0;
+    margin-top: 10px;
+  }
+  

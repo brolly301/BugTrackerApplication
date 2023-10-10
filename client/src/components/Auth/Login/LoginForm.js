@@ -16,24 +16,25 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(loginDetails, () => {
-      redirect("/adminDashboard");
+      redirect("/dashboard");
       getUserDetails();
-    });
-  };
-
-  const handleChangeText = (field, e) => {
-    setLoginDetails({
-      ...loginDetails,
-      [field]: e.target.value,
     });
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <Input label={"Email Address"} handleChangeText={handleChangeText} />
-        <Input label={"Password"} handleChangeText={handleChangeText} />
-        <p className="input-error">{state.errorMessage}</p>
+        <Input
+          label={"Email Address"}
+          setData={setLoginDetails}
+          data={loginDetails}
+        />
+        <Input
+          label={"Password"}
+          setData={setLoginDetails}
+          data={loginDetails}
+        />
+        <p className='input-error'>{state.errorMessage}</p>
         <Button label={"Login"} />
         <Link to={"/register"}>
           <Button label={"Register"} />

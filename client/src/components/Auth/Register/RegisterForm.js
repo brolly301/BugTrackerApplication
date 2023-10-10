@@ -17,13 +17,6 @@ export default function RegisterForm() {
     password: "",
   });
 
-  const handleChangeText = (field, e) => {
-    setRegisterDetails({
-      ...registerDetails,
-      [field]: e.target.value,
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validation(registerDetails);
@@ -40,36 +33,41 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="register-form-container">
+    <div className='register-form-container'>
       <form onSubmit={handleSubmit}>
         <Input
           label={"First Name"}
-          handleChangeText={handleChangeText}
           errors={errors.firstName}
+          setData={setRegisterDetails}
+          data={registerDetails}
         />
         <Input
           label={"Surname"}
-          handleChangeText={handleChangeText}
+          setData={setRegisterDetails}
+          data={registerDetails}
           errors={errors.surname}
         />
         <Input
           label={"Phone Number"}
-          handleChangeText={handleChangeText}
+          setData={setRegisterDetails}
+          data={registerDetails}
           errors={errors.phoneNumber}
         />
         <Input
           label={"Email Address"}
-          handleChangeText={handleChangeText}
+          setData={setRegisterDetails}
+          data={registerDetails}
           errors={errors.emailAddress}
         />
         <Input
           label={"Password"}
-          handleChangeText={handleChangeText}
+          setData={setRegisterDetails}
+          data={registerDetails}
           errors={errors.password}
         />
-        <Button type="submit" label={"Register"} />
+        <Button type='submit' label={"Register"} />
         <Link to={"/"}>
-          <Button type="button" label={"Login"} />
+          <Button type='button' label={"Login"} />
         </Link>
       </form>
     </div>

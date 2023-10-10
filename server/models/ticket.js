@@ -1,22 +1,32 @@
 const mongoose = require("mongoose");
-const Schmea = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const ticketSchema = new Schmea({
-  name: {
+const ticketSchema = new Schema({
+  summary: {
     type: String,
   },
   description: {
     type: String,
   },
+  issueType: {
+    type: [String],
+    enum: ["Bug", "Feature Request", "Design Request"],
+  },
+  project: {
+    type: Schema.Types.ObjectId,
+    ref: "Project",
+  },
   priority: {
-    type: String,
+    type: [String],
+    enum: ["Low", "Medium", "High"],
   },
   status: {
-    type: String,
-  },
-  type: {
     type: [String],
-    enum: ["Bug", "Feature Request", "Training Request"],
+    enum: ["Open", "In Progress", "Closed"],
+  },
+  assignee: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 

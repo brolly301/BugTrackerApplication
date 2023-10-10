@@ -6,20 +6,20 @@ export default function Sidebar() {
   return (
     <div className='sidebar-container'>
       <ul className='sidebar-list'>
-        <Link to={"/adminDashboard"} className='sidebar-list-item-link'>
+        <Link to={"/dashboard"} className='sidebar-list-item-link'>
           <li>Dashboard</li>
         </Link>
-        <Link className='sidebar-list-item-link'>
+        <Link to={"/tickets"} className='sidebar-list-item-link'>
           <li>Tickets</li>
         </Link>
 
-        <Link className='sidebar-list-item-link'>
+        <Link to={"/projects"} className='sidebar-list-item-link'>
           <li>Projects</li>
         </Link>
-        <Link className='sidebar-list-item-link'>
+        <Link to={"/createTicket"} className='sidebar-list-item-link'>
           <li>Create Ticket</li>
         </Link>
-        <Link className='sidebar-list-item-link'>
+        <Link to={"/createProject"} className='sidebar-list-item-link'>
           <li>Create Project</li>
         </Link>
       </ul>
