@@ -51,3 +51,5 @@ app.listen(port, () => console.log(`Running on Server ${port}`));
 //routes
 
 app.use("/", require("./routes/user"));
+app.use("/tickets", require("./routes/ticket"));
+app.use("/projects", require("./routes/project"));
