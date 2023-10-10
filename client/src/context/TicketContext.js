@@ -25,7 +25,7 @@ const createTicket = (dispatch) => async (ticketDetails, callback) => {
     const res = await Server.post("/tickets/createTicket", {
       ...ticketDetails,
     });
-    dispatch({ type: "create_ticket", payload: res.data });
+    dispatch({ type: "create_ticket", payload: ticketDetails });
     if (callback) {
       callback();
     }

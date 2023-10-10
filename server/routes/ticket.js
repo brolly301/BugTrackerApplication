@@ -14,6 +14,7 @@ router.get("/getTickets", async (req, res) => {
 });
 
 router.post("/createTicket", async (req, res) => {
+  console.log(req.body);
   try {
     const ticket = new Ticket(req.body);
     await ticket.save();

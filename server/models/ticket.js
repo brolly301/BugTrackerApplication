@@ -9,24 +9,26 @@ const ticketSchema = new Schema({
     type: String,
   },
   issueType: {
-    type: [String],
+    type: String,
     enum: ["Bug", "Feature Request", "Design Request"],
   },
   project: {
-    type: Schema.Types.ObjectId,
-    ref: "Project",
+    // type: Schema.Types.ObjectId,
+    // ref: "Project",
+    type: "String",
   },
   priority: {
-    type: [String],
+    type: String,
     enum: ["Low", "Medium", "High"],
   },
   status: {
-    type: [String],
+    type: String,
     enum: ["Open", "In Progress", "Closed"],
   },
   assignee: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    // type: Schema.Types.ObjectId,
+    // ref: "User",
+    type: "String",
   },
 });
 
