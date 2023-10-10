@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Ticket = require("../models/ticket");
+const { ticketValidator } = require("../middleware/validation");
 
 router.get("/getTickets", async (req, res) => {
   try {
@@ -13,7 +14,7 @@ router.get("/getTickets", async (req, res) => {
   }
 });
 
-router.post("/createTicket", async (req, res) => {
+router.post("/createTicket", ticketValidator, async (req, res) => {
   console.log(req.body);
   try {
     const ticket = new Ticket(req.body);

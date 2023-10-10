@@ -33,3 +33,15 @@ exports.registerValidator = (req, res, next) => {
 
   errors(req, res, next);
 };
+
+exports.ticketValidator = (req, res, next) => {
+  req.check("summary", "Summary is required!").notEmpty();
+  req.check("description", "Description is required!").notEmpty();
+  req.check("project", "Project is required!").notEmpty();
+  req.check("issueType", "Issue Type is required!").notEmpty();
+  req.check("priority", "Priority is required!").notEmpty();
+  req.check("status", "Status is required!").notEmpty();
+  req.check("assignee", "Assignee is required!").notEmpty();
+
+  errors(req, res, next);
+};
