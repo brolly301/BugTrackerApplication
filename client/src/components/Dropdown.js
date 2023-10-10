@@ -2,7 +2,7 @@ import React from "react";
 import "../CSS/Misc/Dropdown.css";
 import { handleChange } from "../functions/HandleChange";
 
-export default function Dropdown({ label, values, setData, data }) {
+export default function Dropdown({ label, values, setData, data, errors }) {
   const field = (string) => {
     const label = string.split(" ");
     let field = label[0].toLowerCase();
@@ -13,15 +13,15 @@ export default function Dropdown({ label, values, setData, data }) {
   };
 
   return (
-    <div className='dropdown-container'>
-      <label className='dropdown-label'>{label}</label>
+    <div className="dropdown-container">
+      <label className="dropdown-label">{label}</label>
+      {errors && <p className="input-error">{errors}</p>}
       <select
-        className='dropdown-select'
+        className="dropdown-select"
         onChange={(e) =>
           handleChange(setData, data, field(label), e.target.value)
-        }
-      >
-        <option value='' disabled selected>
+        }>
+        <option value="" disabled selected>
           Select...
         </option>
         {values.map((value) => (

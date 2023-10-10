@@ -69,5 +69,5 @@ const editTicket = (dispatch) => async (ticketDetails, callback) => {
 export const { Context, Provider } = createDataContext(
   reducer,
   { createTicket, getTickets, deleteTicket, editTicket },
-  { errorMessage: "" }
+  [{ errorMessage: "" }]
 );
