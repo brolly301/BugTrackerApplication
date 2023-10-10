@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Project = require("../models/project");
+const { projectValidator } = require("../middleware/validation");
 
 router.get("/getProjects", async (req, res) => {
   try {
@@ -13,7 +14,7 @@ router.get("/getProjects", async (req, res) => {
   }
 });
 
-router.post("/createProject", async (req, res) => {
+router.post("/createProject", projectValidator, async (req, res) => {
   try {
     const project = new Project(req.body);
     await project.save();

@@ -16,17 +16,17 @@ function App() {
 
   return (
     <>
-      {state.token ? <Navbar /> : null}
-      <div className='route-container'>
-        {state.token ? <Sidebar /> : null}
+      <Navbar />
+      <div className="route-container">
+        <Sidebar />
         <Routes>
-          <Route path='/' element={<LoginPage />} />
-          <Route path='/register' element={<RegisterPage />} />
-          <Route path='/dashboard' element={<DashboardPage />} />
-          <Route path='/tickets' element={<TicketsPage />} />
-          <Route path='/projects' element={<ProjectsPage />} />
-          <Route path='/createProject' element={<CreateProjectPage />} />
-          <Route path='/createTicket' element={<CreateTicketPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/tickets" element={<TicketsPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/createProject" element={<CreateProjectPage />} />
+          <Route path="/createTicket" element={<CreateTicketPage />} />
         </Routes>
       </div>
     </>

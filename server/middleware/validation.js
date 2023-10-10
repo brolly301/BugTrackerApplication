@@ -45,3 +45,11 @@ exports.ticketValidator = (req, res, next) => {
 
   errors(req, res, next);
 };
+
+exports.projectValidator = (req, res, next) => {
+  req.check("name", "Name is required!").notEmpty();
+  req.check("description", "Description is required!").notEmpty();
+  req.check("projectManager", "Project Manager is required!").notEmpty();
+
+  errors(req, res, next);
+};

@@ -25,7 +25,7 @@ const createProject = (dispatch) => async (projectDetails, callback) => {
     const res = await Server.post("/projects/createProject", {
       ...projectDetails,
     });
-    dispatch({ type: "create_project", payload: res.data });
+    dispatch({ type: "create_project", payload: projectDetails });
     if (callback) {
       callback();
     }
@@ -74,7 +74,5 @@ export const { Provider, Context } = createDataContext(
     deleteProject,
     editProject,
   },
-  {
-    errorMessage: "",
-  }
+  [{ errorMessage: "" }]
 );

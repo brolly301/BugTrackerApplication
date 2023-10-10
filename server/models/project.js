@@ -8,6 +8,11 @@ const projectSchema = new Schema({
   description: {
     type: String,
   },
+  projectManager: {
+    // type: Schema.Types.ObjectId,
+    // ref: "User",
+    type: String,
+  },
   tickets: [
     {
       type: Schema.Types.ObjectId,
