@@ -3,9 +3,13 @@ import Input from "../../Input";
 import Button from "../../Button";
 import { Link, useNavigate } from "react-router-dom";
 import useUserContext from "../../../hooks/useUserContext";
+import useTicketContext from "../../../hooks/useTicketContext";
+import useProjectContext from "../../../hooks/useProjectContext";
 
 export default function LoginForm() {
   const { login, state, getUserDetails } = useUserContext();
+  const { getTickets } = useTicketContext();
+  const { getProjects } = useProjectContext();
   const [loginDetails, setLoginDetails] = useState({
     emailAddress: "",
     password: "",
@@ -18,6 +22,8 @@ export default function LoginForm() {
     await login(loginDetails, () => {
       redirect("/dashboard");
       getUserDetails();
+      getTickets();
+      getProjects();
     });
   };
 
@@ -34,7 +40,7 @@ export default function LoginForm() {
           setData={setLoginDetails}
           data={loginDetails}
         />
-        <p className='input-error'>{state.errorMessage}</p>
+        <p className="input-error">{state.errorMessage}</p>
         <Button label={"Login"} />
         <Link to={"/register"}>
           <Button label={"Register"} />

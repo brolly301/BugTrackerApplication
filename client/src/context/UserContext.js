@@ -9,6 +9,8 @@ const reducer = (state, action) => {
       return { token: action.payload, errorMessage: "" };
     case "register":
       return { token: action.payload, errorMessage: "" };
+    case "edit_profile":
+      return { ...state, userDetails: action.payload };
     case "logout":
       return { token: null, errorMessage: "", userDetails: {} };
     case "get_user_details":
@@ -60,8 +62,17 @@ const getUserDetails = (dispatch) => async () => {
   }
 };
 
+const editProfile = (dispatch) => async (userDetails) => {
+  try {
+    const res = await Server.patch("/editProfile", { ...userDetails });
+    dispatch({ type: "edit_profile", payload: userDetails });
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
 export const { Provider, Context } = createDataContext(
   reducer,
-  { login, register, logout, getUserDetails },
+  { login, register, logout, getUserDetails, editProfile },
   { errorMessage: "", token: null, userDetails: null }
 );

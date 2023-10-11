@@ -10,6 +10,7 @@ import CreateTicketPage from "./pages/Tickets/CreateTicketPage";
 import TicketsPage from "./pages/Tickets/TicketsPage";
 import ProjectsPage from "./pages/Projects/ProjectsPage";
 import CreateProjectPage from "./pages/Projects/CreateProjectPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const { state } = useUserContext();
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/tickets" element={<TicketsPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/createProject" element={<CreateProjectPage />} />

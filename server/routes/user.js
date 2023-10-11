@@ -43,7 +43,10 @@ router.post("/login", async (req, res) => {
       expiresIn: "12h",
     });
 
-    res.cookie("jwt", token, { httpOnly: true, secure: false });
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      secure: false,
+    });
 
     res.send({ token });
   } catch (e) {
@@ -66,6 +69,16 @@ router.get("/userDetails", requireAuth, async (req, res) => {
     res.send(user);
   } catch (e) {
     res.status(422).send({ error: "Unable to fetch user details" });
+  }
+});
+
+router.patch("/editProfile", requireAuth, async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.user._id, req.body);
+    await user.save();
+    res.send({ message: "User details successfully updated" });
+  } catch (e) {
+    res.status(422).send({ error: "Unable to edit user details" });
   }
 });
 

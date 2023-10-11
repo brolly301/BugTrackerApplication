@@ -6,6 +6,8 @@ const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 const expressValidator = require("express-validator");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 const app = express();
 
@@ -18,6 +20,20 @@ mongoose
   .catch((err) =>
     console.log("Database not connected. Check Mongo URI." + err)
   );
+
+const sessionOptions = {
+  secret: "Test",
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: MONGO_URI }),
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 2,
+    maxAge: 120 * 60 * 1000,
+  },
+};
+
+app.use(session(sessionOptions));
 
 //middlewares
 app.use(morgan("dev"));

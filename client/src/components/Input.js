@@ -2,7 +2,7 @@ import React from "react";
 import "../CSS/Misc/Input.css";
 import { handleChange } from "../functions/HandleChange";
 
-export default function Input({ label, errors, setData, data }) {
+export default function Input({ label, errors, setData, data, value }) {
   //Converts the label  camelcasing for the field name
   const field = (string) => {
     const label = string.split(" ");
@@ -14,12 +14,13 @@ export default function Input({ label, errors, setData, data }) {
   };
 
   return (
-    <div className='input-container'>
-      {errors && <p className='input-error'>{errors}</p>}
-      <label className='label'>{label}</label>
+    <div className="input-container">
+      {errors && <p className="input-error">{errors}</p>}
+      <label className="label">{label}</label>
       <input
-        className='input'
-        type='text'
+        value={value}
+        className="input"
+        type="text"
         onChange={(e) =>
           handleChange(setData, data, field(label), e.target.value)
         }

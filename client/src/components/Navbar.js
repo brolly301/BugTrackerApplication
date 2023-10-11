@@ -16,22 +16,19 @@ export default function Navbar() {
   };
 
   return (
-    <div className='navbar-container'>
-      <div className='navbar-title-container'>
-        <h1 className='navbar-title'>Fly Trap</h1>
-        <img className='navbar-icon' src={Fly} />
+    <div className="navbar-container">
+      <div className="navbar-title-container">
+        <h1 className="navbar-title">Fly Trap</h1>
+        <img className="navbar-icon" src={Fly} />
       </div>
-      <ul className='navbar-list'>
-        <Link className='navbar-list-item'>
-          <li>Home</li>
-        </Link>
-        <Link className='navbar-list-item'>
+      <ul className="navbar-list">
+        <Link to={"/profile"} className="navbar-list-item">
           <li>Profile</li>
         </Link>
-        <Link className='navbar-list-item'>
+        <Link to={"/dashboard"} className="navbar-list-item">
           <li>Dashboard</li>
         </Link>
-        <Link className='navbar-list-item' onClick={handleLogout}>
+        <Link className="navbar-list-item" onClick={handleLogout}>
           <li>Logout</li>
         </Link>
       </ul>
