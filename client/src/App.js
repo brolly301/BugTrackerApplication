@@ -16,6 +16,8 @@ import MyTicketsPage from "./pages/Tickets/MyTicketsPage";
 import MyProjectsPage from "./pages/Projects/MyProjectsPage";
 import ManageUsersPage from "./pages/ManageUsers/ManageUsersPage";
 import UserDetailsPage from "./pages/ManageUsers/UserDetailsPage";
+import ProjectDetailsPage from "./pages/Projects/ProjectDetailsPage";
+import TicketDetailsPage from "./pages/Tickets/TicketDetailsPage";
 
 function App() {
   const { state } = useUserContext();
@@ -32,9 +34,17 @@ function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/allTickets" element={<TicketsPage />} />
+            <Route
+              path="/allTickets/tickets/:id"
+              element={<TicketDetailsPage />}
+            />
             <Route path="/myTickets" element={<MyTicketsPage />} />
             <Route path="/submitTicket" element={<CreateTicketPage />} />
             <Route path="/allProjects" element={<ProjectsPage />} />
+            <Route
+              path="/allProjects/project/:id"
+              element={<ProjectDetailsPage />}
+            />
             <Route path="/myProjects" element={<MyProjectsPage />} />
             <Route path="/createProject" element={<CreateProjectPage />} />
             <Route path="/manageUsers" element={<ManageUsersPage />} />
