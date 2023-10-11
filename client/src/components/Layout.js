@@ -4,15 +4,24 @@ import useTicketContext from "../hooks/useTicketContext";
 import useProjectContext from "../hooks/useProjectContext";
 
 export default function Layout({ children }) {
-  const { getUserDetails, getAllUsers, state } = useUserContext();
-  const { getTickets } = useTicketContext();
+  const { getUserDetails, getAllUsers } = useUserContext();
+  const { getTickets, getUserTickets } = useTicketContext();
   const { getProjects } = useProjectContext();
 
   useEffect(() => {
-    getUserDetails();
-    getAllUsers();
-    getTickets();
-    getProjects();
+    const fetchData = async () => {
+      try {
+        await getUserDetails();
+        await getAllUsers();
+        await getProjects();
+        await getTickets();
+        await getUserTickets();
+      } catch (error) {
+        // Handle errors here
+      }
+    };
+
+    fetchData();
   }, []);
   return <>{children}</>;
 }

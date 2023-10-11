@@ -13,5 +13,9 @@ export const validation = (values) => {
     errors.projectManager = "Project Manager is required";
   }
 
+  if (!values.teamMember) {
+    errors.teamMember = "Team Manager is required";
+  }
+
   return errors;
 };

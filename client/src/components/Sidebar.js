@@ -9,20 +9,25 @@ export default function Sidebar() {
         <Link to={"/dashboard"} className="sidebar-list-item-link">
           <li>Dashboard</li>
         </Link>
-        <Link to={"/tickets"} className="sidebar-list-item-link">
-          <li>Tickets</li>
+        <Link to={"/allTickets"} className="sidebar-list-item-link">
+          <li>All Tickets</li>
         </Link>
-
-        <Link to={"/projects"} className="sidebar-list-item-link">
-          <li>Projects</li>
+        <Link to={"/myTickets"} className="sidebar-list-item-link">
+          <li>My Tickets</li>
         </Link>
-        <Link to={"/createTicket"} className="sidebar-list-item-link">
-          <li>Create Ticket</li>
+        <Link to={"/submitTicket"} className="sidebar-list-item-link">
+          <li>Submit Ticket</li>
+        </Link>
+        <Link to={"/allProjects"} className="sidebar-list-item-link">
+          <li>All Projects</li>
+        </Link>
+        <Link to={"/myProjects"} className="sidebar-list-item-link">
+          <li>My Projects</li>
         </Link>
         <Link to={"/createProject"} className="sidebar-list-item-link">
           <li>Create Project</li>
         </Link>
-        <Link to={"/createProject"} className="sidebar-list-item-link">
+        <Link to={"/manageUsers"} className="sidebar-list-item-link">
           <li>Manage Users</li>
         </Link>
       </ul>

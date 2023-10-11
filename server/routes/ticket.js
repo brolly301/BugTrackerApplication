@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Ticket = require("../models/ticket");
 const { ticketValidator } = require("../middleware/validation");
+const requireAuth = require("../middleware/requireAuth");
 
 router.get("/getTickets", async (req, res) => {
   try {
@@ -40,6 +41,17 @@ router.delete("/deleteTicket/:id", async (req, res) => {
     res.status(200).send(ticket);
   } catch (e) {
     res.status(500).json({ error: "Unable to delete ticket" + e.message });
+  }
+});
+
+router.get("/userTickets", requireAuth, async (req, res) => {
+  console.log(req.user._id);
+  try {
+    const tickets = await Ticket.find({ assignee: req.user._id });
+    console.log(tickets);
+    res.status(200).send(tickets);
+  } catch (e) {
+    res.status(500).json({ error: "Unable to fetch tickets" + e.message });
   }
 });
 

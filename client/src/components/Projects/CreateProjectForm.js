@@ -3,6 +3,8 @@ import Input from "../Input";
 import Button from "../Button";
 import useProjectContext from "../../hooks/useProjectContext";
 import { validation } from "../../functions/Validation/projectValidation";
+import Dropdown from "../Dropdown";
+import useUserContext from "../../hooks/useUserContext";
 
 export default function CreateProjectForm() {
   const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ export default function CreateProjectForm() {
     projectManager: "",
   });
   const [errors, setErrors] = useState({});
+  const { state } = useUserContext();
 
   const { createProject } = useProjectContext();
 
@@ -45,11 +48,26 @@ export default function CreateProjectForm() {
           data={formData}
           errors={errors.description}
         />
-        <Input
+        <Dropdown
           label="Project Manager"
           setData={setFormData}
           data={formData}
           errors={errors.projectManager}
+          values={state.allUsers
+            .filter((user) => user.role === "Project Manager")
+            .map((user) => ({
+              label: user.firstName,
+              value: user._id,
+            }))}
+        />
+        <Dropdown
+          label="Team Member"
+          setData={setFormData}
+          data={formData}
+          errors={errors.teamMember}
+          values={state.allUsers.map((user) => {
+            return { label: user.firstName, value: user._id };
+          })}
         />
         <Button label="Create" />
       </form>

@@ -12,6 +12,10 @@ import ProjectsPage from "./pages/Projects/ProjectsPage";
 import CreateProjectPage from "./pages/Projects/CreateProjectPage";
 import ProfilePage from "./pages/ProfilePage";
 import Layout from "./components/Layout";
+import MyTicketsPage from "./pages/Tickets/MyTicketsPage";
+import MyProjectsPage from "./pages/Projects/MyProjectsPage";
+import ManageUsersPage from "./pages/ManageUsers/ManageUsersPage";
+import UserDetailsPage from "./pages/ManageUsers/UserDetailsPage";
 
 function App() {
   const { state } = useUserContext();
@@ -27,10 +31,14 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/tickets" element={<TicketsPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/allTickets" element={<TicketsPage />} />
+            <Route path="/myTickets" element={<MyTicketsPage />} />
+            <Route path="/submitTicket" element={<CreateTicketPage />} />
+            <Route path="/allProjects" element={<ProjectsPage />} />
+            <Route path="/myProjects" element={<MyProjectsPage />} />
             <Route path="/createProject" element={<CreateProjectPage />} />
-            <Route path="/createTicket" element={<CreateTicketPage />} />
+            <Route path="/manageUsers" element={<ManageUsersPage />} />
+            <Route path="/manageUsers/user/:id" element={<UserDetailsPage />} />
           </Routes>
         </div>
       </Layout>
