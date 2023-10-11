@@ -11,26 +11,29 @@ import TicketsPage from "./pages/Tickets/TicketsPage";
 import ProjectsPage from "./pages/Projects/ProjectsPage";
 import CreateProjectPage from "./pages/Projects/CreateProjectPage";
 import ProfilePage from "./pages/ProfilePage";
+import Layout from "./components/Layout";
 
 function App() {
   const { state } = useUserContext();
 
   return (
     <>
-      <Navbar />
-      <div className="route-container">
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/tickets" element={<TicketsPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/createProject" element={<CreateProjectPage />} />
-          <Route path="/createTicket" element={<CreateTicketPage />} />
-        </Routes>
-      </div>
+      <Layout>
+        <Navbar />
+        <div className="route-container">
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/tickets" element={<TicketsPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/createProject" element={<CreateProjectPage />} />
+            <Route path="/createTicket" element={<CreateTicketPage />} />
+          </Routes>
+        </div>
+      </Layout>
     </>
   );
 }

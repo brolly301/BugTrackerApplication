@@ -43,12 +43,9 @@ router.post("/login", async (req, res) => {
       expiresIn: "12h",
     });
 
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      secure: false,
-    });
+    res.cookie("jwt", token, { expire: new Date() + 1, httpOnly: true });
 
-    res.send({ token });
+    res.send(token);
   } catch (e) {
     res.status(422).send({ error: "Invalid Email or Password" });
   }

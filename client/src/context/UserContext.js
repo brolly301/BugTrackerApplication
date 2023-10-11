@@ -23,7 +23,9 @@ const reducer = (state, action) => {
 const login = (dispatch) => async (loginDetails, callback) => {
   try {
     const res = await Server.post("/login", { ...loginDetails });
-    dispatch({ type: "login", payload: res.data.token });
+    console.log(res.data);
+
+    dispatch({ type: "login", payload: res.data });
     if (callback) {
       callback();
     }
@@ -74,5 +76,5 @@ const editProfile = (dispatch) => async (userDetails) => {
 export const { Provider, Context } = createDataContext(
   reducer,
   { login, register, logout, getUserDetails, editProfile },
-  { errorMessage: "", token: null, userDetails: null }
+  { errorMessage: "", token: null, userDetails: {} }
 );

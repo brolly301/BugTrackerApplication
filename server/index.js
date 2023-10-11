@@ -21,19 +21,19 @@ mongoose
     console.log("Database not connected. Check Mongo URI." + err)
   );
 
-const sessionOptions = {
-  secret: "Test",
-  resave: false,
-  saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: MONGO_URI }),
-  cookie: {
-    httpOnly: true,
-    expires: Date.now() + 1000 * 60 * 60 * 24 * 2,
-    maxAge: 120 * 60 * 1000,
-  },
-};
+// const sessionOptions = {
+//   secret: "Test",
+//   resave: false,
+//   saveUninitialized: true,
+//   store: MongoStore.create({ mongoUrl: MONGO_URI }),
+//   cookie: {
+//     httpOnly: true,
+//     expires: Date.now() + 1000 * 60 * 60 * 24 * 2,
+//     maxAge: 120 * 60 * 1000,
+//   },
+// };
 
-app.use(session(sessionOptions));
+// app.use(session(sessionOptions));
 
 //middlewares
 app.use(morgan("dev"));
