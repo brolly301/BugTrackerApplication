@@ -13,9 +13,8 @@ const ticketSchema = new Schema({
     enum: ["Bug", "Feature Request", "Design Request"],
   },
   project: {
-    // type: Schema.Types.ObjectId,
-    // ref: "Project",
-    type: "String",
+    type: Schema.Types.ObjectId,
+    ref: "Project",
   },
   priority: {
     type: String,
@@ -26,9 +25,8 @@ const ticketSchema = new Schema({
     enum: ["Open", "In Progress", "Closed"],
   },
   assignee: {
-    // type: Schema.Types.ObjectId,
-    // ref: "User",
-    type: "String",
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 

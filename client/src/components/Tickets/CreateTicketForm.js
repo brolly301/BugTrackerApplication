@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../Input";
 import Button from "../Button";
 import Dropdown from "../Dropdown";
 import useTicketContext from "../../hooks/useTicketContext";
 import { validation } from "../../functions/Validation/ticketValidation";
+import useUserContext from "../../hooks/useUserContext";
+import { dropdownData } from "../../functions/CreateTicketDropdownData";
+import useProjectContext from "../../hooks/useProjectContext";
 
 export default function CreateTicketForm() {
   const [formData, setFormData] = useState({
@@ -16,12 +19,14 @@ export default function CreateTicketForm() {
     assignee: "",
   });
   const [errors, setErrors] = useState({});
-
+  const { state } = useUserContext();
+  const { state: projects } = useProjectContext();
   const { createTicket } = useTicketContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validation(formData);
+
     if (Object.keys(validationErrors).length === 0) {
       try {
         await createTicket(formData);
@@ -51,35 +56,39 @@ export default function CreateTicketForm() {
         />
         <Dropdown
           label={"Project"}
-          values={["Project 1", "Project 2"]}
+          values={projects.map((project) => {
+            return { label: project.name, value: project._id };
+          })}
           setData={setFormData}
           data={formData}
           errors={errors.project}
         />
         <Dropdown
-          label={"Issue Type"}
-          values={["Bug", "Feature Request", "Design Request"]}
+          label={dropdownData.issueType.label}
+          values={dropdownData.issueType.values}
           setData={setFormData}
           data={formData}
           errors={errors.issueType}
         />
         <Dropdown
-          label={"Priority"}
-          values={["Low", "Medium", "High"]}
+          label={dropdownData.priority.label}
+          values={dropdownData.priority.values}
           setData={setFormData}
           data={formData}
           errors={errors.priority}
         />
         <Dropdown
-          label={"Status"}
-          values={["Open", "In Progress", "Closed"]}
+          label={dropdownData.status.label}
+          values={dropdownData.status.values}
           setData={setFormData}
           data={formData}
           errors={errors.status}
         />
         <Dropdown
           label={"Assignee"}
-          values={["Me Test", "Me Test 2"]}
+          values={state.allUsers.map((user) => {
+            return { label: user.firstName, value: user._id };
+          })}
           setData={setFormData}
           data={formData}
           errors={errors.assignee}

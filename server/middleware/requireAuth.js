@@ -5,12 +5,12 @@ module.exports = (req, res, next) => {
   let accessToken = req.cookies.jwt;
 
   if (!accessToken) {
-    return res.status(401).send({ error: "You must be logged in" });
+    return res.status(401).send({ errorMessage: "You must be logged in" });
   }
 
   jwt.verify(accessToken, "MY_SECRET_KEY", async (err, payload) => {
     if (err) {
-      return res.status(401).send({ error: "You must be logged in" });
+      return res.status(401).send({ errorMessage: "You must be logged in" });
     }
 
     const { userId } = payload;

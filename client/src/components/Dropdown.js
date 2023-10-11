@@ -25,8 +25,8 @@ export default function Dropdown({ label, values, setData, data, errors }) {
           Select...
         </option>
         {values.map((value) => (
-          <option value={value} key={value}>
-            {value}
+          <option value={value.value} key={value}>
+            {value.label}
           </option>
         ))}
       </select>

@@ -79,4 +79,13 @@ router.patch("/editProfile", requireAuth, async (req, res) => {
   }
 });
 
+router.get("/allUsers", requireAuth, async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.send(users);
+  } catch (e) {
+    res.status(422).send({ error: "Unable to fetch users" });
+  }
+});
+
 module.exports = router;
