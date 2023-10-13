@@ -1,0 +1,11 @@
+.all-tickets-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.all-tickets-row > th,
+td {
+  text-align: right;
+  padding: 8px;
+  border: 1px solid #ddd;
+}

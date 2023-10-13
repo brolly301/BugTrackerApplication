@@ -5,9 +5,26 @@ import ProjectShow from "./ProjectShow";
 export default function ProjectList() {
   const { state } = useProjectContext();
 
-  const renderedList = state.map((project) => {
-    return <ProjectShow key={project._id} project={project} />;
-  });
-
-  return <div>{renderedList}</div>;
+  return (
+    <div>
+      <table className="all-tickets-table">
+        <thead>
+          <tr className="all-tickets-row">
+            <th>Name</th>
+            <th>Description</th>
+            <th>Project Manager</th>
+            <th>Tickets</th>
+          </tr>
+        </thead>
+        <tbody>
+          {state.map((item, index) => (
+            <tr key={index} className="all-tickets-row">
+              <ProjectShow project={item} />
+              <button>View</button>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }

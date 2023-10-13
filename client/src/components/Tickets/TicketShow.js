@@ -1,14 +1,15 @@
 import React from "react";
-import Button from "../Button";
-import { Link } from "react-router-dom";
 
 export default function TicketShow({ ticket }) {
   return (
-    <div>
-      <h4>{ticket.summary}</h4>
-      <Link to={`/allTickets/tickets/${ticket._id}`} state={{ ticket: ticket }}>
-        <Button label={"View"} />
-      </Link>
-    </div>
+    <>
+      <td>{ticket.summary}</td>
+      <td>{ticket.description}</td>
+      <td>{ticket.status}</td>
+      <td>{ticket.priority}</td>
+      <td>{ticket.issueType}</td>
+      <td>{ticket.project}</td>
+      <td>{ticket.assignee}</td>
+    </>
   );
 }

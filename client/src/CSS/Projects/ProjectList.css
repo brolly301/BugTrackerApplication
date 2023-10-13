@@ -1,0 +1,11 @@
+.all-projects-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.all-projects-row > th,
+td {
+  text-align: right;
+  padding: 8px;
+  border: 1px solid #ddd;
+}

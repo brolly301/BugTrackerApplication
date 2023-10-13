@@ -42,7 +42,7 @@ function App() {
             <Route path="/submitTicket" element={<CreateTicketPage />} />
             <Route path="/allProjects" element={<ProjectsPage />} />
             <Route
-              path="/allProjects/project/:id"
+              path="/allProjects/projects/:id"
               element={<ProjectDetailsPage />}
             />
             <Route path="/myProjects" element={<MyProjectsPage />} />

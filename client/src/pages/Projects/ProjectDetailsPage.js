@@ -1,10 +1,8 @@
 import React from "react";
-import ProjectDetailsList from "../../components/Projects/ProjectDetailsList";
+import { useLocation } from "react-router-dom";
 
 export default function ProjectDetailsPage() {
-  return (
-    <div>
-      <ProjectDetailsList />
-    </div>
-  );
+  const location = useLocation();
+  const project = location.state.project;
+  return <div>{project.name}</div>;
 }
