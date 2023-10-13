@@ -18,10 +18,9 @@ export const dropdownData = {
   issueType: {
     label: "Issue Type",
     values: [
-      { label: "Bug/Error", value: "Bug/Error" },
+      { label: "Bug", value: "Bug" },
       { label: "Feature Request", value: "Feature Request" },
       { label: "Design Request", value: "Design Request" },
-      { label: "Other", value: "Other" },
     ],
   },
 };

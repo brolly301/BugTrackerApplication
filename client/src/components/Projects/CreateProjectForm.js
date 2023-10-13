@@ -68,6 +68,7 @@ export default function CreateProjectForm() {
           values={state.allUsers.map((user) => {
             return { label: user.firstName, value: user._id };
           })}
+          multiple={true}
         />
         <Button label="Create" />
       </form>

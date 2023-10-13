@@ -16,12 +16,12 @@ router.get("/getTickets", async (req, res) => {
 });
 
 router.post("/createTicket", ticketValidator, async (req, res) => {
-  console.log(req.body);
   try {
     const ticket = new Ticket(req.body);
     await ticket.save();
     res.status(200).send(ticket);
   } catch (e) {
+    console.log(e.message);
     res.status(500).json({ error: "Unable to create ticket" + e.message });
   }
 });

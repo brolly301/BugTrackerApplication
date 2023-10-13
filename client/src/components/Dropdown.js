@@ -2,7 +2,14 @@ import React from "react";
 import "../CSS/Misc/Dropdown.css";
 import { handleChange } from "../functions/HandleChange";
 
-export default function Dropdown({ label, values, setData, data, errors }) {
+export default function Dropdown({
+  label,
+  values,
+  setData,
+  data,
+  errors,
+  multiple,
+}) {
   const field = (string) => {
     const label = string.split(" ");
     let field = label[0].toLowerCase();
@@ -17,6 +24,7 @@ export default function Dropdown({ label, values, setData, data, errors }) {
       <label className="dropdown-label">{label}</label>
       {errors && <p className="input-error">{errors}</p>}
       <select
+        multiple={multiple}
         className="dropdown-select"
         onChange={(e) =>
           handleChange(setData, data, field(label), e.target.value)

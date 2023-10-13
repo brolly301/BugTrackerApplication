@@ -13,6 +13,14 @@ const projectSchema = new Schema({
     // ref: "User",
     type: String,
   },
+  teamMembers: [
+    {
+      // type: Schema.Types.ObjectId,
+      // ref: "User",
+      type: String,
+    },
+  ],
+
   tickets: [
     {
       type: Schema.Types.ObjectId,
