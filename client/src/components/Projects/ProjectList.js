@@ -1,15 +1,17 @@
 import React from "react";
 import useProjectContext from "../../hooks/useProjectContext";
 import ProjectShow from "./ProjectShow";
+import "../../CSS/Projects/ProjectList.css";
+import { Link } from "react-router-dom";
 
 export default function ProjectList() {
   const { state } = useProjectContext();
 
   return (
     <div>
-      <table className="all-tickets-table">
+      <table className="all-projects-table">
         <thead>
-          <tr className="all-tickets-row">
+          <tr className="all-projects-row">
             <th>Name</th>
             <th>Description</th>
             <th>Project Manager</th>
@@ -19,9 +21,13 @@ export default function ProjectList() {
         </thead>
         <tbody>
           {state.map((item, index) => (
-            <tr key={index} className="all-tickets-row">
+            <tr key={index} className="all-projects-row">
               <ProjectShow project={item} />
-              <button>View</button>
+              <Link
+                to={`/allProjects/projects/${item._id}`}
+                state={{ project: item }}>
+                <button>View</button>
+              </Link>
             </tr>
           ))}
         </tbody>

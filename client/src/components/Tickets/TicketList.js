@@ -2,6 +2,7 @@ import React from "react";
 import useTicketContext from "../../hooks/useTicketContext";
 import TicketShow from "./TicketShow";
 import "../../CSS/Tickets/TicketList.css";
+import { Link } from "react-router-dom";
 
 export default function TicketList() {
   const { state } = useTicketContext();
@@ -24,7 +25,11 @@ export default function TicketList() {
           {state?.map((item, index) => (
             <tr key={index} className="all-tickets-row">
               <TicketShow ticket={item} />
-              <button>View</button>
+              <Link
+                to={`/allTickets/tickets/${item._id}`}
+                state={{ ticket: item }}>
+                <button>View</button>
+              </Link>
             </tr>
           ))}
         </tbody>
