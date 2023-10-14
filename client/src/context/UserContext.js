@@ -17,6 +17,14 @@ const reducer = (state, action) => {
       return { ...state, userDetails: action.payload };
     case "get_all_users":
       return { ...state, allUsers: action.payload };
+    case "edit_all_users":
+      return {
+        ...state,
+        allUsers: state.allUsers.map((user) => {
+          console.log(action.payload._id, user._id);
+          return user._id === action.payload._id ? action.payload : user;
+        }),
+      };
     default:
       return state;
   }
@@ -25,8 +33,6 @@ const reducer = (state, action) => {
 const login = (dispatch) => async (loginDetails, callback) => {
   try {
     const res = await Server.post("/login", { ...loginDetails });
-    console.log(res.data);
-
     dispatch({ type: "login", payload: res.data });
     if (callback) {
       callback();
@@ -84,8 +90,26 @@ const getAllUsers = (dispatch) => async () => {
   }
 };
 
+const editAllUsers = (dispatch) => async (userDetails) => {
+  try {
+    console.log(userDetails);
+    await Server.patch("/userData/editUser", { ...userDetails });
+    dispatch({ type: "edit_all_users", payload: { ...userDetails } });
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
 export const { Provider, Context } = createDataContext(
   reducer,
-  { login, register, logout, getUserDetails, editProfile, getAllUsers },
+  {
+    login,
+    register,
+    logout,
+    getUserDetails,
+    editProfile,
+    getAllUsers,
+    editAllUsers,
+  },
   { errorMessage: "", token: null, userDetails: {}, allUsers: [] }
 );

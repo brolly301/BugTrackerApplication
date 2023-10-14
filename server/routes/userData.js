@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Ticket = require("../models/ticket");
 const Project = require("../models/project");
+const User = require("../models/user");
 const requireAuth = require("../middleware/requireAuth");
 
 router.get("/userTickets", requireAuth, async (req, res) => {
@@ -19,6 +20,15 @@ router.get("/userProjects", requireAuth, async (req, res) => {
     res.status(200).send(projects);
   } catch (e) {
     res.status(500).json({ error: "Unable to fetch projects" + e.message });
+  }
+});
+
+router.patch("/editUser", requireAuth, async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.body._id, { ...req.body });
+    res.status(200).send(user);
+  } catch (e) {
+    res.status(500).json({ error: "Unable to update user" + e.message });
   }
 });
 
