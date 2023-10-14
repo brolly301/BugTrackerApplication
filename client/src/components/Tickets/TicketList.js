@@ -1,12 +1,9 @@
 import React from "react";
-import useTicketContext from "../../hooks/useTicketContext";
 import TicketShow from "./TicketShow";
 import "../../CSS/Tickets/TicketList.css";
 import { Link } from "react-router-dom";
 
-export default function TicketList() {
-  const { state } = useTicketContext();
-
+export default function TicketList({ state }) {
   return (
     <div>
       <table className="all-tickets-table">

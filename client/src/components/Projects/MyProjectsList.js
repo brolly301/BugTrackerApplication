@@ -1,12 +1,9 @@
 import React from "react";
-import useUserProjectsContext from "../../hooks/useUserProjectsContext";
 import MyProjectsShow from "./MyProjectsShow";
 import "../../CSS/Projects/ProjectList.css";
 import { Link } from "react-router-dom";
 
-export default function MyProjectsList() {
-  const { state } = useUserProjectsContext();
-
+export default function MyProjectsList({ state }) {
   return (
     <div>
       <table className="all-projects-table">
