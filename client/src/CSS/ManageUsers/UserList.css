@@ -1,0 +1,8 @@
+.user-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  align-content: flex-start; /* Align items to the start of the flex container */
+  margin-top: 20px;
+  align-items: center;
+}

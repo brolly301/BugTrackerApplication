@@ -1,6 +1,7 @@
 import React from "react";
 import useUserContext from "../../hooks/useUserContext";
 import UserShow from "./UserShow";
+import "../../CSS/ManageUsers/UserList.css";
 
 export default function UserList() {
   const { state } = useUserContext();
@@ -9,5 +10,5 @@ export default function UserList() {
     return <UserShow key={user.id} user={user} />;
   });
 
-  return <div>{renderedList}</div>;
+  return <div className="user-list-container">{renderedList}</div>;
 }
