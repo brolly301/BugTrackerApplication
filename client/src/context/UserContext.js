@@ -25,6 +25,11 @@ const reducer = (state, action) => {
           return user._id === action.payload._id ? action.payload : user;
         }),
       };
+    case "delete_all_users":
+      return {
+        ...state,
+        allUsers: state.allUsers.filter((user) => user._id !== action.payload),
+      };
     default:
       return state;
   }
@@ -100,6 +105,18 @@ const editAllUsers = (dispatch) => async (userDetails) => {
   }
 };
 
+const deleteAllUsers = (dispatch) => async (id, callback) => {
+  try {
+    await Server.delete(`/userData/deleteUser/${id}`);
+    dispatch({ type: "delete_all_users", payload: id });
+    if (callback) {
+      callback();
+    }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
 export const { Provider, Context } = createDataContext(
   reducer,
   {
@@ -110,6 +127,7 @@ export const { Provider, Context } = createDataContext(
     editProfile,
     getAllUsers,
     editAllUsers,
+    deleteAllUsers,
   },
   { errorMessage: "", token: null, userDetails: {}, allUsers: [] }
 );

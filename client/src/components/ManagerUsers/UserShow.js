@@ -9,7 +9,7 @@ export default function UserShow({ user }) {
     <div className="user-show-container">
       <div className="user-show-name-container">
         <h2>
-          {user.firstName} {user.surname}
+          {user?.firstName} {user?.surname}
         </h2>
         <h3>{user.role || "Developer"}</h3>
       </div>
