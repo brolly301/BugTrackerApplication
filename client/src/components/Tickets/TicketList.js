@@ -6,10 +6,6 @@ import "../../CSS/Tickets/TicketList.css";
 export default function TicketList() {
   const { state } = useTicketContext();
 
-  // const renderedList = state.tickets.map((ticket) => {
-  //   return <TicketShow key={ticket._id} ticket={ticket} />;
-  // });
-
   return (
     <div>
       <table className="all-tickets-table">
@@ -25,7 +21,7 @@ export default function TicketList() {
           </tr>
         </thead>
         <tbody>
-          {state.tickets.map((item, index) => (
+          {state?.map((item, index) => (
             <tr key={index} className="all-tickets-row">
               <TicketShow ticket={item} />
               <button>View</button>

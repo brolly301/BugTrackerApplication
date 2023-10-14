@@ -13,8 +13,8 @@ export const validation = (values) => {
     errors.projectManager = "Project Manager is required";
   }
 
-  if (!values.teamMember) {
-    errors.teamMember = "Team Manager is required";
+  if (!values.teamMembers || values.teamMembers.length === 0) {
+    errors.teamMembers = "At least one team member is required.";
   }
 
   return errors;

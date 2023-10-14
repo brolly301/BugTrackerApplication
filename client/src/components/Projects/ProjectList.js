@@ -13,6 +13,7 @@ export default function ProjectList() {
             <th>Name</th>
             <th>Description</th>
             <th>Project Manager</th>
+            <th>Team Members</th>
             <th>Tickets</th>
           </tr>
         </thead>

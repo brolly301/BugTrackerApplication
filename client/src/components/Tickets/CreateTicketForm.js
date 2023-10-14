@@ -56,7 +56,7 @@ export default function CreateTicketForm() {
         />
         <Dropdown
           label={"Project"}
-          values={projects.map((project) => {
+          values={projects?.map((project) => {
             return { label: project.name, value: project._id };
           })}
           setData={setFormData}
@@ -86,7 +86,7 @@ export default function CreateTicketForm() {
         />
         <Dropdown
           label={"Assignee"}
-          values={state.allUsers.map((user) => {
+          values={state?.allUsers?.map((user) => {
             return { label: user.firstName, value: user._id };
           })}
           setData={setFormData}

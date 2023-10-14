@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Input from "../../Input";
 import Button from "../../Button";
 import { Link, useNavigate } from "react-router-dom";
 import useUserContext from "../../../hooks/useUserContext";
+import useTicketContext from "../../../hooks/useTicketContext";
+import useProjectContext from "../../../hooks/useProjectContext";
+import useUserProjectsContext from "../../../hooks/useUserProjectsContext";
+import useUserTicketsContext from "../../../hooks/useUserTicketsContext";
 
 export default function LoginForm() {
-  const { login, state: user, getUserDetails } = useUserContext();
+  const { login, state: user, getUserDetails, getAllUsers } = useUserContext();
+  const { getTickets } = useTicketContext();
+  const { getProjects } = useProjectContext();
+  const { getUserProjects } = useUserProjectsContext();
+  const { getUserTickets } = useUserTicketsContext();
+
   const [loginDetails, setLoginDetails] = useState({
     emailAddress: "",
     password: "",
@@ -18,6 +27,11 @@ export default function LoginForm() {
     await login(loginDetails, () => {
       redirect("/dashboard");
       getUserDetails();
+      getAllUsers();
+      getProjects();
+      getTickets();
+      getUserTickets();
+      getUserProjects();
     });
   };
 

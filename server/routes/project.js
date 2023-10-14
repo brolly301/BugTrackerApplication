@@ -16,6 +16,7 @@ router.get("/getProjects", async (req, res) => {
 
 router.post("/createProject", projectValidator, async (req, res) => {
   try {
+    console.log(req.body);
     const project = new Project(req.body);
     await project.save();
     res.status(200).send(project);

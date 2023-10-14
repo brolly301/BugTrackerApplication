@@ -11,7 +11,9 @@ export default function CreateProjectForm() {
     name: "",
     description: "",
     projectManager: "",
+    teamMembers: [],
   });
+  console.log(formData);
   const [errors, setErrors] = useState({});
   const { state } = useUserContext();
 
@@ -53,19 +55,19 @@ export default function CreateProjectForm() {
           setData={setFormData}
           data={formData}
           errors={errors.projectManager}
-          values={state.allUsers
-            .filter((user) => user.role === "Project Manager")
+          values={state?.allUsers
+            ?.filter((user) => user.role === "Project Manager")
             .map((user) => ({
               label: user.firstName,
               value: user._id,
             }))}
         />
         <Dropdown
-          label="Team Member"
+          label="Team Members"
           setData={setFormData}
           data={formData}
-          errors={errors.teamMember}
-          values={state.allUsers.map((user) => {
+          errors={errors.teamMembers}
+          values={state?.allUsers?.map((user) => {
             return { label: user.firstName, value: user._id };
           })}
           multiple={true}

@@ -26,13 +26,21 @@ export default function Dropdown({
       <select
         multiple={multiple}
         className="dropdown-select"
-        onChange={(e) =>
-          handleChange(setData, data, field(label), e.target.value)
-        }>
+        onChange={(e) => {
+          if (multiple) {
+            const selectedOptions = Array.from(
+              e.target.selectedOptions,
+              (option) => option.value
+            );
+            handleChange(setData, data, field(label), selectedOptions);
+          } else {
+            handleChange(setData, data, field(label), e.target.value);
+          }
+        }}>
         <option value="" disabled selected>
           Select...
         </option>
-        {values.map((value) => (
+        {values?.map((value) => (
           <option value={value.value} key={value}>
             {value.label}
           </option>

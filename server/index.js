@@ -21,20 +21,6 @@ mongoose
     console.log("Database not connected. Check Mongo URI." + err)
   );
 
-// const sessionOptions = {
-//   secret: "Test",
-//   resave: false,
-//   saveUninitialized: true,
-//   store: MongoStore.create({ mongoUrl: MONGO_URI }),
-//   cookie: {
-//     httpOnly: true,
-//     expires: Date.now() + 1000 * 60 * 60 * 24 * 2,
-//     maxAge: 120 * 60 * 1000,
-//   },
-// };
-
-// app.use(session(sessionOptions));
-
 //middlewares
 app.use(morgan("dev"));
 app.use(cors({ origin: true, credentials: true }));
@@ -49,7 +35,7 @@ const port = 8080;
 app.listen(port, () => console.log(`Running on Server ${port}`));
 
 //routes
-
 app.use("/", require("./routes/user"));
 app.use("/tickets", require("./routes/ticket"));
 app.use("/projects", require("./routes/project"));
+app.use("/userData", require("./routes/userData"));

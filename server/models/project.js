@@ -9,18 +9,15 @@ const projectSchema = new Schema({
     type: String,
   },
   projectManager: {
-    // type: Schema.Types.ObjectId,
-    // ref: "User",
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
   teamMembers: [
     {
-      // type: Schema.Types.ObjectId,
-      // ref: "User",
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
-
   tickets: [
     {
       type: Schema.Types.ObjectId,
