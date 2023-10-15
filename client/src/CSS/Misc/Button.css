@@ -1,5 +1,5 @@
 .button {
-  background-color: #a6c0b3;
+  background-color: var(--primary-color);
   color: white;
   font-weight: bold;
   padding: 10px;
