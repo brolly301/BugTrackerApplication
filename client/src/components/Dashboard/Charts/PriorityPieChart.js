@@ -1,6 +1,8 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
+import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import useTicketContext from "../../../hooks/useTicketContext";
+Chart.register(ArcElement, Tooltip, Legend);
 
 export default function PriorityPieChart() {
   const { state } = useTicketContext();

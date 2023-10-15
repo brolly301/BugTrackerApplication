@@ -4,21 +4,23 @@ import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import useTicketContext from "../../../hooks/useTicketContext";
 Chart.register(ArcElement, Tooltip, Legend);
 
-export default function StatusPieChart() {
+export default function IssuePieChart() {
   const { state } = useTicketContext();
 
-  const open = state.filter((ticket) => ticket.status === "Open").length;
-  const inProgress = state.filter(
-    (ticket) => ticket.status === "In Progress"
+  const bug = state.filter((ticket) => ticket.issueType === "Bug").length;
+  const featureRequest = state.filter(
+    (ticket) => ticket.issueType === "Feature Request"
   ).length;
-  const closed = state.filter((ticket) => ticket.status === "Closed").length;
+  const designRequest = state.filter(
+    (ticket) => ticket.issueType === "Design Request"
+  ).length;
 
   const data = {
-    labels: ["Open", "In Progress", "Closed"],
+    labels: ["Bug", "Feature Request", "Design Request"],
     datasets: [
       {
         label: "Tickets",
-        data: [open, inProgress, closed],
+        data: [bug, featureRequest, designRequest],
         backgroundColor: [
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
@@ -31,7 +33,7 @@ export default function StatusPieChart() {
 
   return (
     <div>
-      <h2>Status Pie Chart</h2>
+      <h2>Issue Pie Chart</h2>
       <Pie data={data} />
     </div>
   );
