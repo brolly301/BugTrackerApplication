@@ -43,10 +43,13 @@ const getProjects = (dispatch) => async () => {
   }
 };
 
-const deleteProject = (dispatch) => async (id) => {
+const deleteProject = (dispatch) => async (id, callback) => {
   try {
     await Server.delete(`/projects/deleteProject/${id}`);
     dispatch({ type: "delete_project", payload: id });
+    if (callback) {
+      callback();
+    }
   } catch (e) {
     dispatch({ type: "error_message", payload: e.response.data.error });
   }

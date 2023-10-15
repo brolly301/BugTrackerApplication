@@ -43,10 +43,13 @@ const getTickets = (dispatch) => async () => {
   }
 };
 
-const deleteTicket = (dispatch) => async (id) => {
+const deleteTicket = (dispatch) => async (id, callback) => {
   try {
     await Server.delete(`/tickets/deleteTicket/${id}`);
     dispatch({ type: "delete_ticket", payload: id });
+    if (callback) {
+      callback();
+    }
   } catch (e) {
     dispatch({ type: "error_message", payload: e.response.data.error });
   }

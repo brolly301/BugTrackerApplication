@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import ProjectEditForm from "./ProjectEditForm";
+import useProjectContext from "../../../hooks/useProjectContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectShow({ project }) {
   const [isEdit, setIsEdit] = useState(false);
+  const { deleteProject } = useProjectContext();
+  const redirect = useNavigate();
 
   const handleEdit = () => {
     setIsEdit(!isEdit);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await deleteProject(project._id, () => {
+      redirect("/allProjects");
+    });
   };
 
   let content = (
