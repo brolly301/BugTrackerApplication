@@ -54,10 +54,10 @@ const deleteProject = (dispatch) => async (id) => {
 
 const editProject = (dispatch) => async (projectDetails, callback) => {
   try {
-    const res = await Server.patch("/projects/editProject", {
+    await Server.patch("/projects/editProject", {
       ...projectDetails,
     });
-    dispatch({ type: "edit_project", payload: res.data });
+    dispatch({ type: "edit_project", payload: projectDetails });
     if (callback) {
       callback();
     }
