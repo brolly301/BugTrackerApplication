@@ -54,10 +54,10 @@ const deleteTicket = (dispatch) => async (id) => {
 
 const editTicket = (dispatch) => async (ticketDetails, callback) => {
   try {
-    const res = await Server.patch("/tickets/editTicket", {
+    await Server.patch("/tickets/editTicket", {
       ...ticketDetails,
     });
-    dispatch({ type: "edit_ticket", payload: res.data });
+    dispatch({ type: "edit_ticket", payload: ticketDetails });
     if (callback) {
       callback();
     }

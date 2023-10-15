@@ -9,6 +9,7 @@ export default function Dropdown({
   data,
   errors,
   multiple,
+  value,
 }) {
   const field = (string) => {
     const label = string.split(" ");
@@ -37,8 +38,8 @@ export default function Dropdown({
             handleChange(setData, data, field(label), e.target.value);
           }
         }}>
-        <option value="" disabled selected>
-          Select...
+        <option disabled selected>
+          {value || "Select..."}
         </option>
         {values?.map((value) => (
           <option value={value.value} key={value}>
