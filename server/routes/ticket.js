@@ -7,7 +7,9 @@ const requireAuth = require("../middleware/requireAuth");
 
 router.get("/getTickets", async (req, res) => {
   try {
-    const ticket = await Ticket.find({});
+    const ticket = await Ticket.find({})
+      .populate("project")
+      .populate("assignee");
     res.status(200).send(ticket);
   } catch (e) {
     res

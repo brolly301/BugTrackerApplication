@@ -5,7 +5,7 @@ const { projectValidator } = require("../middleware/validation");
 
 router.get("/getProjects", async (req, res) => {
   try {
-    const project = await Project.find({});
+    const project = await Project.find({}).populate("projectManager");
     res.status(200).send(project);
   } catch (e) {
     res

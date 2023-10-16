@@ -4,3 +4,7 @@
   justify-content: center;
   align-items: center;
 }
+
+.manage-user-search-container {
+  display: flex;
+}

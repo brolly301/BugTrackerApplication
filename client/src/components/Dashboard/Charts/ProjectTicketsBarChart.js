@@ -9,26 +9,23 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { rgb } from "../../../functions/randomRGB";
 import useProjectContext from "../../../hooks/useProjectContext";
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-const rgb = () => {
-  return `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
-    Math.random() * 255
-  )}, ${Math.floor(Math.random() * 255)})`;
-};
 
 export default function IssuePieChart() {
   const { state } = useProjectContext();
 
   const data = {
     labels: ["All Projects"], // Set a single "All Projects" label
-    datasets: state.map((project) => ({
-      label: [project.name],
-      data: [project.tickets?.length],
-      backgroundColor: [rgb()],
-      hoverOffset: 4,
-    })),
+    datasets: state
+      .filter((project) => project.tickets?.length > 0)
+      .map((project) => ({
+        label: project.name,
+        data: [project.tickets.length],
+        backgroundColor: rgb(),
+        hoverOffset: 4,
+      })),
   };
 
   // Define a custom tooltip callback function

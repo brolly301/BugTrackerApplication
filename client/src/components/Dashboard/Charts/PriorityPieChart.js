@@ -2,6 +2,7 @@ import React from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import useTicketContext from "../../../hooks/useTicketContext";
+import { rgb } from "../../../functions/randomRGB";
 Chart.register(ArcElement, Tooltip, Legend);
 
 export default function PriorityPieChart() {
@@ -17,11 +18,7 @@ export default function PriorityPieChart() {
       {
         label: "Tickets",
         data: [low, medium, high],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
+        backgroundColor: [rgb(), rgb(), rgb()],
         hoverOffset: 4,
       },
     ],
