@@ -8,7 +8,7 @@ export default function FilterBy({ filterOptions, setFilter }) {
 
   return (
     <div className="filter-container">
-      <select onChange={handleChange}>
+      {/* <select onChange={handleChange}>
         <option value="" disabled>
           Select..
         </option>
@@ -17,7 +17,8 @@ export default function FilterBy({ filterOptions, setFilter }) {
             {option.name}
           </option>
         ))}
-      </select>
+      </select> */}
+      <Dropdown setData={setFilter} values={filterOptions} />
     </div>
   );
 }

@@ -4,73 +4,73 @@ import useUserContext from "../hooks/useUserContext";
 export const manageUserFilters = [
   {
     name: "All Users",
-    value: "",
+    label: "",
   },
   {
     name: "Admin",
-    value: "Admin",
+    label: "Admin",
   },
   {
     name: "Project Manager",
-    value: "Project Manager",
+    label: "Project Manager",
   },
   {
     name: "Developer",
-    value: "Developer",
+    label: "Developer",
   },
   {
     name: "Test Engineer",
-    value: "Test Engineer",
+    label: "Test Engineer",
   },
   {
     name: "Support",
-    value: "Support",
+    label: "Support",
   },
 ];
 
 export const ticketStatusFilters = [
   {
     name: "Open",
-    value: "Open",
+    label: "Open",
   },
 
   {
     name: "In Progress",
-    value: "In Progress",
+    label: "In Progress",
   },
   {
     name: "Closed",
-    value: "Closed",
+    label: "Closed",
   },
 ];
 
 export const ticketPriorityFilters = [
   {
     name: "Low",
-    value: "Low",
+    label: "Low",
   },
   {
     name: "Medium",
-    value: "Medium",
+    label: "Medium",
   },
   {
     name: "High",
-    value: "High",
+    label: "High",
   },
 ];
 
 export const ticketTypeFilters = [
   {
     name: "Bug",
-    value: "Bug",
+    label: "Bug",
   },
   {
     name: "Feature Request",
-    value: "Feature Request",
+    label: "Feature Request",
   },
   {
     name: "Design Request",
-    value: "Design Request",
+    label: "Design Request",
   },
 ];
 
@@ -79,13 +79,13 @@ export const ProjectManagerFilters = () => {
   const projectManager = state.map((project) => {
     return {
       name: `${project.projectManager?.firstName} ${project.projectManager?.surname}`,
-      value: `${project.projectManager?.firstName} ${project.projectManager?.surname}`,
+      label: `${project.projectManager?.firstName} ${project.projectManager?.surname}`,
     };
   });
   const uniqueProjectManagers = Array.from(
-    new Set(projectManager.map((a) => a.value))
-  ).map((value) => {
-    return projectManager.find((a) => a.value === value);
+    new Set(projectManager.map((a) => a.label))
+  ).map((label) => {
+    return projectManager.find((a) => a.label === label);
   });
 
   return uniqueProjectManagers;

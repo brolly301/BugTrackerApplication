@@ -22,7 +22,7 @@ export default function Dropdown({
 
   return (
     <div className="dropdown-container">
-      <label className="dropdown-label">{label}</label>
+      {label && <label className="dropdown-label">{label}</label>}
       {errors && <p className="input-error">{errors}</p>}
       <select
         multiple={multiple}
@@ -34,12 +34,14 @@ export default function Dropdown({
               (option) => option.value
             );
             handleChange(setData, data, field(label), selectedOptions);
-          } else {
+          } else if (!multiple && label) {
             handleChange(setData, data, field(label), e.target.value);
+          } else if (!label) {
+            setData(e.target.value);
           }
         }}>
         <option disabled selected>
-          {value || "Select..."}
+          {value || label ? "Select..." : "All"}
         </option>
         {values?.map((value) => (
           <option value={value.value} key={value}>
