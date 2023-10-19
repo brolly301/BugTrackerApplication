@@ -3,7 +3,6 @@
   width: 14%;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   font-size: 0.875rem;
 }
 
@@ -66,4 +65,9 @@
   width: 30px;
   margin-right: 10px;
   margin-left: -10px;
+}
+
+.sidebar-sticky {
+  position: sticky;
+  top: 0;
 }
