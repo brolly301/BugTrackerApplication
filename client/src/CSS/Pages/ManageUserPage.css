@@ -1,10 +1,7 @@
-.manage-user-page-container {
-  margin: 0 auto;
-  width: 80%;
-  justify-content: center;
-  align-items: center;
-}
-
 .manage-user-search-container {
   display: flex;
+  margin-top: 20px;
+  height: 40px;
+
+  justify-content: space-between;
 }

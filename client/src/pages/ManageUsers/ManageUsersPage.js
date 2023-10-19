@@ -24,6 +24,7 @@ export default function ManageUsersPage() {
     <HeaderPanel title={"Manage Users"}>
       <div className="manage-user-search-container">
         <SearchBar search={search} setSearch={setSearch} />
+        <view style={{ margin: "0px 10px 0px 10px" }} />
         <FilterBy filterOptions={manageUserFilters} setFilter={setFilter} />
       </div>
       <UserList state={searchBy} />

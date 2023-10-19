@@ -4,5 +4,12 @@
   flex-wrap: wrap; /* Allow items to wrap to the next line */
   align-content: flex-start; /* Align items to the start of the flex container */
   margin-top: 20px;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the start of each line */
+}
+
+.user-list-container::after {
+  height: 0;
+  width: 38%;
+  content: "";
 }

@@ -8,8 +8,8 @@ export default function DashboardPage() {
   return (
     <HeaderPanel title={"Dashboard"}>
       <DashboardTileList />
-      <BarChartList />
       <PieChartList />
+      <BarChartList />
     </HeaderPanel>
   );
 }
