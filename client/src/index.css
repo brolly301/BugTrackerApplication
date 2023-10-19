@@ -15,11 +15,14 @@ button {
 
 .route-container {
   display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 :root {
-  --primary-color: #72a381;
+  --primary-color: #86a48c;
   --secondary-color: #ff4136;
+  --bar-color: #3b3838;
   --text-color: #333;
   /* Add more custom properties for other colors and styles */
 }
