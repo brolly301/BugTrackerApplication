@@ -6,7 +6,9 @@ import HeaderPanel from "../../components/HeaderPanel";
 export default function CreateTicketPage() {
   return (
     <HeaderPanel title={"Submit Ticket"}>
-      <CreateTicketForm />
+      <div className="create-ticket-panel">
+        <CreateTicketForm />
+      </div>
     </HeaderPanel>
   );
 }

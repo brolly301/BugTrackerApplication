@@ -7,7 +7,7 @@ export default function ProjectList({ state }) {
   return (
     <div>
       <table className="all-projects-table">
-        <thead>
+        <thead className="all-projects-table-header">
           <tr className="all-projects-row">
             <th>Name</th>
             <th>Description</th>

@@ -1,7 +1,7 @@
 .navbar-container {
   display: flex;
   background-color: var(--bar-color);
-  padding: 0 80px 0 66px;
+  padding: 0 40px 0 0px;
   font-size: 0.875rem;
 }
 
@@ -18,7 +18,7 @@
   align-items: center;
   color: white;
   font-weight: 500;
-  margin: 0px 30px;
+  margin: 0px 15px;
 
   text-decoration: none;
 }

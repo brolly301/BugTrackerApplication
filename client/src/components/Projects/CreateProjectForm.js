@@ -37,6 +37,7 @@ export default function CreateProjectForm() {
 
   return (
     <div>
+      <h1 className="create-project-title">Enter your project details</h1>
       <form onSubmit={handleSubmit}>
         <Input
           label="Name"

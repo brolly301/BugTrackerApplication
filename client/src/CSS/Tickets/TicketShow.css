@@ -1,4 +1,18 @@
-.tickets-status {
-  background-color: blue;
+.tickets-status-open {
+  background-color: #5ab45e;
   color: white;
+  padding: 0.4rem 0;
+  border-radius: 2rem;
+}
+.tickets-priority-low {
+  background-color: #d2cd59;
+  color: white;
+  padding: 0.4rem 0;
+  border-radius: 2rem;
+}
+.tickets-issueType-bug {
+  background-color: #ff6363;
+  color: white;
+  padding: 0.4rem 0;
+  border-radius: 2rem;
 }

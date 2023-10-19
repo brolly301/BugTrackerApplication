@@ -41,6 +41,7 @@ export default function CreateTicketForm() {
 
   return (
     <div>
+      <h1 className="create-ticket-title">Enter your ticket details</h1>
       <form onSubmit={handleSubmit}>
         <Input
           label="Summary"
@@ -93,7 +94,7 @@ export default function CreateTicketForm() {
           data={formData}
           errors={errors.assignee}
         />
-        <Button label="Create" />
+        <Button label="Submit" />
       </form>
     </div>
   );

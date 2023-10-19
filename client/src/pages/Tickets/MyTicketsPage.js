@@ -32,8 +32,11 @@ export default function MyTicketsPage() {
     <HeaderPanel title={"My Tickets"}>
       <div className="ticket-search-container">
         <SearchBar search={search} setSearch={setSearch} />
+        <view style={{ margin: "0px 5px 0px 5px" }} />
         <FilterBy setFilter={setFilter} filterOptions={ticketStatusFilters} />
+        <view style={{ margin: "0px 5px 0px 5px" }} />
         <FilterBy setFilter={setFilter} filterOptions={ticketPriorityFilters} />
+        <view style={{ margin: "0px 5px 0px 5px" }} />
         <FilterBy setFilter={setFilter} filterOptions={ticketTypeFilters} />
       </div>
       <MyTicketsList state={searchBy} />

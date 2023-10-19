@@ -23,8 +23,14 @@ export default function MyProjectsPage() {
 
   return (
     <HeaderPanel title={"My Projects"}>
-      <SearchBar search={search} setSearch={setSearch} />
-      <FilterBY setFilter={setFilter} filterOptions={ProjectManagerFilters()} />
+      <div className="ticket-search-container">
+        <SearchBar search={search} setSearch={setSearch} />
+        <view style={{ margin: "0px 5px 0px 5px" }} />
+        <FilterBY
+          setFilter={setFilter}
+          filterOptions={ProjectManagerFilters()}
+        />
+      </div>
       <MyProjectsList state={searchBy} />
     </HeaderPanel>
   );

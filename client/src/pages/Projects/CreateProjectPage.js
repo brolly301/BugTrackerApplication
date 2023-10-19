@@ -6,7 +6,10 @@ import HeaderPanel from "../../components/HeaderPanel";
 export default function CreateProjectPage() {
   return (
     <HeaderPanel title={"Create Project"}>
-      <CreateProjectForm />
+      <div className="create-project-panel">
+        {" "}
+        <CreateProjectForm />
+      </div>
     </HeaderPanel>
   );
 }
