@@ -1,12 +1,17 @@
-.project-members {
-  background-color: #58c2d9;
+.project-list-pill {
+  background-color: #5ab45e;
   color: white;
+  font-weight: 600;
   padding: 0.4rem 0;
   border-radius: 2rem;
+  display: inline-block;
+  padding: 10px 20px 10px 20px;
 }
-.project-tickets {
+
+.project-list-pill.members {
+  background-color: #58c2d9;
+}
+
+.project-list-pill.tickets {
   background-color: #586467;
-  color: white;
-  padding: 0.4rem 0;
-  border-radius: 2rem;
 }

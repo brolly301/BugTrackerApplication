@@ -1,11 +1,11 @@
 .all-tickets-table {
   border-collapse: collapse;
-  text-align: center;
+  text-align: right;
   width: 100%;
+  background-color: #f0eeee;
 }
 
 .all-tickets-row > th {
-  /* text-align: right; */
   padding: 8px;
   border: 1px solid #ddd;
 }
@@ -13,4 +13,8 @@
 .all-tickets-table-header {
   background-color: #3b3838cc;
   color: white;
+}
+
+.all-tickets-table tbody tr:nth-child(even) td {
+  background-color: #dfdede;
 }

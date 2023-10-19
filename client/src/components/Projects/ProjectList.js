@@ -22,9 +22,7 @@ export default function ProjectList({ state }) {
               <ProjectShow project={item} />
               <Link
                 to={`/allProjects/projects/${item._id}`}
-                state={{ project: item }}>
-                <button>View</button>
-              </Link>
+                state={{ project: item }}></Link>
             </tr>
           ))}
         </tbody>

@@ -7,13 +7,13 @@ export default function TicketShow({ ticket }) {
       <td>{ticket.summary}</td>
       <td>{ticket.project?.name}</td>
       <td>
-        <p className="tickets-issueType-bug">{ticket.issueType}</p>
+        <p className="tickets-list-pill">{ticket.issueType}</p>
       </td>
       <td>
-        <p className="tickets-priority-low">{ticket.priority}</p>
+        <p className="tickets-list-pill">{ticket.priority}</p>
       </td>
       <td>
-        <p className="tickets-status-open">{ticket.status}</p>
+        <p className="tickets-list-pill">{ticket.status}</p>
       </td>
       <td>
         {ticket.assignee?.firstName} {ticket.assignee?.surname}

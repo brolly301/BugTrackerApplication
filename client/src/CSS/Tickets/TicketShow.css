@@ -1,18 +1,9 @@
-.tickets-status-open {
+.tickets-list-pill {
   background-color: #5ab45e;
   color: white;
+  font-weight: 600;
   padding: 0.4rem 0;
   border-radius: 2rem;
-}
-.tickets-priority-low {
-  background-color: #d2cd59;
-  color: white;
-  padding: 0.4rem 0;
-  border-radius: 2rem;
-}
-.tickets-issueType-bug {
-  background-color: #ff6363;
-  color: white;
-  padding: 0.4rem 0;
-  border-radius: 2rem;
+  display: inline-block;
+  padding: 10px 20px 10px 20px;
 }
