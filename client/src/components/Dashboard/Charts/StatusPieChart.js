@@ -20,7 +20,7 @@ export default function StatusPieChart() {
       {
         label: "Tickets",
         data: [open, inProgress, closed],
-        backgroundColor: [rgb(), rgb(), rgb()],
+        backgroundColor: ["#5AB45E", "#459AE9", "#4E524E"],
         hoverOffset: 4,
       },
     ],
@@ -28,8 +28,12 @@ export default function StatusPieChart() {
 
   return (
     <div>
-      <h2>Status Pie Chart</h2>
-      <Pie data={data} />
+      <Pie
+        data={data}
+        width={"380"}
+        height={"270"}
+        style={{ marginTop: "10px", marginBottom: "10px" }}
+      />
     </div>
   );
 }

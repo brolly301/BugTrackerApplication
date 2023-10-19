@@ -2,5 +2,6 @@
   width: 100%;
   border: 1px solid black;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 10px;
+  background-color: #f0eeee;
 }

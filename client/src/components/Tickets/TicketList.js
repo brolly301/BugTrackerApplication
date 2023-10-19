@@ -7,14 +7,13 @@ export default function TicketList({ state }) {
   return (
     <div>
       <table className="all-tickets-table">
-        <thead>
+        <thead className="all-tickets-table-header">
           <tr className="all-tickets-row">
             <th>Summary</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Issue Type</th>
             <th>Project</th>
+            <th>Issue Type</th>
+            <th>Priority</th>
+            <th>Status</th>
             <th>Assignee</th>
           </tr>
         </thead>
@@ -24,9 +23,7 @@ export default function TicketList({ state }) {
               <TicketShow ticket={item} />
               <Link
                 to={`/allTickets/tickets/${item._id}`}
-                state={{ ticket: item }}>
-                <button>View</button>
-              </Link>
+                state={{ ticket: item }}></Link>
             </tr>
           ))}
         </tbody>

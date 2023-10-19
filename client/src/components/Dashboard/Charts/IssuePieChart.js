@@ -22,7 +22,7 @@ export default function IssuePieChart() {
       {
         label: "Tickets",
         data: [bug, featureRequest, designRequest],
-        backgroundColor: [rgb(), rgb(), rgb()],
+        backgroundColor: ["#FF6363", "#69A2AE", "#B45AA5"],
         hoverOffset: 4,
       },
     ],
@@ -30,8 +30,12 @@ export default function IssuePieChart() {
 
   return (
     <div>
-      <h2>Issue Pie Chart</h2>
-      <Pie data={data} />
+      <Pie
+        data={data}
+        width={"380"}
+        height={"270"}
+        style={{ marginTop: "10px", marginBottom: "10px" }}
+      />
     </div>
   );
 }

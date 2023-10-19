@@ -1,0 +1,57 @@
+.dashboard-tile-list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dashboard-tile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  height: 100%;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid black;
+}
+
+.dashboard-tile-container > h3 {
+  margin: 10px 0 10px 0;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+}
+
+.dashboard-tile-hr {
+  width: 90%;
+
+  margin: 0;
+  border-top: 1px solid black;
+  border-bottom: 0;
+}
+
+.dashboard-number-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  margin: 10px 0 10px 0;
+}
+
+.dashboard-number-container > h4 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.dashboard-tile-view {
+  font-size: 10px;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 10px;
+}

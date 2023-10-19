@@ -1,6 +1,4 @@
 .header-panel-container {
-  margin: 0;
-  padding: 0;
 }
 
 .header-panel-title-container {
@@ -22,4 +20,6 @@
 }
 
 .header-panel-children-container {
+  margin-left: 40px;
+  margin-right: 40px;
 }

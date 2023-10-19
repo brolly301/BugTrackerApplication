@@ -37,10 +37,11 @@ export default function IssuePieChart() {
 
   return (
     <div style={{ width: "100%" }}>
-      <h2>Project Tickets Bar Chart</h2>
       <Bar
         data={data}
-        width={"100%"}
+        width={"600"}
+        height={"350"}
+        style={{ marginTop: "10px", marginBottom: "10px" }}
         options={{
           plugins: {
             tooltip: {

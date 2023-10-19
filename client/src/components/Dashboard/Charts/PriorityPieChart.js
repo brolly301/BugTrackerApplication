@@ -18,7 +18,7 @@ export default function PriorityPieChart() {
       {
         label: "Tickets",
         data: [low, medium, high],
-        backgroundColor: [rgb(), rgb(), rgb()],
+        backgroundColor: ["#D2CD59", "#E5973C", "#E30E27"],
         hoverOffset: 4,
       },
     ],
@@ -26,8 +26,12 @@ export default function PriorityPieChart() {
 
   return (
     <div>
-      <h2>Priority Pie Chart</h2>
-      <Pie data={data} />
+      <Pie
+        data={data}
+        width={"380"}
+        height={"270"}
+        style={{ marginTop: "10px", marginBottom: "10px" }}
+      />
     </div>
   );
 }

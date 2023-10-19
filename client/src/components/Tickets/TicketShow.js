@@ -1,18 +1,16 @@
 import React from "react";
-import useUserContext from "../../hooks/useUserContext";
-import useProjectContext from "../../hooks/useProjectContext";
+import "../../CSS/Tickets/TicketShow.css";
 
 export default function TicketShow({ ticket }) {
-  console.log(ticket);
-
   return (
     <>
       <td>{ticket.summary}</td>
-      <td>{ticket.description}</td>
-      <td>{ticket.status}</td>
-      <td>{ticket.priority}</td>
-      <td>{ticket.issueType}</td>
       <td>{ticket.project?.name}</td>
+      <td>{ticket.issueType}</td>
+      <td>{ticket.priority}</td>
+      <div>
+        <td className="tickets-status">{ticket.status}</td>
+      </div>
       <td>
         {ticket.assignee?.firstName} {ticket.assignee?.surname}
       </td>
