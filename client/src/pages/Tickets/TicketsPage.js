@@ -9,6 +9,7 @@ import {
 } from "../../functions/FilterOptions";
 import FilterBy from "../../components/FilterBy";
 import "../../CSS/Pages/TicketsPage.css";
+import HeaderPanel from "../../components/HeaderPanel";
 
 export default function TicketsPage() {
   const [search, setSearch] = useState("");
@@ -29,8 +30,7 @@ export default function TicketsPage() {
   });
 
   return (
-    <div>
-      <h1>Tickets</h1>
+    <HeaderPanel title={"All Tickets"}>
       <div className="ticket-search-container">
         <SearchBar search={search} setSearch={setSearch} />
         <FilterBy setFilter={setFilter} filterOptions={ticketStatusFilters} />
@@ -38,6 +38,6 @@ export default function TicketsPage() {
         <FilterBy setFilter={setFilter} filterOptions={ticketTypeFilters} />
       </div>
       <TicketList state={searchBy} />
-    </div>
+    </HeaderPanel>
   );
 }

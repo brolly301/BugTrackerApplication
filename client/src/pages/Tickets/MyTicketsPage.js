@@ -8,6 +8,7 @@ import {
   ticketStatusFilters,
   ticketTypeFilters,
 } from "../../functions/FilterOptions";
+import HeaderPanel from "../../components/HeaderPanel";
 
 export default function MyTicketsPage() {
   const [search, setSearch] = useState("");
@@ -16,7 +17,7 @@ export default function MyTicketsPage() {
 
   const searchBy = state?.filter((ticket) => {
     const summaryMatch = ticket.summary
-      .toLowerCase()
+      ?.toLowerCase()
       .includes(search.toLowerCase());
     return (
       (summaryMatch && filter === "") ||
@@ -28,8 +29,7 @@ export default function MyTicketsPage() {
   });
 
   return (
-    <div>
-      <h1>My Tickets</h1>
+    <HeaderPanel title={"My Tickets"}>
       <div className="ticket-search-container">
         <SearchBar search={search} setSearch={setSearch} />
         <FilterBy setFilter={setFilter} filterOptions={ticketStatusFilters} />
@@ -37,6 +37,6 @@ export default function MyTicketsPage() {
         <FilterBy setFilter={setFilter} filterOptions={ticketTypeFilters} />
       </div>
       <MyTicketsList state={searchBy} />
-    </div>
+    </HeaderPanel>
   );
 }

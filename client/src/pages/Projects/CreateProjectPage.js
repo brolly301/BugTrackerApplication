@@ -1,12 +1,12 @@
 import React from "react";
 import CreateProjectForm from "../../components/Projects/CreateProjectForm";
 import "../../CSS/Pages/CreateProjectPage.css";
+import HeaderPanel from "../../components/HeaderPanel";
 
 export default function CreateProjectPage() {
   return (
-    <div className="create-project-page-container">
-      <h1>Create Project</h1>
+    <HeaderPanel title={"Create Project"}>
       <CreateProjectForm />
-    </div>
+    </HeaderPanel>
   );
 }

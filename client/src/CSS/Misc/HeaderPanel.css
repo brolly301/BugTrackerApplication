@@ -1,0 +1,25 @@
+.header-panel-container {
+  margin: 0;
+  padding: 0;
+}
+
+.header-panel-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  text-align: center;
+  color: white;
+  background-color: var(--primary-color);
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.header-panel-title-container > h1 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.header-panel-children-container {
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import useTicketContext from "../../hooks/useTicketContext";
 import TicketShow from "../../components/Tickets/TicketDetails/TicketShow";
+import HeaderPanel from "../../components/HeaderPanel";
 
 export default function TicketDetailsPage() {
   const { state } = useTicketContext();
@@ -11,9 +12,8 @@ export default function TicketDetailsPage() {
   );
 
   return (
-    <div>
-      <h1>Ticket Details</h1>
+    <HeaderPanel title={"Ticket Details"}>
       <TicketShow ticket={ticket} />
-    </div>
+    </HeaderPanel>
   );
 }

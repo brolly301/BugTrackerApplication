@@ -1,12 +1,12 @@
 import React from "react";
 import CreateTicketForm from "../../components/Tickets/CreateTicketForm";
 import "../../CSS/Pages/CreateTicketPage.css";
+import HeaderPanel from "../../components/HeaderPanel";
 
 export default function CreateTicketPage() {
   return (
-    <div className='create-ticket-page-container'>
-      <h1>Create Ticket</h1>
+    <HeaderPanel title={"Submit Ticket"}>
       <CreateTicketForm />
-    </div>
+    </HeaderPanel>
   );
 }

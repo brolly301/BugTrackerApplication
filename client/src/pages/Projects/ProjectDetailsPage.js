@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import useProjectContext from "../../hooks/useProjectContext";
 import ProjectShow from "../../components/Projects/ProjectDetails/ProjectShow";
+import HeaderPanel from "../../components/HeaderPanel";
 
 export default function ProjectDetailsPage() {
   const { state } = useProjectContext();
@@ -11,9 +12,8 @@ export default function ProjectDetailsPage() {
   );
 
   return (
-    <div>
-      <h1>Project Details</h1>
+    <HeaderPanel title={"Project Details"}>
       <ProjectShow project={project} />
-    </div>
+    </HeaderPanel>
   );
 }

@@ -5,17 +5,17 @@ import IssuePieChart from "../components/Dashboard/Charts/IssuePieChart";
 import ProjectTicketsBarChart from "../components/Dashboard/Charts/ProjectTicketsBarChart";
 import DashboardTileList from "../components/Dashboard/DashboardTileList";
 import UserRolesBarChart from "../components/Dashboard/Charts/UserRolesBarChart";
+import HeaderPanel from "../components/HeaderPanel";
 
 export default function DashboardPage() {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <HeaderPanel title={"Dashboard"}>
       <DashboardTileList />
       <StatusPieChart />
       <PriorityPieChart />
       <IssuePieChart />
       <ProjectTicketsBarChart />
       <UserRolesBarChart />
-    </div>
+    </HeaderPanel>
   );
 }

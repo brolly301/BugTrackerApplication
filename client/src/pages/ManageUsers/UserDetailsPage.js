@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import UserShow from "../../components/ManagerUsers/UserDetails/UserShow";
 import useUserContext from "../../hooks/useUserContext";
+import HeaderPanel from "../../components/HeaderPanel";
 
 export default function UserDetailsPage() {
   const { state } = useUserContext();
@@ -11,9 +12,8 @@ export default function UserDetailsPage() {
   );
 
   return (
-    <div>
-      <h1>User Details</h1>
+    <HeaderPanel title={"User Details"}>
       <UserShow user={user} />
-    </div>
+    </HeaderPanel>
   );
 }

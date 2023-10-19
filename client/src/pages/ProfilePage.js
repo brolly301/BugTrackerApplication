@@ -1,11 +1,11 @@
 import React from "react";
 import ProfileDetails from "../components/Profile/ProfileDetails";
+import HeaderPanel from "../components/HeaderPanel";
 
 export default function ProfilePage() {
   return (
-    <div>
-      <h1>ProfilePage</h1>
+    <HeaderPanel title={"Profile"}>
       <ProfileDetails />
-    </div>
+    </HeaderPanel>
   );
 }

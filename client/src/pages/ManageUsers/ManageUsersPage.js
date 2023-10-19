@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar";
 import useUserContext from "../../hooks/useUserContext";
 import FilterBy from "../../components/FilterBy";
 import { manageUserFilters } from "../../functions/FilterOptions";
+import HeaderPanel from "../../components/HeaderPanel";
 
 export default function ManageUsersPage() {
   const { state } = useUserContext();
@@ -20,13 +21,12 @@ export default function ManageUsersPage() {
   });
 
   return (
-    <div className="manage-user-page-container">
-      <h1>Manage Users</h1>
+    <HeaderPanel title={"Manage Users"}>
       <div className="manage-user-search-container">
         <SearchBar search={search} setSearch={setSearch} />
         <FilterBy filterOptions={manageUserFilters} setFilter={setFilter} />
       </div>
       <UserList state={searchBy} />
-    </div>
+    </HeaderPanel>
   );
 }
