@@ -18,7 +18,9 @@ router.get("/userTickets", requireAuth, async (req, res) => {
 
 router.get("/userProjects", requireAuth, async (req, res) => {
   try {
-    const projects = await Project.find({ teamMembers: req.user._id });
+    const projects = await Project.find({ teamMembers: req.user._id }).populate(
+      "projectManager"
+    );
     res.status(200).send(projects);
   } catch (e) {
     res.status(500).json({ error: "Unable to fetch projects" + e.message });

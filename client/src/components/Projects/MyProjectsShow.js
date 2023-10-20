@@ -1,20 +1,26 @@
 import React from "react";
-import useUserContext from "../../hooks/useUserContext";
+import "../../CSS/Projects/ProjectShow.css";
+import { Link } from "react-router-dom";
 
 export default function MyProjectsShow({ project }) {
-  const { state } = useUserContext();
-
-  const projectManager = state.allUsers.find(
-    (user) => user._id === project.projectManager
-  );
-
   return (
     <>
-      <td>{project.name}</td>
-      <td>{project.description}</td>
-      <td>{`${projectManager?.firstName} ${projectManager?.surname}`}</td>
-      <td>{project.teamMembers.length}</td>
-      <td>{project.tickets.length}</td>
+      <td className="projects--table-text">{project.name}</td>
+      <td className="projects--table-text">{project.description}</td>
+      <td className="projects--table-text">{`${project.projectManager?.firstName} ${project.projectManager?.surname}`}</td>
+      <td>
+        <p className="project-list-pill members">
+          {project.teamMembers.length}
+        </p>
+      </td>
+      <td>
+        <p className="project-list-pill tickets">{project.tickets.length}</p>
+      </td>
+      <Link
+        to={`/allProjects/projects/${project._id}`}
+        state={{ project: project }}>
+        <button className="ticket-view-button">View</button>
+      </Link>
     </>
   );
 }
