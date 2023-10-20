@@ -25,13 +25,15 @@ function App() {
   return (
     <>
       <Layout>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
         <div className="route-container">
-          <Sidebar />
-          <div style={{ width: "100%" }}>
-            <Navbar />
+          {/* <Sidebar /> */}
+          <div style={{ width: "100%", height: "100%" }}>
+            {/* <Navbar /> */}
             <Routes>
-              <Route path="/" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/allTickets" element={<TicketsPage />} />

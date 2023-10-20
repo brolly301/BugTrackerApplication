@@ -7,7 +7,6 @@ export default function CreateProjectPage() {
   return (
     <HeaderPanel title={"Create Project"}>
       <div className="create-project-panel">
-        {" "}
         <CreateProjectForm />
       </div>
     </HeaderPanel>
