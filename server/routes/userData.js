@@ -7,7 +7,9 @@ const requireAuth = require("../middleware/requireAuth");
 
 router.get("/userTickets", requireAuth, async (req, res) => {
   try {
-    const tickets = await Ticket.find({ assignee: req.user._id });
+    const tickets = await Ticket.find({ assignee: req.user._id })
+      .populate("project")
+      .populate("assignee");
     res.status(200).send(tickets);
   } catch (e) {
     res.status(500).json({ error: "Unable to fetch tickets" + e.message });

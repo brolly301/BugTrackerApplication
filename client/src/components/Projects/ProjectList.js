@@ -1,7 +1,6 @@
 import React from "react";
 import ProjectShow from "./ProjectShow";
 import "../../CSS/Projects/ProjectList.css";
-import { Link } from "react-router-dom";
 
 export default function ProjectList({ state }) {
   return (
@@ -14,15 +13,13 @@ export default function ProjectList({ state }) {
             <th>Project Manager</th>
             <th>Team Members</th>
             <th>Tickets</th>
+            <th style={{ backgroundColor: "white", border: 0 }} />
           </tr>
         </thead>
         <tbody>
           {state.map((item, index) => (
             <tr key={index} className="all-projects-row">
               <ProjectShow project={item} />
-              <Link
-                to={`/allProjects/projects/${item._id}`}
-                state={{ project: item }}></Link>
             </tr>
           ))}
         </tbody>

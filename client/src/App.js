@@ -30,9 +30,9 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
         <div className="route-container">
-          {/* <Sidebar /> */}
+          <Sidebar />
           <div style={{ width: "100%", height: "100%" }}>
-            {/* <Navbar /> */}
+            <Navbar />
             <Routes>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/profile" element={<ProfilePage />} />

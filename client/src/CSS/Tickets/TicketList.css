@@ -1,13 +1,29 @@
 .all-tickets-table {
   border-collapse: collapse;
-  text-align: right;
+  text-align: left;
   width: 100%;
-  background-color: #f0eeee;
 }
 
 .all-tickets-row > th {
   padding: 8px;
+  padding-left: 10px;
   border: 1px solid #ddd;
+}
+
+.all-tickets-row > td {
+  border: 1px solid #d1d0d0;
+  padding-left: -10px;
+}
+
+.my-tickets-row > th {
+  padding: 8px;
+  padding-left: 10px;
+  border: 1px solid #ddd;
+}
+
+.all-tickets-row > td {
+  border: 1px solid #d1d0d0;
+  padding-left: -10px;
 }
 
 .all-tickets-table-header {
@@ -17,4 +33,23 @@
 
 .all-tickets-table tbody tr:nth-child(even) td {
   background-color: #dfdede;
+}
+.all-tickets-table tbody tr:nth-child(odd) td {
+  background-color: #f0eeee;
+}
+
+.all-tickets-row > td:nth-of-type(7) {
+  width: 10px;
+}
+
+.all-tickets-row > th:nth-of-type(7) {
+  width: 10px;
+}
+
+.my-tickets-row > td:nth-of-type(6) {
+  width: 10px;
+}
+
+.my-tickets-row > th:nth-of-type(6) {
+  width: 10px;
 }

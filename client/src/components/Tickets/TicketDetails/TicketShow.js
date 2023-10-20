@@ -8,6 +8,8 @@ export default function TicketShow({ ticket }) {
   const { deleteTicket } = useTicketContext();
   const redirect = useNavigate();
 
+  console.log(ticket);
+
   const handleEdit = () => {
     setIsEdit(!isEdit);
   };
@@ -24,8 +26,10 @@ export default function TicketShow({ ticket }) {
       <h4>{ticket?.summary}</h4>
       <h4>{ticket?.description}</h4>
       <h4>{ticket?.priority}</h4>
-      <h4>{ticket?.assignee}</h4>
-      <h4>{ticket?.project}</h4>
+      <h4>
+        {ticket?.assignee?.firstName} {ticket?.assignee?.surname}
+      </h4>
+      <h4>{ticket?.project?.name}</h4>
       <h4>{ticket?.status}</h4>
       <h4>{ticket?.issueType}</h4>
       <button type="button" onClick={handleEdit}>

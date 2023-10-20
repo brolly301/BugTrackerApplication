@@ -23,7 +23,9 @@ export default function ProjectShow({ project }) {
     <form onSubmit={handleSubmit}>
       <h4>{project?.name}</h4>
       <h4>{project?.description}</h4>
-      <h4>{project?.projectManager}</h4>
+      <h4>
+        {project?.projectManager?.firstName} {project?.projectManager?.surname}
+      </h4>
       <button type="button" onClick={handleEdit}>
         Edit
       </button>

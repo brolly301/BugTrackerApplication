@@ -1,11 +1,16 @@
 .project-list-pill {
-  background-color: #5ab45e;
   color: white;
   font-weight: 600;
-  padding: 0.4rem 0;
+  font-size: 14px;
   border-radius: 2rem;
   display: inline-block;
-  padding: 10px 20px 10px 20px;
+  padding: 7px 15px 7px 15px;
+  margin-left: 10px;
+}
+.projects--table-text {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 10px;
 }
 
 .project-list-pill.members {

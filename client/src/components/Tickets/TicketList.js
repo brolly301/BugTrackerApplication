@@ -1,7 +1,6 @@
 import React from "react";
 import TicketShow from "./TicketShow";
 import "../../CSS/Tickets/TicketList.css";
-import { Link } from "react-router-dom";
 
 export default function TicketList({ state }) {
   return (
@@ -15,15 +14,13 @@ export default function TicketList({ state }) {
             <th>Priority</th>
             <th>Status</th>
             <th>Assignee</th>
+            <th style={{ backgroundColor: "white", border: 0 }} />
           </tr>
         </thead>
         <tbody>
           {state?.map((item, index) => (
             <tr key={index} className="all-tickets-row">
               <TicketShow ticket={item} />
-              <Link
-                to={`/allTickets/tickets/${item._id}`}
-                state={{ ticket: item }}></Link>
             </tr>
           ))}
         </tbody>

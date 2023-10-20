@@ -1,9 +1,56 @@
 .tickets-list-pill {
-  background-color: #5ab45e;
   color: white;
   font-weight: 600;
-  padding: 0.4rem 0;
+  font-size: 14px;
   border-radius: 2rem;
   display: inline-block;
-  padding: 10px 20px 10px 20px;
+  padding: 7px 15px 7px 15px;
+  margin-left: 10px;
+}
+.ticket--table-text {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+.issue-bug-pill {
+  background-color: #ff6363;
+}
+.issue-feature-pill {
+  background-color: #69a2ae;
+}
+.issue-design-pill {
+  background-color: #b45aa5;
+}
+
+.priority-low-pill {
+  background-color: #d2cd59;
+}
+.priority-medium-pill {
+  background-color: #e5973c;
+}
+.priority-high-pill {
+  background-color: #e30e27;
+}
+.status-open-pill {
+  background-color: #5ab45e;
+}
+.status-in-progress-pill {
+  background-color: #459ae9;
+}
+.status-closed-pill {
+  background-color: #4e524e;
+}
+
+.ticket-view-button {
+  background-color: #3b3838cc;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 2rem;
+  display: inline-block;
+  padding: 7px 15px 7px 15px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
