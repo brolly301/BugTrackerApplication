@@ -42,70 +42,78 @@ export default function TicketEditForm({ ticket, handleEdit }) {
   };
 
   return (
-    <div>
+    <div className="ticket-details-tile">
       <form onSubmit={handleSubmit}>
-        <Input
-          label="Summary"
-          setData={setFormData}
-          data={formData}
-          errors={errors.summary}
-          value={formData.summary}
-        />
-        <Input
-          label="Description"
-          setData={setFormData}
-          data={formData}
-          errors={errors.description}
-          value={formData.description}
-        />
-        <Dropdown
-          label={"Project"}
-          values={projects?.map((project) => {
-            return { label: project.name, value: project._id };
-          })}
-          value={formData.project}
-          setData={setFormData}
-          data={formData}
-          errors={errors.project}
-        />
-        <Dropdown
-          label={dropdownData.issueType.label}
-          values={dropdownData.issueType.values}
-          value={formData.issueType}
-          setData={setFormData}
-          data={formData}
-          errors={errors.issueType}
-        />
-        <Dropdown
-          label={dropdownData.priority.label}
-          values={dropdownData.priority.values}
-          value={formData.priority}
-          setData={setFormData}
-          data={formData}
-          errors={errors.priority}
-        />
-        <Dropdown
-          label={dropdownData.status.label}
-          values={dropdownData.status.values}
-          value={formData.status}
-          setData={setFormData}
-          data={formData}
-          errors={errors.status}
-        />
-        <Dropdown
-          label={"Assignee"}
-          values={state?.allUsers?.map((user) => {
-            return { label: user.firstName, value: user._id };
-          })}
-          value={formData.assignee}
-          setData={setFormData}
-          data={formData}
-          errors={errors.assignee}
-        />
-        <button type="submit">Save</button>
-        <button type="button" onClick={handleEdit}>
-          Cancel
-        </button>
+        <div className="ticket-details-tile-container">
+          <div className="ticket-details-tile-summary-container">
+            <Input
+              label="Summary"
+              setData={setFormData}
+              data={formData}
+              errors={errors.summary}
+              value={formData.summary}
+            />
+            <Input
+              label="Description"
+              setData={setFormData}
+              data={formData}
+              errors={errors.description}
+              value={formData.description}
+            />
+          </div>
+          <div className="ticket-details-tile-project-container">
+            <Dropdown
+              label={"Project"}
+              values={projects?.map((project) => {
+                return { label: project.name, value: project._id };
+              })}
+              value={formData.project}
+              setData={setFormData}
+              data={formData}
+              errors={errors.project}
+            />
+            <Dropdown
+              label={dropdownData.issueType.label}
+              values={dropdownData.issueType.values}
+              value={formData.issueType}
+              setData={setFormData}
+              data={formData}
+              errors={errors.issueType}
+            />
+            <Dropdown
+              label={dropdownData.priority.label}
+              values={dropdownData.priority.values}
+              value={formData.priority}
+              setData={setFormData}
+              data={formData}
+              errors={errors.priority}
+            />
+            <Dropdown
+              label={dropdownData.status.label}
+              values={dropdownData.status.values}
+              value={formData.status}
+              setData={setFormData}
+              data={formData}
+              errors={errors.status}
+            />
+            <Dropdown
+              label={"Assignee"}
+              values={state?.allUsers?.map((user) => {
+                return { label: user.firstName, value: user._id };
+              })}
+              value={formData.assignee}
+              setData={setFormData}
+              data={formData}
+              errors={errors.assignee}
+            />
+          </div>
+        </div>
+        <div className="ticket-details-tile-button-container">
+          <button type="submit">Save</button>
+          <button type="button" onClick={handleEdit}>
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
