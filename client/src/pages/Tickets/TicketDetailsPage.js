@@ -1,8 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import useTicketContext from "../../hooks/useTicketContext";
-import TicketShow from "../../components/Tickets/TicketDetails/TicketShow";
+import TicketDetailsTile from "../../components/Tickets/TicketDetails/TicketDetailsTile";
 import HeaderPanel from "../../components/HeaderPanel";
+import "../../CSS/Pages/TicketDetails.css";
 
 export default function TicketDetailsPage() {
   const { state } = useTicketContext();
@@ -13,7 +14,10 @@ export default function TicketDetailsPage() {
 
   return (
     <HeaderPanel title={"Ticket Details"}>
-      <TicketShow ticket={ticket} />
+      <div className='ticket-details-page-container'>
+        <TicketDetailsTile ticket={ticket} />
+        <TicketDetailsTile ticket={ticket} />
+      </div>
     </HeaderPanel>
   );
 }

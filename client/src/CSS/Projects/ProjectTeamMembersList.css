@@ -1,0 +1,33 @@
+.team-members-table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+
+.team-members-row > th {
+  padding: 8px;
+  padding-left: 10px;
+  border: 1px solid #ddd;
+}
+
+.team-members-row > td {
+  border: 1px solid #d1d0d0;
+  padding-left: -10px;
+}
+
+.team-members-row > td {
+  border: 1px solid #d1d0d0;
+  padding-left: -10px;
+}
+
+.team-members-table-header {
+  background-color: #3b3838cc;
+  color: white;
+}
+
+.team-members-table tbody tr:nth-child(even) td {
+  background-color: #dfdede;
+}
+.team-members-table tbody tr:nth-child(odd) td {
+  background-color: #f0eeee;
+}

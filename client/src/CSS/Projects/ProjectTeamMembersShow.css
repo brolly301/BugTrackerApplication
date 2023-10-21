@@ -1,0 +1,43 @@
+.team-members-list-pill {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 2rem;
+  display: inline-block;
+  padding: 7px 15px 7px 15px;
+  margin-left: 10px;
+}
+.team-members-table-text {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+.role-admin-pill {
+  background-color: royalblue;
+}
+.role-projectManager-pill {
+  background-color: teal;
+}
+.role-developer-pill {
+  background-color: orange;
+}
+.role-testEngineer-pill {
+  background-color: rgb(131, 130, 130);
+}
+.role-support-pill {
+  background-color: rgb(189, 58, 230);
+}
+
+.ticket-view-button {
+  background-color: #3b3838cc;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 2rem;
+  display: inline-block;
+  padding: 7px 15px 7px 15px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
