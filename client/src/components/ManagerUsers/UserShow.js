@@ -16,11 +16,11 @@ export default function UserShow({ user }) {
       <div className="user-show-email-container">
         <div className="user-show-icon-container">
           <FaPhone className="user-show-icon" />
-          <h4>{user.emailAddress}</h4>
+          <h4>{user.phoneNumber}</h4>
         </div>
         <div className="user-show-icon-container">
           <FaRegEnvelope className="user-show-icon" />
-          <h4>{user.phoneNumber}</h4>
+          <h4>{user.emailAddress}</h4>
         </div>
       </div>
       <Link

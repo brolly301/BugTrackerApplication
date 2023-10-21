@@ -1,8 +1,11 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import UserShow from "../../components/ManagerUsers/UserDetails/UserShow";
 import useUserContext from "../../hooks/useUserContext";
 import HeaderPanel from "../../components/HeaderPanel";
+import UserDetailsTile from "../../components/ManagerUsers/UserDetails/UserTiles/UserDetailsTile";
+import UserTicketsTile from "../../components/ManagerUsers/UserDetails/UserTiles/UserTicketsTile";
+import UserStatisticsTile from "../../components/ManagerUsers/UserDetails/UserTiles/UserStatisticsTile";
+import "../../CSS/Pages/UserDetails.css";
 
 export default function UserDetailsPage() {
   const { state } = useUserContext();
@@ -13,7 +16,18 @@ export default function UserDetailsPage() {
 
   return (
     <HeaderPanel title={"User Details"}>
-      <UserShow user={user} />
+      <div className="user-details-page-container">
+        <div className="user-details-page-non-table">
+          <UserDetailsTile user={user} />
+        </div>
+        <div className="user-details-page-table">
+          <UserTicketsTile user={user} />
+          <UserTicketsTile user={user} />
+        </div>
+        <div className="user-details-page-non-table">
+          <UserStatisticsTile user={user} />
+        </div>
+      </div>
     </HeaderPanel>
   );
 }
