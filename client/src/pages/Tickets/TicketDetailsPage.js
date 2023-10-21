@@ -17,7 +17,6 @@ export default function TicketDetailsPage() {
     <HeaderPanel title={"Ticket Details"}>
       <div className="ticket-details-page-container">
         <TicketDetailsTile ticket={ticket} />
-
         <TicketCommentsTile ticket={ticket} />
       </div>
     </HeaderPanel>

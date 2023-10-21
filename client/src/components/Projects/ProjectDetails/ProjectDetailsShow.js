@@ -22,39 +22,35 @@ export default function ProjectDetailsShow({ project }) {
     });
   };
 
-  console.log(project);
-
   let content = (
     <div className="project-details-tile-container">
       <h1>Project Details</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="project-details-tile-data-container">
-        <div className="project-details-tile-details-container">
-          <label htmlFor="">Name</label>
-          <h4>{project?.name}</h4>
-          <label htmlFor="">Description</label>
-          <h4>{project?.description}</h4>
-          <label htmlFor="">Manager</label>
-          <h4>
-            {project?.projectManager?.firstName}
-            {project?.projectManager?.surname}
-          </h4>
+      <form onSubmit={handleSubmit}>
+        <div className="project-details-tile-data-container">
+          <div className="project-details-tile-details-container">
+            <label>Name</label>
+            <h4>{project?.name}</h4>
+            <label>Description</label>
+            <h4>{project?.description}</h4>
+            <label>Manager</label>
+            <h4>
+              {project?.projectManager?.firstName}{" "}
+              {project?.projectManager?.surname}
+            </h4>
+          </div>
+          <div className="project-details-tile-members-container">
+            <label htmlFor="">Team Members</label>
+            <SearchBar />
+            <div style={{ height: "10px" }} />
+            <ProjectTeamMembersList teamMembers={project?.teamMembers} />
+          </div>
         </div>
-        <div className="project-details-tile-members-container">
-          <label htmlFor="">Team Members</label>
-          <SearchBar />
-          <ProjectTeamMembersList teamMembers={project?.teamMembers} />
-          {/* <h4>
-            {project?.teamMembers?.map(
-              (member) => `${member.firstName} ${member.surname}`
-            )}
-          </h4> */}
+        <div className="project-details-tile-button-container">
+          <button type="button" onClick={handleEdit}>
+            Edit
+          </button>
+          <button type="submit">Delete</button>
         </div>
-        {/* <button type="button" onClick={handleEdit}>
-          Edit
-        </button>
-        <button type="submit">Delete</button> */}
       </form>
     </div>
   );

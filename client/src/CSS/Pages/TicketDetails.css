@@ -1,6 +1,7 @@
 .ticket-details-page-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  margin-bottom: 50px;
 }

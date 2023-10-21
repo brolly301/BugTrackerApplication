@@ -7,9 +7,11 @@ import BarChartList from "../components/Dashboard/BarChartList";
 export default function DashboardPage() {
   return (
     <HeaderPanel title={"Dashboard"}>
-      <DashboardTileList />
-      <PieChartList />
-      <BarChartList />
+      <div style={{ marginTop: "10px" }}>
+        <DashboardTileList />
+        <PieChartList />
+        <BarChartList />
+      </div>
     </HeaderPanel>
   );
 }
