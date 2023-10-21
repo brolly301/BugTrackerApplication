@@ -21,17 +21,17 @@ export default function TicketShow({ ticket }) {
   };
 
   let content = (
-    <div className='ticket-details-tile'>
+    <div className="ticket-details-tile">
       <h1>Ticket Details</h1>
       <form onSubmit={handleSubmit}>
-        <div className='ticket-details-tile-container'>
-          <div className='ticket-details-tile-summary-container'>
+        <div className="ticket-details-tile-container">
+          <div className="ticket-details-tile-summary-container">
             <label>Summary</label>
             <h4>{ticket?.summary}</h4>
             <label>Description</label>
             <h4>{ticket?.description}</h4>
           </div>
-          <div className='ticket-details-tile-project-container'>
+          <div className="ticket-details-tile-project-container">
             <label>Project</label>
             <h4>{ticket?.project?.name}</h4>
             <label>Assignee</label>
@@ -46,11 +46,11 @@ export default function TicketShow({ ticket }) {
             <h4>{ticket?.priority}</h4>
           </div>
         </div>
-        <div className='ticket-details-tile-button-container'>
-          <button type='button' onClick={handleEdit}>
-            Edit
+        <div className="ticket-details-tile-button-container">
+          <button type="button" onClick={handleEdit}>
+            Edit Ticket
           </button>
-          <button type='submit'>Delete</button>
+          <button type="submit">Delete Ticket</button>
         </div>
       </form>
     </div>
