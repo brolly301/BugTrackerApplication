@@ -38,6 +38,9 @@
 .status-in-progress-pill {
   background-color: #459ae9;
 }
+.status-testing-pill {
+  background-color: #8744f3;
+}
 .status-closed-pill {
   background-color: #4e524e;
 }

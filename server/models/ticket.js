@@ -22,7 +22,7 @@ const ticketSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["Open", "In Progress", "Closed"],
+    enum: ["Backlog", "In Progress", "Testing", "Closed"],
   },
   assignee: {
     type: Schema.Types.ObjectId,

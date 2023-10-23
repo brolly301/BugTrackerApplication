@@ -29,6 +29,8 @@ export default function TicketShow({ ticket }) {
       setStatusPillColor("status-open-pill");
     } else if (ticket.status === "In Progress") {
       setStatusPillColor("status-in-progress-pill");
+    } else if (ticket.status === "Testing") {
+      setStatusPillColor("status-testing-pill");
     } else if (ticket.status === "Closed") {
       setStatusPillColor("status-closed-pill");
     }

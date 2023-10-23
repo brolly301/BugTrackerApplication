@@ -12,15 +12,16 @@ export default function StatusPieChart() {
   const inProgress = state.filter(
     (ticket) => ticket.status === "In Progress"
   ).length;
+  const testing = state.filter((ticket) => ticket.status === "Testing").length;
   const closed = state.filter((ticket) => ticket.status === "Closed").length;
 
   const data = {
-    labels: ["Open", "In Progress", "Closed"],
+    labels: ["Open", "In Progress", "Testing", "Closed"],
     datasets: [
       {
         label: "Tickets",
-        data: [open, inProgress, closed],
-        backgroundColor: ["#5AB45E", "#459AE9", "#4E524E"],
+        data: [open, inProgress, testing, closed],
+        backgroundColor: ["#5AB45E", "#459AE9", "#8744f3", "#4E524E"],
         hoverOffset: 4,
       },
     ],

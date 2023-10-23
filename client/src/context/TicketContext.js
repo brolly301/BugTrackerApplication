@@ -13,7 +13,9 @@ const reducer = (state, action) => {
       return state.filter((ticket) => ticket._id !== action.payload);
     case "edit_ticket":
       return state.map((ticket) => {
-        return ticket._id === action.payload._id ? action.payload : ticket;
+        return ticket._id === action.payload._id
+          ? { ...ticket, ...action.payload }
+          : ticket;
       });
     default:
       return state;

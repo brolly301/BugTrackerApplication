@@ -18,6 +18,7 @@ import ManageUsersPage from "./pages/ManageUsers/ManageUsersPage";
 import UserDetailsPage from "./pages/ManageUsers/UserDetailsPage";
 import ProjectDetailsPage from "./pages/Projects/ProjectDetailsPage";
 import TicketDetailsPage from "./pages/Tickets/TicketDetailsPage";
+import KanbanPage from "./pages/KanbanPage";
 
 function App() {
   const { state } = useUserContext();
@@ -35,6 +36,7 @@ function App() {
             <Navbar />
             <Routes>
               <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/kanban" element={<KanbanPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/allTickets" element={<TicketsPage />} />
               <Route

@@ -8,7 +8,7 @@ import { LiaClipboardListSolid } from "react-icons/lia";
 import { IoBugOutline } from "react-icons/io5";
 import { VscProject } from "react-icons/vsc";
 import { BsMotherboard, BsPencil } from "react-icons/bs";
-import { FaUsers } from "react-icons/fa";
+import { FaUsers, FaProjectDiagram } from "react-icons/fa";
 
 export default function Sidebar() {
   return (
@@ -25,6 +25,12 @@ export default function Sidebar() {
               <LuLayoutDashboard className="sidebar-icon" />
             </div>
             <li>Dashboard</li>
+          </Link>
+          <Link to={"/kanban"} className="sidebar-list-item-link">
+            <div className="sidebar-icon-container">
+              <VscProject className="sidebar-icon" />
+            </div>
+            <li>Kanban</li>
           </Link>
           <Link to={"/allTickets"} className="sidebar-list-item-link">
             <div className="sidebar-icon-container">
@@ -53,9 +59,8 @@ export default function Sidebar() {
           </Link>
           <Link to={"/myProjects"} className="sidebar-list-item-link">
             <div className="sidebar-icon-container">
-              <VscProject className="sidebar-icon" />
+              <FaProjectDiagram className="sidebar-icon" />
             </div>
-
             <li>My Projects</li>
           </Link>
           <Link to={"/createProject"} className="sidebar-list-item-link">

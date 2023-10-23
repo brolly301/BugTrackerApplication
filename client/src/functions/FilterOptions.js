@@ -39,6 +39,10 @@ export const ticketStatusFilters = [
     label: "In Progress",
   },
   {
+    name: "Testing",
+    label: "Testing",
+  },
+  {
     name: "Closed",
     label: "Closed",
   },

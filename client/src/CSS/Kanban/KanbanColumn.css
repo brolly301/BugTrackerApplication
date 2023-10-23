@@ -1,0 +1,28 @@
+.kanban-column-container {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+}
+
+.kanban-column-label {
+  font-size: 1.1em;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+
+.kanban-label-open {
+  background-color: #5ab45e;
+}
+.kanban-label-in-progress {
+  background-color: #459ae9;
+}
+.kanban-label-testing {
+  background-color: #8744f3;
+}
+.kanban-label-closed {
+  background-color: #4e524e;
+}
