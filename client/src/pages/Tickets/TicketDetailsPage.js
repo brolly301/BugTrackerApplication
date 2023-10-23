@@ -9,7 +9,8 @@ import TicketCommentsTile from "../../components/Tickets/TicketDetails/TicketCom
 export default function TicketDetailsPage() {
   const { state } = useTicketContext();
   const location = useLocation();
-  const ticket = state.find(
+  console.log(location);
+  const ticket = state?.find(
     (ticket) => ticket._id === location.state.ticket._id
   );
 

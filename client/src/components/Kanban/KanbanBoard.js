@@ -10,15 +10,21 @@ export default function KanbanBoard() {
   const { state, editTicket } = useTicketContext();
   const { state: projects } = useProjectContext();
   const [project, setProject] = useState("Security Audit");
+  const [isDragging, setIsDragging] = useState(false);
 
   const labels = ["Open", "In Progress", "Testing", "Closed"];
 
   const handleEndDrag = (event) => {
+    setIsDragging(false);
     const { active, over } = event;
     if (active.id === over.id) {
       return;
     }
     editTicket({ _id: active.id, status: over.id });
+  };
+
+  const handleStartDrag = () => {
+    setIsDragging(true);
   };
 
   return (
@@ -34,41 +40,22 @@ export default function KanbanBoard() {
           })}
         />
       </div>
-
-      <DndContext onDragEnd={handleEndDrag} collisionDetection={closestCenter}>
+      <DndContext
+        onDragEnd={handleEndDrag}
+        onDragStart={handleStartDrag}
+        collisionDetection={closestCenter}>
         <div className="kanban-board-board-container">
-          <KanbanColumn
-            label={labels[0]}
-            tickets={state.filter((ticket) => {
-              return (
-                ticket.status === labels[0] && ticket.project?.name === project
-              );
-            })}
-          />
-          <KanbanColumn
-            label={labels[1]}
-            tickets={state.filter((ticket) => {
-              return (
-                ticket.status === labels[1] && ticket.project?.name === project
-              );
-            })}
-          />
-          <KanbanColumn
-            label={labels[2]}
-            tickets={state.filter((ticket) => {
-              return (
-                ticket.status === labels[2] && ticket.project?.name === project
-              );
-            })}
-          />
-          <KanbanColumn
-            label={labels[3]}
-            tickets={state.filter((ticket) => {
-              return (
-                ticket.status === labels[3] && ticket.project?.name === project
-              );
-            })}
-          />
+          {labels.map((label, index) => (
+            <KanbanColumn
+              key={index}
+              label={label}
+              tickets={state.filter((ticket) => {
+                return (
+                  ticket.status === label && ticket.project?.name === project
+                );
+              })}
+            />
+          ))}
         </div>
       </DndContext>
     </div>

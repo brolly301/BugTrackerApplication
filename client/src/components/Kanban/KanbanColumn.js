@@ -11,7 +11,8 @@ export default function KanbanColumn({ label, tickets }) {
   });
 
   const style = {
-    color: isOver ? "green" : undefined,
+    fontWeight: isOver ? "bold" : undefined,
+    backgroundColor: isOver ? "lightgrey" : undefined,
   };
 
   useEffect(() => {
@@ -26,15 +27,12 @@ export default function KanbanColumn({ label, tickets }) {
     }
   }, [labelColor]);
 
-  const renderedList = tickets.map((ticket) => {
-    return <KanbanItem key={ticket.id} ticket={ticket} />;
-  });
-
   return (
     <div className="kanban-column-container" ref={setNodeRef} style={style}>
       <label className={`kanban-column-label ${labelColor}`}>{label}</label>
-
-      {renderedList}
+      {tickets.map((ticket) => {
+        return <KanbanItem key={ticket._id} ticket={ticket} />;
+      })}
     </div>
   );
 }

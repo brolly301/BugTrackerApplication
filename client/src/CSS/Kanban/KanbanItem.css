@@ -2,5 +2,34 @@
   border: 1px solid black;
   padding: 10px;
   margin-bottom: 10px;
-  height: 100px;
+  /* height: 100%; */
+  font-size: 14px;
+  background-color: white;
+}
+
+.kanban-item-type-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.kanban-item-type-container > p {
+  padding: 5px 15px 5px 15px;
+  border-radius: 5px;
+  margin: 5px 0 5px 0;
+  color: white;
+}
+
+.kanban-item-assignee-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.kanban-item-assignee-container p {
+  margin: 0;
+}
+
+.kanban-item-summary-container {
+  margin: 10px 0 15px 0;
+  font-weight: 600;
 }
