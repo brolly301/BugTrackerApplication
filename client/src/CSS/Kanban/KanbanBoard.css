@@ -1,5 +1,6 @@
 .kanban-board-container {
   background-color: #f0eeee;
+  border: 1px solid black;
 }
 
 .kanban-board-board-container {
@@ -9,5 +10,9 @@
   height: 100%;
   padding: 20px;
   margin: 0;
-  border: 1px solid black;
+}
+
+.kanban-board-title-container {
+  padding: 10px 20px 0px 20px;
+  text-align: center;
 }
