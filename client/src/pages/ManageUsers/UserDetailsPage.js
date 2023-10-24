@@ -6,6 +6,7 @@ import UserDetailsTile from "../../components/ManagerUsers/UserDetails/UserTiles
 import UserTicketsTile from "../../components/ManagerUsers/UserDetails/UserTiles/UserTicketsTile";
 import UserStatisticsTile from "../../components/ManagerUsers/UserDetails/UserTiles/UserStatisticsTile";
 import "../../CSS/Pages/UserDetails.css";
+import UserProjectsTile from "../../components/ManagerUsers/UserDetails/UserTiles/UserProjectsTile";
 
 export default function UserDetailsPage() {
   const { state } = useUserContext();
@@ -22,7 +23,7 @@ export default function UserDetailsPage() {
         </div>
         <div className="user-details-page-table">
           <UserTicketsTile user={user} />
-          <UserTicketsTile user={user} />
+          <UserProjectsTile user={user} />
         </div>
         <div className="user-details-page-non-table">
           <UserStatisticsTile user={user} />

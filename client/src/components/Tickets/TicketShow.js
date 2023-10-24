@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "../../CSS/Tickets/TicketShow.css";
 import { Link } from "react-router-dom";
 
-export default function TicketShow({ ticket }) {
+export default function TicketShow({ ticket, view }) {
   const [issuePillColor, setIssuePillColor] = useState("");
   const [priorityPillColor, setPriorityPillColor] = useState("");
   const [statusPillColor, setStatusPillColor] = useState("");
@@ -58,6 +58,7 @@ export default function TicketShow({ ticket }) {
       <td className="ticket--table-text">
         {ticket.assignee?.firstName} {ticket.assignee?.surname}
       </td>
+
       <Link to={`/allTickets/tickets/${ticket._id}`} state={{ ticket: ticket }}>
         <button className="ticket-view-button">View</button>
       </Link>

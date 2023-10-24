@@ -23,6 +23,7 @@ export default function UserShow({ user }) {
 
   let content = (
     <div className="user-details-tile-container">
+      <h3 className="user-details-tile-title">Personal Details</h3>
       <form onSubmit={handleSubmit}>
         <img
           className="user-details-tile-image"

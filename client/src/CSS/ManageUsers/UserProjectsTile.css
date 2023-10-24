@@ -1,0 +1,12 @@
+.user-projects-tile-container {
+  display: flex;
+  flex-direction: column;
+  height: 47.5%;
+  width: 95%;
+  border: 1px solid black;
+  background-color: #f0eeee;
+}
+
+.user-projects-tile-title {
+  font-size: 25px;
+}

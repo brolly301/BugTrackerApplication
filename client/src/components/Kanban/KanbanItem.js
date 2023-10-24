@@ -35,6 +35,12 @@ export default function KanbanItem({ ticket }) {
     }
   }, [ticket.issueType, ticket.priority]);
 
+  const handleLinkClick = (e) => {
+    e.preventDefault(); // Prevent the default link click behavior
+    // Your custom logic here (e.g., navigate programmatically)
+    // You can use the react-router-dom history for programmatic navigation
+  };
+
   return (
     <div
       ref={setNodeRef}
@@ -42,23 +48,24 @@ export default function KanbanItem({ ticket }) {
       {...listeners}
       {...attributes}
       className="kanban-item-container">
-      {/* <Link
+      <Link
         style={{ textDecoration: "none", color: "black" }}
         to={`/allTickets/tickets/${ticket._id}`}
-        state={{ ticket: ticket }}> */}
-      <div className="kanban-item-type-container">
-        <p className={issueTypeColor}>{ticket.issueType}</p>
-        <p className={priorityColor}>{ticket.priority}</p>
-      </div>
-      <div className="kanban-item-summary-container"> {ticket.summary}</div>
-      <hr style={{ border: 0, borderTop: "0.5px solid grey" }} />
-      <div className="kanban-item-assignee-container">
-        <p>Assignee</p>
-        <p>
-          {ticket.assignee.firstName} {ticket.assignee.surname}
-        </p>
-      </div>
-      {/* </Link> */}
+        state={{ ticket: ticket }}
+        onClick={handleLinkClick}>
+        <div className="kanban-item-type-container">
+          <p className={issueTypeColor}>{ticket.issueType}</p>
+          <p className={priorityColor}>{ticket.priority}</p>
+        </div>
+        <div className="kanban-item-summary-container"> {ticket.summary}</div>
+        <hr style={{ border: 0, borderTop: "0.5px solid grey" }} />
+        <div className="kanban-item-assignee-container">
+          <p>Assignee:</p>
+          <p>
+            {ticket.assignee.firstName} {ticket.assignee.surname}
+          </p>
+        </div>
+      </Link>
     </div>
   );
 }

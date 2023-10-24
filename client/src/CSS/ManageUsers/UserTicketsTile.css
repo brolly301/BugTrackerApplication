@@ -1,10 +1,23 @@
 .user-tickets-tile-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 47.5%;
   width: 95%;
   border: 1px solid black;
   background-color: #f0eeee;
+}
+
+.user-tickets-tile-title {
+  font-size: 25px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.user-tickets-tile-search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
 }

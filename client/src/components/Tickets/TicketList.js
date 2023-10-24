@@ -2,7 +2,7 @@ import React from "react";
 import TicketShow from "./TicketShow";
 import "../../CSS/Tickets/TicketList.css";
 
-export default function TicketList({ state }) {
+export default function TicketList({ state, view }) {
   return (
     <div>
       <table className="all-tickets-table">
@@ -20,7 +20,7 @@ export default function TicketList({ state }) {
         <tbody>
           {state?.map((item, index) => (
             <tr key={index} className="all-tickets-row">
-              <TicketShow ticket={item} />
+              <TicketShow ticket={item} view={view} />
             </tr>
           ))}
         </tbody>
