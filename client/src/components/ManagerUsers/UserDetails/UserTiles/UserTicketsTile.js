@@ -8,7 +8,7 @@ export default function UserTicketsTile({ user }) {
   const { state } = useTicketContext();
 
   const userTickets = state
-    ?.filter((ticket) => ticket.assignee?._id === user._id)
+    ?.filter((ticket) => ticket.assignee?._id === user?._id)
     .slice(0, 2);
 
   return (

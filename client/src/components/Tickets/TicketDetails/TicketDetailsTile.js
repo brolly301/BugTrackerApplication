@@ -35,6 +35,7 @@ export default function TicketShow({ ticket }) {
         isOpen={modalVisible}
         onRequestClose={() => setModalVisible(false)}
         onDelete={handleSubmit}
+        type="Ticket"
       />
       <h1>Ticket Details</h1>
       <div className="ticket-details-tile-container">

@@ -9,15 +9,15 @@ export default function UserStatisticsTile({ user }) {
   const { state: project } = useProjectContext();
 
   const openTickets = state?.filter(
-    (ticket) => ticket.assignee?._id === user._id && ticket.status === "Open"
+    (ticket) => ticket.assignee?._id === user?._id && ticket.status === "Open"
   ).length;
 
   const closedTickets = state?.filter(
-    (ticket) => ticket.assignee?._id === user._id && ticket.status === "Closed"
+    (ticket) => ticket.assignee?._id === user?._id && ticket.status === "Closed"
   ).length;
 
   const assignedProjects = project.map((project) =>
-    project.teamMembers.some((member) => member._id === user._id)
+    project.teamMembers.some((member) => member?._id === user?._id)
   );
   const numberOfAssignedProjects = assignedProjects.filter(
     (isAssigned) => isAssigned

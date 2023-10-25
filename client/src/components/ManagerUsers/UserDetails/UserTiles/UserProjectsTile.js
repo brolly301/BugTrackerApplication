@@ -7,7 +7,7 @@ import SearchBar from "../../../SearchBar";
 export default function UserProjectsTile({ user }) {
   const { state } = useProjectContext();
   const userProjects = state.filter((project) => {
-    if (project.teamMembers.some((member) => member._id === user._id)) {
+    if (project.teamMembers.some((member) => member?._id === user?._id)) {
       return project;
     }
   });

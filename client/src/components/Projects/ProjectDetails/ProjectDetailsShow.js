@@ -6,9 +6,11 @@ import "../../../CSS/Projects/ProjectDetailsShow.css";
 import SearchBar from "../../SearchBar";
 import ProjectTeamMembersList from "./ProjectTeamMembersList";
 import { toast } from "react-toastify";
+import DeleteModal from "../../Modals/DeleteModal";
 
 export default function ProjectDetailsShow({ project }) {
   const [isEdit, setIsEdit] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const { deleteProject } = useProjectContext();
   const redirect = useNavigate();
 
@@ -21,39 +23,45 @@ export default function ProjectDetailsShow({ project }) {
     await deleteProject(project._id, () => {
       redirect("/allProjects");
       toast.success("Project deleted successfully");
+      setModalVisible(false);
     });
   };
 
   let content = (
     <div className="project-details-tile-container">
+      <DeleteModal
+        isOpen={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+        onDelete={handleSubmit}
+        type="Project"
+      />
       <h1>Project Details</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="project-details-tile-data-container">
-          <div className="project-details-tile-details-container">
-            <label>Name</label>
-            <h4>{project?.name}</h4>
-            <label>Description</label>
-            <h4>{project?.description}</h4>
-            <label>Manager</label>
-            <h4>
-              {project?.projectManager?.firstName}{" "}
-              {project?.projectManager?.surname}
-            </h4>
-          </div>
-          <div className="project-details-tile-members-container">
-            <label htmlFor="">Team Members</label>
-            <SearchBar />
-            <div style={{ height: "10px" }} />
-            <ProjectTeamMembersList teamMembers={project?.teamMembers} />
-          </div>
+
+      <div className="project-details-tile-data-container">
+        <div className="project-details-tile-details-container">
+          <label>Name</label>
+          <h4>{project?.name}</h4>
+          <label>Description</label>
+          <h4>{project?.description}</h4>
+          <label>Manager</label>
+          <h4>
+            {project?.projectManager?.firstName}{" "}
+            {project?.projectManager?.surname}
+          </h4>
         </div>
-        <div className="project-details-tile-button-container">
-          <button type="button" onClick={handleEdit}>
-            Edit
-          </button>
-          <button type="submit">Delete</button>
+        <div className="project-details-tile-members-container">
+          <label htmlFor="">Team Members</label>
+          <SearchBar />
+          <div style={{ height: "10px" }} />
+          <ProjectTeamMembersList teamMembers={project?.teamMembers} />
         </div>
-      </form>
+      </div>
+      <div className="project-details-tile-button-container">
+        <button type="button" onClick={handleEdit}>
+          Edit
+        </button>
+        <button onClick={() => setModalVisible(!modalVisible)}>Delete</button>
+      </div>
     </div>
   );
 
