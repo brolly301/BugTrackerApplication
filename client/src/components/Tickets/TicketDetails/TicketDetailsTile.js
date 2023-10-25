@@ -4,11 +4,15 @@ import useTicketContext from "../../../hooks/useTicketContext";
 import { useNavigate } from "react-router-dom";
 import "../../../CSS/Tickets/TicketDetailsTile.css";
 import { toast } from "react-toastify";
+import useProjectContext from "../../../hooks/useProjectContext";
+import useUserContext from "../../../hooks/useUserContext";
 
 export default function TicketShow({ ticket }) {
   const [isEdit, setIsEdit] = useState(false);
   const { deleteTicket } = useTicketContext();
   const redirect = useNavigate();
+  const { state: projects } = useProjectContext();
+  const { state } = useUserContext();
 
   const handleEdit = () => {
     setIsEdit(!isEdit);
@@ -35,10 +39,22 @@ export default function TicketShow({ ticket }) {
           </div>
           <div className="ticket-details-tile-project-container">
             <label>Project</label>
-            <h4>{ticket?.project?.name}</h4>
+            <h4>
+              {typeof ticket?.project === "object"
+                ? ticket?.project?.name
+                : projects?.find((p) => p._id === ticket?.project)?.name || ""}
+            </h4>
             <label>Assignee</label>
             <h4>
-              {ticket?.assignee?.firstName} {ticket?.assignee?.surname}
+              {typeof ticket.assignee === "object"
+                ? `${ticket?.assignee?.firstName} ${ticket?.assignee?.surname}`
+                : `${
+                    state.allUsers.find((u) => u._id === ticket?.assignee)
+                      ?.firstName || ""
+                  } ${
+                    state.allUsers.find((u) => u._id === ticket?.assignee)
+                      ?.surname || ""
+                  }`}
             </h4>
             <label>Issue Type</label>
             <h4>{ticket?.issueType}</h4>

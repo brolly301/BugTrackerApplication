@@ -9,20 +9,22 @@ import useTicketContext from "../../../hooks/useTicketContext";
 import { toast } from "react-toastify";
 
 export default function TicketEditForm({ ticket, handleEdit }) {
-  const [formData, setFormData] = useState({
-    _id: ticket._id || "",
-    summary: ticket.summary || "",
-    description: ticket.description || "",
-    project: ticket.project || "",
-    issueType: ticket.issueType || "",
-    priority: ticket.priority || "",
-    status: ticket.status || "",
-    assignee: ticket.assignee || "",
-  });
-  const [errors, setErrors] = useState({});
+  const { state: tickets, editTicket } = useTicketContext();
   const { state } = useUserContext();
   const { state: projects } = useProjectContext();
-  const { editTicket } = useTicketContext();
+
+  const [formData, setFormData] = useState({
+    _id: ticket?._id || "",
+    summary: ticket?.summary || "",
+    description: ticket?.description || "",
+    project: ticket?.project || "",
+    issueType: ticket?.issueType || "",
+    priority: ticket?.priority || "",
+    status: ticket?.status || "",
+    assignee: ticket?.assignee || "",
+  });
+
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,10 +71,38 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               values={projects?.map((project) => {
                 return { label: project.name, value: project._id };
               })}
-              value={formData.project}
+              value={
+                typeof formData.project === "object"
+                  ? formData?.project?.name
+                  : projects?.find((p) => p._id === formData?.project)?.name ||
+                    ""
+              }
               setData={setFormData}
               data={formData}
               errors={errors.project}
+            />
+            <Dropdown
+              label={"Assignee"}
+              values={state?.allUsers?.map((user) => {
+                return {
+                  label: `${user.firstName} ${user.surname}`,
+                  value: user._id,
+                };
+              })}
+              value={
+                typeof formData.assignee === "object"
+                  ? `${formData?.assignee?.firstName} ${formData?.assignee?.surname}`
+                  : `${
+                      state.allUsers.find((u) => u._id === formData?.assignee)
+                        ?.firstName || ""
+                    } ${
+                      state.allUsers.find((u) => u._id === formData?.assignee)
+                        ?.surname || ""
+                    }`
+              }
+              setData={setFormData}
+              data={formData}
+              errors={errors.assignee}
             />
             <Dropdown
               label={dropdownData.issueType.label}
@@ -83,14 +113,6 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               errors={errors.issueType}
             />
             <Dropdown
-              label={dropdownData.priority.label}
-              values={dropdownData.priority.values}
-              value={formData.priority}
-              setData={setFormData}
-              data={formData}
-              errors={errors.priority}
-            />
-            <Dropdown
               label={dropdownData.status.label}
               values={dropdownData.status.values}
               value={formData.status}
@@ -99,14 +121,12 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               errors={errors.status}
             />
             <Dropdown
-              label={"Assignee"}
-              values={state?.allUsers?.map((user) => {
-                return { label: user.firstName, value: user._id };
-              })}
-              value={formData.assignee}
+              label={dropdownData.priority.label}
+              values={dropdownData.priority.values}
+              value={formData.priority}
               setData={setFormData}
               data={formData}
-              errors={errors.assignee}
+              errors={errors.priority}
             />
           </div>
         </div>

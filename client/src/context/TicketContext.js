@@ -9,6 +9,8 @@ const reducer = (state, action) => {
       return [...state, { ...action.payload }];
     case "get_tickets":
       return action.payload;
+    case "get_ticket":
+      return { ...state, ticket: action.payload };
     case "delete_ticket":
       return state.filter((ticket) => ticket._id !== action.payload);
     case "edit_ticket":
@@ -31,6 +33,15 @@ const createTicket = (dispatch) => async (ticketDetails, callback) => {
     if (callback) {
       callback();
     }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
+const getTicket = (dispatch) => async (id) => {
+  try {
+    const res = await Server.get(`/tickets/getTicket/${id}`);
+    dispatch({ type: "get_ticket", payload: res.data });
   } catch (e) {
     dispatch({ type: "error_message", payload: e.response.data.error });
   }
@@ -73,6 +84,6 @@ const editTicket = (dispatch) => async (ticketDetails, callback) => {
 
 export const { Context, Provider } = createDataContext(
   reducer,
-  { createTicket, getTickets, deleteTicket, editTicket },
-  [{ errorMessage: "" }]
+  { createTicket, getTickets, deleteTicket, editTicket, getTicket },
+  [{ errorMessage: "" }, { ticket: {} }]
 );

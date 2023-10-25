@@ -33,9 +33,7 @@ export default function LoginForm() {
       getTickets();
       getUserTickets();
       getUserProjects();
-      toast.success(
-        `Login successful! Welcome back, ${user.userDetails.firstName}`
-      );
+      toast.success(`Login successful! Welcome back.`);
     });
   };
 

@@ -28,10 +28,10 @@ function App() {
   return (
     <>
       <Layout>
-        {/* <Routes>
+        <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-        </Routes> */}
+        </Routes>
         <div className="route-container">
           <Sidebar />
 

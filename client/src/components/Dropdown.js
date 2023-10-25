@@ -41,7 +41,7 @@ export default function Dropdown({
           }
         }}>
         <option disabled selected>
-          {value || label ? "Select..." : "All"}
+          {value}
         </option>
         {values?.map((value) => (
           <option value={value.value} key={value}>
