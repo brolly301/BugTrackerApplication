@@ -13,7 +13,9 @@ const reducer = (state, action) => {
       return state.filter((project) => project._id !== action.payload);
     case "edit_project":
       return state.map((project) => {
-        return project._id === action.payload._id ? action.payload : project;
+        return project._id === action.payload._id
+          ? { ...project, ...action.payload }
+          : project;
       });
     default:
       return state;

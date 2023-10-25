@@ -1,8 +1,11 @@
 import React from "react";
 import "../../../CSS/Projects/ProjectTeamMembersList.css";
 import ProjectTeamMembersShow from "./ProjectTeamMembersShow";
+import useUserContext from "../../../hooks/useUserContext";
 
 export default function ProjectTeamMembersList({ teamMembers }) {
+  const { state } = useUserContext();
+
   return (
     <div>
       <table className="team-members-table">
@@ -18,7 +21,13 @@ export default function ProjectTeamMembersList({ teamMembers }) {
         <tbody>
           {teamMembers?.map((member) => (
             <tr key={member._id} className="team-members-row">
-              <ProjectTeamMembersShow teamMember={member} />
+              <ProjectTeamMembersShow
+                teamMember={
+                  typeof member === "object"
+                    ? member
+                    : state.allUsers.find((u) => u._id === member)
+                }
+              />
             </tr>
           ))}
         </tbody>

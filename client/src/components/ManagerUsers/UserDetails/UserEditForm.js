@@ -28,40 +28,59 @@ export default function UserEditForm({ user, handleEdit }) {
   };
 
   return (
-    <div>
+    <div className="user-details-tile-container">
+      <h3
+        className="user-details-tile-title"
+        style={{ marginTop: 20, marginBottom: 10 }}>
+        Edit Details
+      </h3>
       <form onSubmit={handleSubmit}>
-        <Input
-          label={"First Name"}
-          value={editForm.firstName}
-          errors={errors.firstName}
-          data={editForm}
-          setData={setEditForm}
-        />
-        <Input
-          label={"Surname"}
-          value={editForm.surname}
-          errors={errors.surname}
-          data={editForm}
-          setData={setEditForm}
-        />
-        <Input
-          label={"Phone Number"}
-          value={editForm.phoneNumber}
-          errors={errors.phoneNumber}
-          data={editForm}
-          setData={setEditForm}
-        />
-        <Input
-          label={"Email Address"}
-          value={editForm.emailAddress}
-          errors={errors.emailAddress}
-          data={editForm}
-          setData={setEditForm}
-        />
-        <button type="submit">Save</button>
-        <button onClick={handleEdit} type="button">
-          Cancel
-        </button>
+        <div className="edit-details-tile-email-container">
+          <label htmlFor="" style={{ fontWeight: 600, marginBottom: "5px" }}>
+            Profile Image
+          </label>
+          <input type="file" placeholder="hey" />
+          <Input
+            label={"First Name"}
+            value={editForm.firstName}
+            errors={errors.firstName}
+            data={editForm}
+            setData={setEditForm}
+          />
+          <Input
+            label={"Surname"}
+            value={editForm.surname}
+            errors={errors.surname}
+            data={editForm}
+            setData={setEditForm}
+          />
+          <Input
+            label={"Phone Number"}
+            value={editForm.phoneNumber}
+            w
+            errors={errors.phoneNumber}
+            data={editForm}
+            setData={setEditForm}
+          />
+          <Input
+            label={"Email Address"}
+            value={editForm.emailAddress}
+            errors={errors.emailAddress}
+            data={editForm}
+            setData={setEditForm}
+          />
+          <div className="user-details-tile-button-container">
+            <button type="submit" style={{ width: "100%" }}>
+              Save
+            </button>
+            <button
+              onClick={handleEdit}
+              style={{ width: "100%" }}
+              type="button">
+              Cancel
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

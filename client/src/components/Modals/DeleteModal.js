@@ -19,8 +19,8 @@ export default function DeleteModal({
         <h2>Delete {type}</h2>
         <p>Are you sure you want to delete?</p>
         <div className="delete-modal-button-container">
-          <button onClick={onDelete}>Delete</button>
-          <button onClick={onRequestClose}>Cancel</button>
+          <button onClick={onDelete}>Yes</button>
+          <button onClick={onRequestClose}>No</button>
         </div>
       </div>
     </Modal>

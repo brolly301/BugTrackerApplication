@@ -13,6 +13,7 @@ export default function ProjectEditForm({ project, handleEdit }) {
     name: project.name || "",
     description: project.description || "",
     projectManager: project.projectManager || "",
+    teamMembers: project.teamMembers || [],
   });
   const [errors, setErrors] = useState({});
   const { state } = useUserContext();
@@ -23,12 +24,18 @@ export default function ProjectEditForm({ project, handleEdit }) {
     e.preventDefault();
     const validationErrors = validation(formData);
 
-    await editProject(formData, () => {
-      handleEdit();
-      setErrors({});
-      toast.success("Project edited successfully");
-    });
+    if (Object.keys(validationErrors).length === 0) {
+      await editProject(formData, () => {
+        handleEdit();
+        setErrors({});
+        toast.success("Project edited successfully");
+      });
+    } else {
+      console.log(validationErrors);
+    }
+    setErrors(validationErrors);
   };
+  console.log(formData.projectManager);
 
   return (
     <div className="ticket-details-tile">
@@ -56,7 +63,19 @@ export default function ProjectEditForm({ project, handleEdit }) {
               setData={setFormData}
               data={formData}
               errors={errors.projectManager}
-              value={formData.projectManager}
+              value={
+                typeof formData.projectManager === "object"
+                  ? `${formData?.projectManager?.firstName} ${formData?.projectManager?.surname}`
+                  : `${
+                      state?.allUsers?.find(
+                        (u) => u._id === formData?.projectManager
+                      )?.firstName || ""
+                    } ${
+                      state?.allUsers?.find(
+                        (u) => u._id === formData?.projectManager
+                      )?.surname || ""
+                    }`
+              }
               values={state?.allUsers
                 ?.filter((user) => user.role === "Project Manager")
                 .map((user) => ({

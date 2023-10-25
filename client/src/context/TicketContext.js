@@ -38,15 +38,6 @@ const createTicket = (dispatch) => async (ticketDetails, callback) => {
   }
 };
 
-const getTicket = (dispatch) => async (id) => {
-  try {
-    const res = await Server.get(`/tickets/getTicket/${id}`);
-    dispatch({ type: "get_ticket", payload: res.data });
-  } catch (e) {
-    dispatch({ type: "error_message", payload: e.response.data.error });
-  }
-};
-
 const getTickets = (dispatch) => async () => {
   try {
     const res = await Server.get("/tickets/getTickets");
@@ -84,6 +75,6 @@ const editTicket = (dispatch) => async (ticketDetails, callback) => {
 
 export const { Context, Provider } = createDataContext(
   reducer,
-  { createTicket, getTickets, deleteTicket, editTicket, getTicket },
+  { createTicket, getTickets, deleteTicket, editTicket },
   [{ errorMessage: "" }, { ticket: {} }]
 );

@@ -30,7 +30,7 @@ router.post("/createProject", projectValidator, async (req, res) => {
 
 router.patch("/editProject", async (req, res) => {
   try {
-    const project = await Project.findByIdAndDelete(req.body._id, req.body);
+    const project = await Project.findByIdAndUpdate(req.body._id, req.body);
     res.status(200).send(project);
   } catch (e) {
     res.status(500).json({ error: "Unable to edit project" + e.message });

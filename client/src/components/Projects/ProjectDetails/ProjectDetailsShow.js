@@ -7,12 +7,14 @@ import SearchBar from "../../SearchBar";
 import ProjectTeamMembersList from "./ProjectTeamMembersList";
 import { toast } from "react-toastify";
 import DeleteModal from "../../Modals/DeleteModal";
+import useUserContext from "../../../hooks/useUserContext";
 
 export default function ProjectDetailsShow({ project }) {
   const [isEdit, setIsEdit] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const { deleteProject } = useProjectContext();
   const redirect = useNavigate();
+  const { state } = useUserContext();
 
   const handleEdit = () => {
     setIsEdit(!isEdit);
@@ -43,10 +45,17 @@ export default function ProjectDetailsShow({ project }) {
           <h4>{project?.name}</h4>
           <label>Description</label>
           <h4>{project?.description}</h4>
-          <label>Manager</label>
+          <label>Project Manager</label>
           <h4>
-            {project?.projectManager?.firstName}{" "}
-            {project?.projectManager?.surname}
+            {typeof project?.projectManager === "object"
+              ? `${project?.projectManager?.firstName} ${project?.projectManager?.surname}`
+              : `${
+                  state.allUsers.find((u) => u._id === project?.projectManager)
+                    ?.firstName || ""
+                } ${
+                  state.allUsers.find((u) => u._id === project?.projectManager)
+                    ?.surname || ""
+                }`}
           </h4>
         </div>
         <div className="project-details-tile-members-container">
