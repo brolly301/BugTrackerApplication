@@ -10,7 +10,7 @@ export default function TicketDetailsPage() {
   const { state } = useTicketContext();
   const location = useLocation();
   const ticket = state?.find(
-    (ticket) => ticket?._id === location.state.ticket._id
+    (ticket) => ticket?._id === location.state?.ticket?._id
   );
 
   return (
