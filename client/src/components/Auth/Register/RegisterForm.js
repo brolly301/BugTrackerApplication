@@ -5,10 +5,12 @@ import useUserContext from "../../../hooks/useUserContext";
 import { validation } from "../../../functions/Validation/registerValidation";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
   const { register } = useUserContext();
   const [errors, setErrors] = useState({});
+  const redirect = useNavigate();
 
   const [registerDetails, setRegisterDetails] = useState({
     firstName: "",
@@ -25,6 +27,7 @@ export default function RegisterForm() {
       try {
         await register(registerDetails, () => {
           setErrors({});
+          redirect("/dashboard");
           toast.success(
             `Registration successful! Welcome to Fly Trap, ${registerDetails.firstName}`
           );

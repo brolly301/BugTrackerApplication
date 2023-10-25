@@ -16,7 +16,13 @@ router.post("/register", registerValidator, async (req, res) => {
   try {
     const user = new User(req.body);
     await user.save();
-    res.status(200).send({ message: "User successfully created" });
+    const token = jwt.sign({ userId: user._id }, "MY_SECRET_KEY", {
+      expiresIn: "12h",
+    });
+
+    res.cookie("jwt", token, { expire: new Date() + 1, httpOnly: true });
+
+    res.send(token);
   } catch (error) {
     res.status(422).send({ error: "Unable to create user" });
   }

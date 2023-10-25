@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../../Input";
 import { validation } from "../../../functions/Validation/profileValidation";
 import useUserContext from "../../../hooks/useUserContext";
+import { toast } from "react-toastify";
 
 export default function UserEditForm({ user, handleEdit }) {
   const [editForm, setEditForm] = useState({
@@ -18,9 +19,11 @@ export default function UserEditForm({ user, handleEdit }) {
     e.preventDefault();
     const validationErrors = validation(editForm);
     if (Object.keys(validationErrors).length === 0) {
-      await editAllUsers(editForm);
-      handleEdit();
-      setErrors({});
+      await editAllUsers(editForm, () => {
+        handleEdit();
+        setErrors({});
+        toast.success("Profile Updated Successfully");
+      });
     } else {
       console.log(validationErrors);
     }

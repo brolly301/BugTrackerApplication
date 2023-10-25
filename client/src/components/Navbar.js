@@ -15,8 +15,8 @@ export default function Navbar({ currentPage }) {
 
   const handleLogout = async () => {
     await logout(() => {
-      redirect("/");
       toast.success("Logout successful!");
+      redirect("/");
     });
   };
 

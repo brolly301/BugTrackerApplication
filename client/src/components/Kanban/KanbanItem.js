@@ -62,7 +62,7 @@ export default function KanbanItem({ ticket }) {
         <div className="kanban-item-assignee-container">
           <p>Assignee:</p>
           <p>
-            {ticket.assignee.firstName} {ticket.assignee.surname}
+            {ticket.assignee?.firstName} {ticket.assignee?.surname}
           </p>
         </div>
       </Link>

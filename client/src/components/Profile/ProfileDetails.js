@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useUserContext from "../../hooks/useUserContext";
 import ProfileEditForm from "./ProfileEditForm";
+import UserEditForm from "../../components/ManagerUsers/UserDetails/UserEditForm";
 
 export default function ProfileDetails() {
   const {
@@ -13,7 +14,9 @@ export default function ProfileDetails() {
     setIsEdit(!isEdit);
   };
 
-  let editForm = <ProfileEditForm user={user} handleEdit={handleEdit} />;
+  console.log(user);
+
+  let editForm = <UserEditForm user={user} handleEdit={handleEdit} />;
 
   if (!isEdit) {
     editForm = (

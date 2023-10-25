@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useProjectContext from "../../hooks/useProjectContext";
 import ProjectDetailsShow from "../../components/Projects/ProjectDetails/ProjectDetailsShow";
 import HeaderPanel from "../../components/HeaderPanel";
@@ -8,10 +8,8 @@ import ProjectTicketShow from "../../components/Projects/ProjectDetails/ProjectT
 
 export default function ProjectDetailsPage() {
   const { state } = useProjectContext();
-  const location = useLocation();
-  const project = state.find(
-    (project) => project._id === location.state.project._id
-  );
+  const { id } = useParams();
+  const project = state.find((project) => project._id === id);
 
   return (
     <HeaderPanel title={"Project Details"}>

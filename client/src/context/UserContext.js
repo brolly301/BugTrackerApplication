@@ -21,7 +21,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         allUsers: state.allUsers.map((user) => {
-          console.log(action.payload._id, user._id);
           return user._id === action.payload._id ? action.payload : user;
         }),
       };
@@ -38,6 +37,7 @@ const reducer = (state, action) => {
 const login = (dispatch) => async (loginDetails, callback) => {
   try {
     const res = await Server.post("/login", { ...loginDetails });
+    localStorage.setItem("token", res.data);
     dispatch({ type: "login", payload: res.data });
     if (callback) {
       callback();
@@ -50,7 +50,8 @@ const login = (dispatch) => async (loginDetails, callback) => {
 const register = (dispatch) => async (registerDetails, callback) => {
   try {
     const res = await Server.post("/register", { ...registerDetails });
-    dispatch({ type: "register", payload: res.data.token });
+    localStorage.setItem("token", res.data);
+    dispatch({ type: "register", payload: res.data });
     if (callback) {
       callback();
     }
@@ -62,6 +63,7 @@ const register = (dispatch) => async (registerDetails, callback) => {
 const logout = (dispatch) => async (callback) => {
   try {
     await Server.get("/logout");
+    localStorage.removeItem("token");
     dispatch({ type: "logout" });
     if (callback) {
       callback();
@@ -101,11 +103,13 @@ const getAllUsers = (dispatch) => async () => {
   }
 };
 
-const editAllUsers = (dispatch) => async (userDetails) => {
+const editAllUsers = (dispatch) => async (userDetails, callback) => {
   try {
-    console.log(userDetails);
     await Server.patch("/userData/editUser", { ...userDetails });
     dispatch({ type: "edit_all_users", payload: { ...userDetails } });
+    if (callback) {
+      callback();
+    }
   } catch (e) {
     dispatch({ type: "error_message", payload: e.response.data.error });
   }
@@ -135,5 +139,10 @@ export const { Provider, Context } = createDataContext(
     editAllUsers,
     deleteAllUsers,
   },
-  { errorMessage: "", token: null, userDetails: {}, allUsers: [] }
+  {
+    errorMessage: "",
+    token: localStorage.getItem("token") || null,
+    userDetails: {},
+    allUsers: [],
+  }
 );

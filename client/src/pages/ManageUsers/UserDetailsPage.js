@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useUserContext from "../../hooks/useUserContext";
 import HeaderPanel from "../../components/HeaderPanel";
 import UserDetailsTile from "../../components/ManagerUsers/UserDetails/UserTiles/UserDetailsTile";
@@ -10,10 +10,8 @@ import UserProjectsTile from "../../components/ManagerUsers/UserDetails/UserTile
 
 export default function UserDetailsPage() {
   const { state } = useUserContext();
-  const location = useLocation();
-  const user = state?.allUsers?.find(
-    (user) => user._id === location.state.user._id
-  );
+  const { id } = useParams();
+  const user = state?.allUsers?.find((user) => user._id === id);
 
   return (
     <HeaderPanel title={"User Details"}>
