@@ -7,6 +7,7 @@ import useTicketContext from "../../../hooks/useTicketContext";
 import useProjectContext from "../../../hooks/useProjectContext";
 import useUserProjectsContext from "../../../hooks/useUserProjectsContext";
 import useUserTicketsContext from "../../../hooks/useUserTicketsContext";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const { login, state: user, getUserDetails, getAllUsers } = useUserContext();
@@ -32,6 +33,9 @@ export default function LoginForm() {
       getTickets();
       getUserTickets();
       getUserProjects();
+      toast.success(
+        `Login successful! Welcome back, ${user.userDetails.firstName}`
+      );
     });
   };
 

@@ -3,6 +3,7 @@ import Button from "../Button";
 import Input from "../Input";
 import useUserContext from "../../hooks/useUserContext";
 import { validation } from "../../functions/Validation/profileValidation";
+import { toast } from "react-toastify";
 
 export default function ProfileEditForm({ handleEdit, user }) {
   const { editProfile } = useUserContext();
@@ -18,9 +19,11 @@ export default function ProfileEditForm({ handleEdit, user }) {
     e.preventDefault();
     const validationErrors = validation(editForm);
     if (Object.keys(validationErrors).length === 0) {
-      await editProfile(editForm);
-      handleEdit();
-      setErrors({});
+      await editProfile(editForm, () => {
+        handleEdit();
+        setErrors({});
+        toast.success("Profile updated successfully");
+      });
     } else {
       console.log(validationErrors);
     }

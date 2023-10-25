@@ -7,6 +7,7 @@ import { validation } from "../../functions/Validation/ticketValidation";
 import useUserContext from "../../hooks/useUserContext";
 import { dropdownData } from "../../functions/CreateTicketDropdownData";
 import useProjectContext from "../../hooks/useProjectContext";
+import { toast } from "react-toastify";
 
 export default function CreateTicketForm() {
   const [formData, setFormData] = useState({
@@ -29,8 +30,10 @@ export default function CreateTicketForm() {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await createTicket(formData);
-        setErrors({});
+        await createTicket(formData, () => {
+          setErrors({});
+          toast.success("Ticket created successfully");
+        });
       } catch (error) {
         console.log(error);
       }

@@ -3,6 +3,7 @@ import TicketEditForm from "./TicketEditForm";
 import useTicketContext from "../../../hooks/useTicketContext";
 import { useNavigate } from "react-router-dom";
 import "../../../CSS/Tickets/TicketDetailsTile.css";
+import { toast } from "react-toastify";
 
 export default function TicketShow({ ticket }) {
   const [isEdit, setIsEdit] = useState(false);
@@ -17,6 +18,7 @@ export default function TicketShow({ ticket }) {
     e.preventDefault();
     await deleteTicket(ticket._id, () => {
       redirect("/allTickets");
+      toast.success("Ticket deleted successfully");
     });
   };
 

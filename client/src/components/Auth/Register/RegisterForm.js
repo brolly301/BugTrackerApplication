@@ -4,6 +4,7 @@ import Button from "../../Button";
 import useUserContext from "../../../hooks/useUserContext";
 import { validation } from "../../../functions/Validation/registerValidation";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function RegisterForm() {
   const { register } = useUserContext();
@@ -22,8 +23,12 @@ export default function RegisterForm() {
     const validationErrors = validation(registerDetails);
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await register(registerDetails);
-        setErrors({});
+        await register(registerDetails, () => {
+          setErrors({});
+          toast.success(
+            `Registration successful! Welcome to Fly Trap, ${registerDetails.firstName}`
+          );
+        });
       } catch (error) {
         console.log(error);
       }
@@ -33,7 +38,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className='register-form-container'>
+    <div className="register-form-container">
       <form onSubmit={handleSubmit}>
         <Input
           label={"First Name"}
@@ -65,9 +70,9 @@ export default function RegisterForm() {
           data={registerDetails}
           errors={errors.password}
         />
-        <Button type='submit' label={"Register"} />
+        <Button type="submit" label={"Register"} />
         <Link to={"/"}>
-          <Button type='button' label={"Login"} />
+          <Button type="button" label={"Login"} />
         </Link>
       </form>
     </div>

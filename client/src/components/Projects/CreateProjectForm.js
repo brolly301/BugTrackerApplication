@@ -5,6 +5,7 @@ import useProjectContext from "../../hooks/useProjectContext";
 import { validation } from "../../functions/Validation/projectValidation";
 import Dropdown from "../Dropdown";
 import useUserContext from "../../hooks/useUserContext";
+import { toast } from "react-toastify";
 
 export default function CreateProjectForm() {
   const [formData, setFormData] = useState({
@@ -25,8 +26,10 @@ export default function CreateProjectForm() {
     const validationErrors = validation(formData);
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await createProject(formData);
-        setErrors({});
+        await createProject(formData, () => {
+          toast.success("Project created successfully");
+          setErrors({});
+        });
       } catch (error) {
         console.log(error);
       }

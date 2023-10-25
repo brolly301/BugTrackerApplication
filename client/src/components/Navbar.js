@@ -5,6 +5,7 @@ import useUserContext from "../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 export default function Navbar({ currentPage }) {
   const { logout } = useUserContext();
@@ -15,6 +16,7 @@ export default function Navbar({ currentPage }) {
   const handleLogout = async () => {
     await logout(() => {
       redirect("/");
+      toast.success("Logout successful!");
     });
   };
 

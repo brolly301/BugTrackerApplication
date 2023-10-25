@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../CSS/Projects/ProjectDetailsShow.css";
 import SearchBar from "../../SearchBar";
 import ProjectTeamMembersList from "./ProjectTeamMembersList";
+import { toast } from "react-toastify";
 
 export default function ProjectDetailsShow({ project }) {
   const [isEdit, setIsEdit] = useState(false);
@@ -19,6 +20,7 @@ export default function ProjectDetailsShow({ project }) {
     e.preventDefault();
     await deleteProject(project._id, () => {
       redirect("/allProjects");
+      toast.success("Project deleted successfully");
     });
   };
 

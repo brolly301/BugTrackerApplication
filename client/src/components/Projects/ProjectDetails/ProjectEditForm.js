@@ -5,6 +5,7 @@ import { validation } from "../../../functions/Validation/projectValidation";
 import Input from "../../Input";
 import "../../../CSS/Projects/ProjectDetailsEdit.css";
 import Dropdown from "../../Dropdown";
+import { toast } from "react-toastify";
 
 export default function ProjectEditForm({ project, handleEdit }) {
   const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ export default function ProjectEditForm({ project, handleEdit }) {
     await editProject(formData, () => {
       handleEdit();
       setErrors({});
+      toast.success("Project edited successfully");
     });
   };
 

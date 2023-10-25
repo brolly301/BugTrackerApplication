@@ -47,10 +47,13 @@ const login = (dispatch) => async (loginDetails, callback) => {
   }
 };
 
-const register = (dispatch) => async (registerDetails) => {
+const register = (dispatch) => async (registerDetails, callback) => {
   try {
     const res = await Server.post("/register", { ...registerDetails });
     dispatch({ type: "register", payload: res.data.token });
+    if (callback) {
+      callback();
+    }
   } catch (e) {
     dispatch({ type: "error_message", payload: e.response.data.error });
   }
@@ -77,10 +80,13 @@ const getUserDetails = (dispatch) => async () => {
   }
 };
 
-const editProfile = (dispatch) => async (userDetails) => {
+const editProfile = (dispatch) => async (userDetails, callback) => {
   try {
     await Server.patch("/editProfile", { ...userDetails });
     dispatch({ type: "edit_profile", payload: userDetails });
+    if (callback) {
+      callback();
+    }
   } catch (e) {
     dispatch({ type: "error_message", payload: e.response.data.error });
   }

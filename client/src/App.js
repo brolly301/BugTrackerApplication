@@ -19,6 +19,8 @@ import UserDetailsPage from "./pages/ManageUsers/UserDetailsPage";
 import ProjectDetailsPage from "./pages/Projects/ProjectDetailsPage";
 import TicketDetailsPage from "./pages/Tickets/TicketDetailsPage";
 import KanbanPage from "./pages/KanbanPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { state } = useUserContext();
@@ -26,14 +28,17 @@ function App() {
   return (
     <>
       <Layout>
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-        </Routes>
+        </Routes> */}
         <div className="route-container">
           <Sidebar />
+
           <div style={{ width: "100%", height: "100%" }}>
             <Navbar />
+            <ToastContainer />
+
             <Routes>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/kanban" element={<KanbanPage />} />

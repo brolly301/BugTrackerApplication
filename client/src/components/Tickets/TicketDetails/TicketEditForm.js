@@ -6,6 +6,7 @@ import useUserContext from "../../../hooks/useUserContext";
 import useProjectContext from "../../../hooks/useProjectContext";
 import { validation } from "../../../functions/Validation/ticketValidation";
 import useTicketContext from "../../../hooks/useTicketContext";
+import { toast } from "react-toastify";
 
 export default function TicketEditForm({ ticket, handleEdit }) {
   const [formData, setFormData] = useState({
@@ -31,8 +32,9 @@ export default function TicketEditForm({ ticket, handleEdit }) {
       try {
         await editTicket(formData, () => {
           handleEdit();
+          setErrors({});
+          toast.success("Ticket edited successfully");
         });
-        setErrors({});
       } catch (error) {
         console.log(error);
       }
