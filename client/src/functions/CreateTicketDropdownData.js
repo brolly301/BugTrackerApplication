@@ -2,6 +2,7 @@ export const dropdownData = {
   priority: {
     label: "Priority",
     values: [
+      { label: "", value: "" },
       { label: "Low", value: "Low" },
       { label: "Medium", value: "Medium" },
       { label: "High", value: "High" },

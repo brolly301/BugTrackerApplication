@@ -15,14 +15,16 @@ export default function DashboardTileList() {
       <DashboardTile
         title="Total Tickets"
         data={tickets.length}
-        link={"Tickets"}
+        linkText={"Tickets"}
         color={"#529EAFB3"}
+        link={"/allTickets"}
       />
 
       <DashboardTile
         title="Open Tickets"
         data={tickets.filter((ticket) => ticket.status === "Open").length}
-        link={"Tickets"}
+        linkText={"Tickets"}
+        link={"/allTickets"}
         color={"#82B4E2B3"}
       />
       <DashboardTile
@@ -30,19 +32,22 @@ export default function DashboardTileList() {
         data={
           tickets.filter((ticket) => ticket.status === "In Progress").length
         }
-        link={"Tickets"}
+        linkText={"Tickets"}
+        link={"/allTickets"}
         color={"#8286E2B3"}
       />
       <DashboardTile
         title="Total Projects"
         data={projects.length}
-        link={"Projects"}
+        linkText={"Projects"}
+        link={"/allProjects"}
         color={"#C285D1B3"}
       />
       <DashboardTile
         title="All Users"
         data={state.allUsers?.length}
-        link={"Users"}
+        linkText={"Users"}
+        link={"/manageUsers"}
         color={"#D18585B3"}
       />
     </div>

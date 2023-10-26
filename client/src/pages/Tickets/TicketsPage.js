@@ -10,10 +10,15 @@ import {
 import FilterBy from "../../components/FilterBy";
 import "../../CSS/Pages/TicketsPage.css";
 import HeaderPanel from "../../components/HeaderPanel";
+import { useLocation } from "react-router-dom";
 
 export default function TicketsPage() {
+  const dashboardFilter = useLocation().state?.filter;
+
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState(() =>
+    dashboardFilter ? dashboardFilter : ""
+  );
   const { state } = useTicketContext();
 
   const searchBy = state?.filter((ticket) => {
