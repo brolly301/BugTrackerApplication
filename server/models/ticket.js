@@ -28,6 +28,20 @@ const ticketSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  comments: [
+    {
+      userID: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+      comment: {
+        type: String,
+      },
+      date: {
+        type: String,
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("Ticket", ticketSchema);

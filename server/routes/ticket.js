@@ -52,4 +52,42 @@ router.delete("/deleteTicket/:id", async (req, res) => {
   }
 });
 
+router.post("/createComment", async (req, res) => {
+  const { _id, comment, userID, date } = req.body;
+  try {
+    const ticket = await Ticket.findById(_id);
+    ticket.comments.push({ userID, comment, date });
+    await ticket.save();
+    res.status(200).send(ticket);
+  } catch (e) {
+    res.status(500).json({ error: "Unable to create comment" + e.message });
+  }
+});
+
+router.patch("/editComment", async (req, res) => {
+  const { _id, commentID, userID, date } = req.body;
+  try {
+    const ticket = await Ticket.findById(_id);
+    const comment = ticket.comments.map((comment) => {
+      return comment._id === commentID
+        ? { ...comment, comment, userID, date }
+        : comment;
+    });
+
+    await ticket.save();
+    res.status(200).send(comment);
+  } catch (e) {
+    res.status(500).json({ error: "Unable to edit comment" + e.message });
+  }
+});
+
+router.delete("/deleteComment/:id", async (req, res) => {
+  try {
+    const ticket = await Ticket.findByIdAndDelete(req.params.id);
+    res.status(200).send(ticket);
+  } catch (e) {
+    res.status(500).json({ error: "Unable to delete comment" + e.message });
+  }
+});
+
 module.exports = router;

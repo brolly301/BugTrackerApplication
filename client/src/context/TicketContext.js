@@ -19,6 +19,32 @@ const reducer = (state, action) => {
           ? { ...ticket, ...action.payload }
           : ticket;
       });
+    case "create_comment":
+      return state.map((ticket) => {
+        if (ticket._id === action.payload._id) {
+          return {
+            ...ticket,
+            comments: [...ticket?.comments, action.payload], // Add the new comment
+          };
+        } else {
+          return ticket;
+        }
+      });
+    case "edit_comment":
+      return state.map((ticket) => {
+        if (ticket._id === action.payload._id) {
+          return {
+            ...ticket,
+            comments: ticket.comments.map((comment) => {
+              return comment._id === action.payload.commentID
+                ? { ...comment, ...action.payload }
+                : comment;
+            }),
+          };
+        }
+      });
+    case "delete_comment":
+      return state.filter((ticket) => ticket._id !== action.payload);
     default:
       return state;
   }
@@ -73,8 +99,43 @@ const editTicket = (dispatch) => async (ticketDetails, callback) => {
   }
 };
 
+const createComment = (dispatch) => async (ticketDetails, callback) => {
+  try {
+    await Server.post("/tickets/createComment", {
+      ...ticketDetails,
+    });
+    dispatch({ type: "create_comment", payload: ticketDetails });
+    if (callback) {
+      callback();
+    }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
+const editComment = (dispatch) => async (ticketDetails, callback) => {
+  try {
+    await Server.patch("/tickets/editComment", {
+      ...ticketDetails,
+    });
+    dispatch({ type: "edit_comment", payload: ticketDetails });
+    if (callback) {
+      callback();
+    }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
 export const { Context, Provider } = createDataContext(
   reducer,
-  { createTicket, getTickets, deleteTicket, editTicket },
+  {
+    createTicket,
+    getTickets,
+    deleteTicket,
+    editTicket,
+    createComment,
+    editComment,
+  },
   [{ errorMessage: "" }, { ticket: {} }]
 );
