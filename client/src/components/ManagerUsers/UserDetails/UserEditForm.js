@@ -3,6 +3,7 @@ import Input from "../../Input";
 import { validation } from "../../../functions/Validation/profileValidation";
 import useUserContext from "../../../hooks/useUserContext";
 import { toast } from "react-toastify";
+import EditSaveModal from "../../Modals/EditSaveModal";
 
 export default function UserEditForm({ user, handleEdit }) {
   const [editForm, setEditForm] = useState({
@@ -14,6 +15,7 @@ export default function UserEditForm({ user, handleEdit }) {
   });
   const [errors, setErrors] = useState({});
   const { editAllUsers } = useUserContext();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,13 +33,18 @@ export default function UserEditForm({ user, handleEdit }) {
   };
 
   return (
-    <div className="user-details-tile-container">
-      <h3
-        className="user-details-tile-title"
-        style={{ marginTop: 20, marginBottom: 10 }}>
-        Edit Details
-      </h3>
-      <form onSubmit={handleSubmit}>
+    <>
+      <EditSaveModal
+        onRequestClose={() => setModalVisible(!modalVisible)}
+        isOpen={modalVisible}
+        onSave={handleSubmit}
+      />
+      <div className="user-details-tile-container">
+        <h3
+          className="user-details-tile-title"
+          style={{ marginTop: 20, marginBottom: 10 }}>
+          Edit Details
+        </h3>
         <div className="edit-details-tile-email-container">
           <label htmlFor="" style={{ fontWeight: 600, marginBottom: "5px" }}>
             Profile Image
@@ -73,7 +80,9 @@ export default function UserEditForm({ user, handleEdit }) {
             setData={setEditForm}
           />
           <div className="user-details-tile-button-container">
-            <button type="submit" style={{ width: "100%" }}>
+            <button
+              onClick={() => setModalVisible(!modalVisible)}
+              style={{ width: "100%" }}>
               Save
             </button>
             <button
@@ -84,7 +93,7 @@ export default function UserEditForm({ user, handleEdit }) {
             </button>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 }

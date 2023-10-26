@@ -7,11 +7,13 @@ import useProjectContext from "../../../hooks/useProjectContext";
 import { validation } from "../../../functions/Validation/ticketValidation";
 import useTicketContext from "../../../hooks/useTicketContext";
 import { toast } from "react-toastify";
+import EditSaveModal from "../../Modals/EditSaveModal";
 
 export default function TicketEditForm({ ticket, handleEdit }) {
   const { state: tickets, editTicket } = useTicketContext();
   const { state } = useUserContext();
   const { state: projects } = useProjectContext();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [formData, setFormData] = useState({
     _id: ticket?._id || "",
@@ -46,8 +48,13 @@ export default function TicketEditForm({ ticket, handleEdit }) {
   };
 
   return (
-    <div className="ticket-details-tile">
-      <form onSubmit={handleSubmit}>
+    <>
+      <EditSaveModal
+        onRequestClose={() => setModalVisible(!modalVisible)}
+        isOpen={modalVisible}
+        onSave={handleSubmit}
+      />
+      <div className="ticket-details-tile">
         <div className="ticket-details-tile-container">
           <div className="ticket-details-tile-summary-container">
             <Input
@@ -131,12 +138,12 @@ export default function TicketEditForm({ ticket, handleEdit }) {
           </div>
         </div>
         <div className="ticket-details-tile-button-container">
-          <button type="submit">Save</button>
+          <button onClick={() => setModalVisible(!modalVisible)}>Save</button>
           <button type="button" onClick={handleEdit}>
             Cancel
           </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 }

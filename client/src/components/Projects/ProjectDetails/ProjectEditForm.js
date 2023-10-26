@@ -6,6 +6,7 @@ import Input from "../../Input";
 import "../../../CSS/Projects/ProjectDetailsEdit.css";
 import Dropdown from "../../Dropdown";
 import { toast } from "react-toastify";
+import EditSaveForm from "../../Modals/EditSaveModal";
 
 export default function ProjectEditForm({ project, handleEdit }) {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ export default function ProjectEditForm({ project, handleEdit }) {
   });
   const [errors, setErrors] = useState({});
   const { state } = useUserContext();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const { editProject } = useProjectContext();
 
@@ -38,8 +40,13 @@ export default function ProjectEditForm({ project, handleEdit }) {
   console.log(formData.projectManager);
 
   return (
-    <div className="ticket-details-tile">
-      <form onSubmit={handleSubmit}>
+    <>
+      <EditSaveForm
+        onSave={handleSubmit}
+        onRequestClose={() => setModalVisible(!modalVisible)}
+        isOpen={modalVisible}
+      />
+      <div className="ticket-details-tile">
         <div className="ticket-details-tile-container">
           <div className="ticket-details-tile-summary-container">
             <Input
@@ -95,13 +102,13 @@ export default function ProjectEditForm({ project, handleEdit }) {
             />
           </div>
           <div className="ticket-details-tile-button-container">
-            <button type="submit">Save</button>
+            <button onClick={() => setModalVisible(!modalVisible)}>Save</button>
             <button type="button" onClick={handleEdit}>
               Cancel
             </button>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 }
