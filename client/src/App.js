@@ -27,53 +27,48 @@ function App() {
   const token = localStorage.getItem("token");
 
   return (
-    <>
-      <Layout>
-        {!token || !state.token ? (
-          <>
-            <ToastContainer />
+    <Layout>
+      <ToastContainer />
+      {!token || !state.token ? (
+        <>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Routes>
+        </>
+      ) : (
+        <div className="route-container">
+          <Sidebar />
+          <div style={{ width: "100%", height: "100%" }}>
+            <Navbar />
             <Routes>
-              <>
-                <Route path="/" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-              </>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/kanban" element={<KanbanPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/allTickets" element={<TicketsPage />} />
+              <Route
+                path="/allTickets/tickets/:id"
+                element={<TicketDetailsPage />}
+              />
+              <Route path="/myTickets" element={<MyTicketsPage />} />
+              <Route path="/submitTicket" element={<CreateTicketPage />} />
+              <Route path="/allProjects" element={<ProjectsPage />} />
+              <Route
+                path="/allProjects/projects/:id"
+                element={<ProjectDetailsPage />}
+              />
+              <Route path="/myProjects" element={<MyProjectsPage />} />
+              <Route path="/createProject" element={<CreateProjectPage />} />
+              <Route path="/manageUsers" element={<ManageUsersPage />} />
+              <Route
+                path="/manageUsers/user/:id"
+                element={<UserDetailsPage />}
+              />
             </Routes>
-          </>
-        ) : (
-          <div className="route-container">
-            <Sidebar />
-            <div style={{ width: "100%", height: "100%" }}>
-              <Navbar />
-              <ToastContainer />
-              <Routes>
-                <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/kanban" element={<KanbanPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/allTickets" element={<TicketsPage />} />
-                <Route
-                  path="/allTickets/tickets/:id"
-                  element={<TicketDetailsPage />}
-                />
-                <Route path="/myTickets" element={<MyTicketsPage />} />
-                <Route path="/submitTicket" element={<CreateTicketPage />} />
-                <Route path="/allProjects" element={<ProjectsPage />} />
-                <Route
-                  path="/allProjects/projects/:id"
-                  element={<ProjectDetailsPage />}
-                />
-                <Route path="/myProjects" element={<MyProjectsPage />} />
-                <Route path="/createProject" element={<CreateProjectPage />} />
-                <Route path="/manageUsers" element={<ManageUsersPage />} />
-                <Route
-                  path="/manageUsers/user/:id"
-                  element={<UserDetailsPage />}
-                />
-              </Routes>
-            </div>
           </div>
-        )}
-      </Layout>
-    </>
+        </div>
+      )}
+    </Layout>
   );
 }
 
