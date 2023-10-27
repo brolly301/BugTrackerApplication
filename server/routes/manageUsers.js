@@ -12,6 +12,7 @@ router.patch("/editUser", requireAuth, profileValidator, async (req, res) => {
     );
     res.status(200).send(user);
   } catch (e) {
+    console.log(e.message);
     res.status(500).json({ error: "Unable to update user" + e.message });
   }
 });

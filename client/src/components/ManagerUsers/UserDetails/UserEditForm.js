@@ -4,6 +4,7 @@ import { validation } from "../../../functions/Validation/profileValidation";
 import useUserContext from "../../../hooks/useUserContext";
 import { toast } from "react-toastify";
 import EditSaveModal from "../../Modals/EditSaveModal";
+import { useLocation } from "react-router-dom";
 
 export default function UserEditForm({ user, handleEdit }) {
   const [editForm, setEditForm] = useState({
@@ -14,18 +15,26 @@ export default function UserEditForm({ user, handleEdit }) {
     emailAddress: user.emailAddress || "",
   });
   const [errors, setErrors] = useState({});
-  const { editAllUsers } = useUserContext();
+  const { editAllUsers, editProfile } = useUserContext();
   const [modalVisible, setModalVisible] = useState(false);
+
+  const { pathname } = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validation(editForm);
     if (Object.keys(validationErrors).length === 0) {
-      await editAllUsers(editForm, () => {
-        handleEdit();
-        setErrors({});
-        toast.success("Profile Updated Successfully");
-      });
+      pathname === "/profile"
+        ? await editProfile(editForm, () => {
+            handleEdit();
+            setErrors({});
+            toast.success("Profile Updated Successfully");
+          })
+        : await editAllUsers(editForm, () => {
+            handleEdit();
+            setErrors({});
+            toast.success("Profile Updated Successfully");
+          });
     } else {
       console.log(validationErrors);
     }
