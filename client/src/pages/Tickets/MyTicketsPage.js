@@ -10,6 +10,7 @@ import {
 import HeaderPanel from "../../components/HeaderPanel";
 import useTicketContext from "../../hooks/useTicketContext";
 import useUserContext from "../../hooks/useUserContext";
+import { AssigneeDetails } from "../../functions/ObjectData";
 
 export default function MyTicketsPage() {
   const [search, setSearch] = useState("");
@@ -18,7 +19,8 @@ export default function MyTicketsPage() {
   const { state: tickets } = useTicketContext();
 
   const searchBy = tickets?.filter((ticket) => {
-    if (ticket?.assignee?._id === state?.userDetails?._id) {
+    const assignee = AssigneeDetails(ticket?.assignee);
+    if (assignee?._id === state?.userDetails?._id) {
       const summaryMatch = ticket.summary
         ?.toLowerCase()
         .includes(search.toLowerCase());

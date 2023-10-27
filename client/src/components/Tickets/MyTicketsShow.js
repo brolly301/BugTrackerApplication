@@ -1,11 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ProjectDetails } from "../../functions/ObjectData";
 
 export default function MyTicketsShow({ ticket }) {
   const [issuePillColor, setIssuePillColor] = useState("");
   const [priorityPillColor, setPriorityPillColor] = useState("");
   const [statusPillColor, setStatusPillColor] = useState("");
+  const project = ProjectDetails(ticket.project);
 
   useEffect(() => {
     if (ticket.issueType === "Bug") {
@@ -36,7 +38,7 @@ export default function MyTicketsShow({ ticket }) {
   return (
     <>
       <td className="ticket--table-text">{ticket.summary}</td>
-      <td className="ticket--table-text">{ticket.project?.name}</td>
+      <td className="ticket--table-text">{project?.name}</td>
       <td>
         <p className={`tickets-list-pill ${issuePillColor}`}>
           {ticket.issueType}

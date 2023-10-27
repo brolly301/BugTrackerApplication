@@ -6,6 +6,7 @@ import { ProjectManagerFilters } from "../../functions/FilterOptions";
 import HeaderPanel from "../../components/HeaderPanel";
 import useUserContext from "../../hooks/useUserContext";
 import useProjectContext from "../../hooks/useProjectContext";
+import { AssigneeDetails } from "../../functions/ObjectData";
 
 export default function MyProjectsPage() {
   const [search, setSearch] = useState("");
@@ -14,9 +15,10 @@ export default function MyProjectsPage() {
   const { state: projects } = useProjectContext();
 
   const searchBy = projects?.filter((project) => {
-    const teamMember = project?.teamMembers?.find(
-      (member) => member?._id === state?.userDetails?._id
-    );
+    const teamMember = project?.teamMembers?.find((member) => {
+      const teamMember = AssigneeDetails(member);
+      return teamMember?._id === state?.userDetails._id;
+    });
     if (project?.teamMembers?.includes(teamMember)) {
       return (
         (project?.name?.toLowerCase().includes(search?.toLowerCase()) &&
