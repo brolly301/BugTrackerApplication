@@ -7,20 +7,22 @@ import "../../../CSS/Projects/ProjectDetailsEdit.css";
 import Dropdown from "../../Dropdown";
 import { toast } from "react-toastify";
 import EditSaveForm from "../../Modals/EditSaveModal";
+import { ProjectManagerDetails } from "../../../functions/ObjectData";
 
 export default function ProjectEditForm({ project, handleEdit }) {
+  const projectManager = ProjectManagerDetails(project.projectManager);
+  const [errors, setErrors] = useState({});
+  const { state } = useUserContext();
+  const [modalVisible, setModalVisible] = useState(false);
+  const { editProject } = useProjectContext();
+
   const [formData, setFormData] = useState({
     projectID: project.projectID || "",
     name: project.name || "",
     description: project.description || "",
-    projectManager: project.projectManager || "",
+    projectManager: projectManager || "",
     teamMembers: project.teamMembers || [],
   });
-  const [errors, setErrors] = useState({});
-  const { state } = useUserContext();
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const { editProject } = useProjectContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +39,6 @@ export default function ProjectEditForm({ project, handleEdit }) {
     }
     setErrors(validationErrors);
   };
-  console.log(formData.projectManager);
 
   return (
     <>
@@ -70,23 +71,11 @@ export default function ProjectEditForm({ project, handleEdit }) {
               setData={setFormData}
               data={formData}
               errors={errors.projectManager}
-              value={
-                typeof formData.projectManager === "object"
-                  ? `${formData?.projectManager?.firstName} ${formData?.projectManager?.surname}`
-                  : `${
-                      state?.allUsers?.find(
-                        (u) => u._id === formData?.projectManager
-                      )?.firstName || ""
-                    } ${
-                      state?.allUsers?.find(
-                        (u) => u._id === formData?.projectManager
-                      )?.surname || ""
-                    }`
-              }
+              value={`${formData.projectManager.firstName} ${formData.projectManager.surname}`}
               values={state?.allUsers
                 ?.filter((user) => user.role === "Project Manager")
                 .map((user) => ({
-                  label: user.firstName,
+                  label: `${user.firstName} ${user.surname}`,
                   value: user._id,
                 }))}
             />

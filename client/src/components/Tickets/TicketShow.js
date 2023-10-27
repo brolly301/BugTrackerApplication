@@ -2,11 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../../CSS/Tickets/TicketShow.css";
 import { Link } from "react-router-dom";
+import { AssigneeDetails, ProjectDetails } from "../../functions/ObjectData";
 
 export default function TicketShow({ ticket, view }) {
   const [issuePillColor, setIssuePillColor] = useState("");
   const [priorityPillColor, setPriorityPillColor] = useState("");
   const [statusPillColor, setStatusPillColor] = useState("");
+
+  const assignee = AssigneeDetails(ticket.assignee);
+  const project = ProjectDetails(ticket.project);
 
   useEffect(() => {
     if (ticket.issueType === "Bug") {
@@ -39,7 +43,7 @@ export default function TicketShow({ ticket, view }) {
   return (
     <>
       <td className="ticket--table-text">{ticket.summary}</td>
-      <td className="ticket--table-text">{ticket.project?.name}</td>
+      <td className="ticket--table-text">{project?.name}</td>
       <td>
         <p className={`tickets-list-pill ${issuePillColor}`}>
           {ticket.issueType}
@@ -56,7 +60,7 @@ export default function TicketShow({ ticket, view }) {
         </p>
       </td>
       <td className="ticket--table-text">
-        {ticket.assignee?.firstName} {ticket.assignee?.surname}
+        {assignee?.firstName} {assignee?.surname}
       </td>
 
       <Link

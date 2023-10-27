@@ -17,7 +17,7 @@ export default function UserStatisticsTile({ user }) {
   ).length;
 
   const assignedProjects = project.map((project) =>
-    project.teamMembers.some((member) => member?._id === user?._id)
+    project.teamMembers?.some((member) => member?._id === user?._id)
   );
   const numberOfAssignedProjects = assignedProjects.filter(
     (isAssigned) => isAssigned

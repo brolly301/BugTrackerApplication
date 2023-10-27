@@ -18,7 +18,7 @@ export default function MyTicketsPage() {
   const { state: tickets } = useTicketContext();
 
   const searchBy = tickets?.filter((ticket) => {
-    if (ticket.assignee._id === state.userDetails._id) {
+    if (ticket?.assignee?._id === state?.userDetails?._id) {
       const summaryMatch = ticket.summary
         ?.toLowerCase()
         .includes(search.toLowerCase());

@@ -17,7 +17,7 @@ export default function MyProjectsShow({ project }) {
         <p className="project-list-pill tickets">{project.tickets.length}</p>
       </td>
       <Link
-        to={`/allProjects/projects/${project._id}`}
+        to={`/allProjects/projects/${project.projectID}`}
         state={{ project: project }}>
         <button className="ticket-view-button">View</button>
       </Link>

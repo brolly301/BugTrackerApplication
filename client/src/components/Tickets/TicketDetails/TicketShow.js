@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import TicketEditForm from "./TicketEditForm";
 import useTicketContext from "../../../hooks/useTicketContext";
 import { useNavigate } from "react-router-dom";
+import { AssigneeDetails, ProjectDetails } from "../../../functions/ObjectData";
 
 export default function TicketShow({ ticket }) {
+  // const assignee = AssigneeDetails(ticket.assignee);
+  const project = ProjectDetails(ticket.project);
   const [isEdit, setIsEdit] = useState(false);
   const { deleteTicket } = useTicketContext();
   const redirect = useNavigate();
@@ -29,7 +32,7 @@ export default function TicketShow({ ticket }) {
       <h4>
         {ticket?.assignee?.firstName} {ticket?.assignee?.surname}
       </h4>
-      <h4>{ticket?.project?.name}</h4>
+      <h4>{project?.name}</h4>
       <h4>{ticket?.status}</h4>
       <h4>{ticket?.issueType}</h4>
       <button type="button" onClick={handleEdit}>

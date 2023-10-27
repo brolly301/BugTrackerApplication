@@ -5,6 +5,7 @@ import ProjectDetailsShow from "../../components/Projects/ProjectDetails/Project
 import HeaderPanel from "../../components/HeaderPanel";
 import "../../CSS/Pages/ProjectDetailsPage.css";
 import ProjectTicketShow from "../../components/Projects/ProjectDetails/ProjectTicketShow";
+import { ProjectManagerDetails } from "../../functions/ObjectData";
 
 export default function ProjectDetailsPage() {
   const { state } = useProjectContext();

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProjectEditForm from "./ProjectEditForm";
 import useProjectContext from "../../../hooks/useProjectContext";
 import { useNavigate } from "react-router-dom";
@@ -7,14 +7,15 @@ import SearchBar from "../../SearchBar";
 import ProjectTeamMembersList from "./ProjectTeamMembersList";
 import { toast } from "react-toastify";
 import DeleteModal from "../../Modals/DeleteModal";
-import useUserContext from "../../../hooks/useUserContext";
+import { ProjectManagerDetails } from "../../../functions/ObjectData";
 
 export default function ProjectDetailsShow({ project }) {
+  const projectManager = ProjectManagerDetails(project?.projectManager);
+
   const [isEdit, setIsEdit] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const { deleteProject } = useProjectContext();
   const redirect = useNavigate();
-  const { state } = useUserContext();
 
   const handleEdit = () => {
     setIsEdit(!isEdit);
@@ -38,7 +39,6 @@ export default function ProjectDetailsShow({ project }) {
         type="Project"
       />
       <h1>Project Details</h1>
-
       <div className="project-details-tile-data-container">
         <div className="project-details-tile-details-container">
           <label>Name</label>
@@ -47,15 +47,7 @@ export default function ProjectDetailsShow({ project }) {
           <h4>{project?.description}</h4>
           <label>Project Manager</label>
           <h4>
-            {typeof project?.projectManager === "object"
-              ? `${project?.projectManager?.firstName} ${project?.projectManager?.surname}`
-              : `${
-                  state.allUsers.find((u) => u._id === project?.projectManager)
-                    ?.firstName || ""
-                } ${
-                  state.allUsers.find((u) => u._id === project?.projectManager)
-                    ?.surname || ""
-                }`}
+            {projectManager?.firstName} {projectManager?.surname}
           </h4>
         </div>
         <div className="project-details-tile-members-container">
