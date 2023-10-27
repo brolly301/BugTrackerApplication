@@ -15,7 +15,10 @@ export default function TicketCommentsTile({ ticket }) {
 
   const handleSubmit = async () => {
     await createComment({
-      _id: ticket?._id,
+      _id: ticket._id,
+      commentID: `${state.userDetails._id}${Math.floor(
+        Math.random() * 100
+      )}${Date.now()}`,
       comment: comment,
       userID: state.userDetails._id,
       date: new Date(Date.now()).toLocaleString(),
@@ -23,20 +26,28 @@ export default function TicketCommentsTile({ ticket }) {
   };
 
   return (
-    <div className="ticket-details-tile">
-      <h1>Ticket Comments</h1>
-      <div className="ticket-comment-input-container">
-        <input
-          onChange={handleChange}
-          type="text"
-          placeholder="Enter comment.."
-        />
-        <button onClick={handleSubmit}>Submit</button>
+    <div>
+      <div className="ticket-details-tile">
+        <h1>Ticket Comments</h1>
+        <div className="ticket-comment-input-container">
+          <input
+            onChange={handleChange}
+            type="text"
+            placeholder="Enter comment.."
+          />
+          <button onClick={handleSubmit}>Submit</button>
+        </div>
+        <h5 className="ticket-comments-header">All Comments</h5>
+        {ticket?.comments?.map((comment) => {
+          return (
+            <TicketCommentShow
+              comment={comment}
+              state={state}
+              ticket={ticket}
+            />
+          );
+        })}
       </div>
-      <h5 className="ticket-comments-header">All Comments</h5>
-      {ticket?.comments?.map((comment) => {
-        return <TicketCommentShow comment={comment} state={state} />;
-      })}
     </div>
   );
 }

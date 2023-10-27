@@ -10,7 +10,11 @@ import useProjectContext from "../../hooks/useProjectContext";
 import { toast } from "react-toastify";
 
 export default function CreateTicketForm() {
+  const { state } = useUserContext();
   const [formData, setFormData] = useState({
+    ticketID: `${state.userDetails._id}${Math.floor(
+      Math.random() * 100
+    )}${Date.now()}`,
     summary: "",
     description: "",
     project: "",
@@ -20,7 +24,6 @@ export default function CreateTicketForm() {
     assignee: "",
   });
   const [errors, setErrors] = useState({});
-  const { state } = useUserContext();
   const { state: projects } = useProjectContext();
   const { createTicket } = useTicketContext();
 

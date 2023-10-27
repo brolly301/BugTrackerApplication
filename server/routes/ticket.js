@@ -4,12 +4,14 @@ const Ticket = require("../models/ticket");
 const Project = require("../models/project");
 const { ticketValidator } = require("../middleware/validation");
 const requireAuth = require("../middleware/requireAuth");
+const Comment = require("../models/comment");
 
 router.get("/getTickets", async (req, res) => {
   try {
     const ticket = await Ticket.find({})
       .populate("project")
-      .populate("assignee");
+      .populate("assignee")
+      .populate("comments");
     res.status(200).send(ticket);
   } catch (e) {
     res
@@ -36,7 +38,10 @@ router.post("/createTicket", ticketValidator, async (req, res) => {
 
 router.patch("/editTicket", async (req, res) => {
   try {
-    const ticket = await Ticket.findByIdAndUpdate(req.body._id, req.body);
+    const ticket = await Ticket.findOneAndUpdate(
+      { ticketID: req.body.ticketID },
+      req.body
+    );
     res.status(200).send(ticket);
   } catch (e) {
     res.status(500).json({ error: "Unable to edit ticket" + e.message });
@@ -45,7 +50,7 @@ router.patch("/editTicket", async (req, res) => {
 
 router.delete("/deleteTicket/:id", async (req, res) => {
   try {
-    const ticket = await Ticket.findByIdAndDelete(req.params.id);
+    const ticket = await Ticket.findOneAndDelete({ ticketID: req.params.id });
     res.status(200).send(ticket);
   } catch (e) {
     res.status(500).json({ error: "Unable to delete ticket" + e.message });
@@ -53,10 +58,12 @@ router.delete("/deleteTicket/:id", async (req, res) => {
 });
 
 router.post("/createComment", async (req, res) => {
-  const { _id, comment, userID, date } = req.body;
+  const { _id, commentID, comment, userID, date } = req.body;
   try {
+    const newComment = new Comment({ commentID, comment, userID, date });
+    await newComment.save();
     const ticket = await Ticket.findById(_id);
-    ticket.comments.push({ userID, comment, date });
+    ticket.comments.push(newComment._id);
     await ticket.save();
     res.status(200).send(ticket);
   } catch (e) {
@@ -65,16 +72,13 @@ router.post("/createComment", async (req, res) => {
 });
 
 router.patch("/editComment", async (req, res) => {
-  const { _id, commentID, userID, date } = req.body;
   try {
-    const ticket = await Ticket.findById(_id);
-    const comment = ticket.comments.map((comment) => {
-      return comment._id === commentID
-        ? { ...comment, comment, userID, date }
-        : comment;
-    });
-
-    await ticket.save();
+    const comment = await Comment.findOneAndUpdate(
+      { commentID: req.body.commentID },
+      {
+        comment: req.body.comment,
+      }
+    );
     res.status(200).send(comment);
   } catch (e) {
     res.status(500).json({ error: "Unable to edit comment" + e.message });
@@ -83,8 +87,10 @@ router.patch("/editComment", async (req, res) => {
 
 router.delete("/deleteComment/:id", async (req, res) => {
   try {
-    const ticket = await Ticket.findByIdAndDelete(req.params.id);
-    res.status(200).send(ticket);
+    const comment = await Comment.findOneAndDelete({
+      commentID: req.params.id,
+    });
+    res.status(200).send(comment);
   } catch (e) {
     res.status(500).json({ error: "Unable to delete comment" + e.message });
   }

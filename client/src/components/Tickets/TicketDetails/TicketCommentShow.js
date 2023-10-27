@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import useTicketContext from "../../../hooks/useTicketContext";
+import TicketCommentsEditShow from "./TicketCommentsEditShow";
 
-export default function TicketCommentShow({ comment, state }) {
+export default function TicketCommentShow({ comment, state, ticket }) {
   const user = state?.allUsers?.find((user) => user._id === comment.userID);
+  const { deleteComment } = useTicketContext();
 
-  return (
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
+  };
+
+  const handleDelete = async () => {
+    await deleteComment(ticket.ticketID, comment.commentID);
+  };
+
+  let content = (
     <div className="ticket-comment-show">
       <div>
         <div className="ticket-comment-name-container">
@@ -13,9 +26,22 @@ export default function TicketCommentShow({ comment, state }) {
         <p className="ticket-comment-comment">{comment.comment}</p>
       </div>
       <div className="ticket-comment-button-container">
-        <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={handleEdit}>Edit</button>
+        <button onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );
+
+  if (isEdit) {
+    content = (
+      <TicketCommentsEditShow
+        comment={comment}
+        ticket={ticket}
+        user={user}
+        handleEdit={handleEdit}
+      />
+    );
+  }
+
+  return <div>{content}</div>;
 }

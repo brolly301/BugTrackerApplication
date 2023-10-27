@@ -22,7 +22,7 @@ export default function TicketShow({ ticket }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await deleteTicket(ticket._id, () => {
+    await deleteTicket(ticket.ticketID, () => {
       redirect("/allTickets");
       toast.success("Ticket deleted successfully");
       setModalVisible(false);

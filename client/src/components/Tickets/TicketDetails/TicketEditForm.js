@@ -16,7 +16,7 @@ export default function TicketEditForm({ ticket, handleEdit }) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const [formData, setFormData] = useState({
-    _id: ticket?._id || "",
+    ticketID: ticket?.ticketID || "",
     summary: ticket?.summary || "",
     description: ticket?.description || "",
     project: ticket?.project || "",

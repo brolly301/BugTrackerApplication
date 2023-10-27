@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ticketSchema = new Schema({
+  ticketID: {
+    type: String,
+  },
   summary: {
     type: String,
   },
@@ -22,7 +25,7 @@ const ticketSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["Backlog", "In Progress", "Testing", "Closed"],
+    enum: ["Open", "In Progress", "Testing", "Closed"],
   },
   assignee: {
     type: Schema.Types.ObjectId,
@@ -30,16 +33,8 @@ const ticketSchema = new Schema({
   },
   comments: [
     {
-      userID: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-      comment: {
-        type: String,
-      },
-      date: {
-        type: String,
-      },
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
     },
   ],
 });

@@ -12,10 +12,12 @@ const reducer = (state, action) => {
     case "get_ticket":
       return { ...state, ticket: action.payload };
     case "delete_ticket":
-      return state.filter((ticket) => ticket._id !== action.payload);
+      return state.filter((ticket) => {
+        return ticket.ticketID !== action.payload.ticketID;
+      });
     case "edit_ticket":
       return state.map((ticket) => {
-        return ticket._id === action.payload._id
+        return ticket.ticketID === action.payload.ticketID
           ? { ...ticket, ...action.payload }
           : ticket;
       });
@@ -32,19 +34,28 @@ const reducer = (state, action) => {
       });
     case "edit_comment":
       return state.map((ticket) => {
-        if (ticket._id === action.payload._id) {
-          return {
-            ...ticket,
-            comments: ticket.comments.map((comment) => {
-              return comment._id === action.payload.commentID
-                ? { ...comment, ...action.payload }
-                : comment;
-            }),
-          };
-        }
+        return ticket.ticketID === action.payload.ticketID
+          ? {
+              ...ticket,
+              comments: ticket.comments.map((comment) => {
+                return comment.commentID === action.payload.commentID
+                  ? { ...comment, ...action.payload }
+                  : comment;
+              }),
+            }
+          : ticket;
       });
     case "delete_comment":
-      return state.filter((ticket) => ticket._id !== action.payload);
+      return state.map((ticket) =>
+        ticket.ticketID === action.payload.ticketID
+          ? {
+              ...ticket,
+              comments: ticket.comments.filter(
+                (comment) => comment.commentID !== action.payload.commentID
+              ),
+            }
+          : ticket
+      );
     default:
       return state;
   }
@@ -73,10 +84,10 @@ const getTickets = (dispatch) => async () => {
   }
 };
 
-const deleteTicket = (dispatch) => async (id, callback) => {
+const deleteTicket = (dispatch) => async (ticketID, callback) => {
   try {
-    await Server.delete(`/tickets/deleteTicket/${id}`);
-    dispatch({ type: "delete_ticket", payload: id });
+    await Server.delete(`/tickets/deleteTicket/${ticketID}`);
+    dispatch({ type: "delete_ticket", payload: { ticketID } });
     if (callback) {
       callback();
     }
@@ -118,7 +129,19 @@ const editComment = (dispatch) => async (ticketDetails, callback) => {
     await Server.patch("/tickets/editComment", {
       ...ticketDetails,
     });
-    dispatch({ type: "edit_comment", payload: ticketDetails });
+    dispatch({ type: "edit_comment", payload: { ...ticketDetails } });
+    if (callback) {
+      callback();
+    }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
+const deleteComment = (dispatch) => async (ticketID, commentID, callback) => {
+  try {
+    await Server.delete(`/tickets/deleteComment/${commentID}`);
+    dispatch({ type: "delete_comment", payload: { ticketID, commentID } });
     if (callback) {
       callback();
     }
@@ -136,6 +159,7 @@ export const { Context, Provider } = createDataContext(
     editTicket,
     createComment,
     editComment,
+    deleteComment,
   },
   [{ errorMessage: "" }, { ticket: {} }]
 );

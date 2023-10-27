@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MyTicketsList from "../../components/Tickets/MyTicketsList";
 import SearchBar from "../../components/SearchBar";
-import useUserTicketsContext from "../../hooks/useUserTicketsContext";
 import FilterBy from "../../components/FilterBy";
 import {
   ticketPriorityFilters,
@@ -9,23 +8,28 @@ import {
   ticketTypeFilters,
 } from "../../functions/FilterOptions";
 import HeaderPanel from "../../components/HeaderPanel";
+import useTicketContext from "../../hooks/useTicketContext";
+import useUserContext from "../../hooks/useUserContext";
 
 export default function MyTicketsPage() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
-  const { state } = useUserTicketsContext();
+  const { state } = useUserContext();
+  const { state: tickets } = useTicketContext();
 
-  const searchBy = state?.filter((ticket) => {
-    const summaryMatch = ticket.summary
-      ?.toLowerCase()
-      .includes(search.toLowerCase());
-    return (
-      (summaryMatch && filter === "") ||
-      (summaryMatch &&
-        (ticket.status === filter ||
-          ticket.priority === filter ||
-          ticket.issueType === filter))
-    );
+  const searchBy = tickets?.filter((ticket) => {
+    if (ticket.assignee._id === state.userDetails._id) {
+      const summaryMatch = ticket.summary
+        ?.toLowerCase()
+        .includes(search.toLowerCase());
+      return (
+        (summaryMatch && filter === "") ||
+        (summaryMatch &&
+          (ticket.status === filter ||
+            ticket.priority === filter ||
+            ticket.issueType === filter))
+      );
+    }
   });
 
   return (

@@ -5,16 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import useUserContext from "../../../hooks/useUserContext";
 import useTicketContext from "../../../hooks/useTicketContext";
 import useProjectContext from "../../../hooks/useProjectContext";
-import useUserProjectsContext from "../../../hooks/useUserProjectsContext";
-import useUserTicketsContext from "../../../hooks/useUserTicketsContext";
 import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const { login, state: user, getUserDetails, getAllUsers } = useUserContext();
   const { getTickets } = useTicketContext();
   const { getProjects } = useProjectContext();
-  const { getUserProjects } = useUserProjectsContext();
-  const { getUserTickets } = useUserTicketsContext();
 
   const [loginDetails, setLoginDetails] = useState({
     emailAddress: "",
@@ -31,8 +27,6 @@ export default function LoginForm() {
       getAllUsers();
       getProjects();
       getTickets();
-      getUserTickets();
-      getUserProjects();
       toast.success(`Login successful! Welcome back.`);
     });
   };
