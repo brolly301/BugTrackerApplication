@@ -21,13 +21,15 @@ const reducer = (state, action) => {
       return {
         ...state,
         allUsers: state.allUsers.map((user) => {
-          return user._id === action.payload._id ? action.payload : user;
+          return user.userID === action.payload.userID ? action.payload : user;
         }),
       };
     case "delete_all_users":
       return {
         ...state,
-        allUsers: state.allUsers.filter((user) => user._id !== action.payload),
+        allUsers: state.allUsers.filter(
+          (user) => user.userID !== action.payload
+        ),
       };
     default:
       return state;

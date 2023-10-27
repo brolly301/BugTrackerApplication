@@ -19,7 +19,7 @@ export default function UserShow({ user }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await deleteAllUsers(user?._id, () => {
+    await deleteAllUsers(user?.userID, () => {
       redirect("/manageUsers");
       setModalVisible(false);
       toast.success("User deleted successfully");

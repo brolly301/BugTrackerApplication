@@ -11,7 +11,7 @@ import UserProjectsTile from "../../components/ManagerUsers/UserDetails/UserTile
 export default function UserDetailsPage() {
   const { state } = useUserContext();
   const { id } = useParams();
-  const user = state?.allUsers?.find((user) => user._id === id);
+  const user = state?.allUsers?.find((user) => user.userID === id);
 
   return (
     <HeaderPanel title={"User Details"}>

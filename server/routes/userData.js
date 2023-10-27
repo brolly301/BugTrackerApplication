@@ -5,7 +5,10 @@ const requireAuth = require("../middleware/requireAuth");
 
 router.patch("/editUser", requireAuth, async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.body._id, { ...req.body });
+    const user = await User.findOneAndUpdate(
+      { userID: req.body.userID },
+      { ...req.body }
+    );
     res.status(200).send(user);
   } catch (e) {
     res.status(500).json({ error: "Unable to update user" + e.message });
@@ -14,7 +17,7 @@ router.patch("/editUser", requireAuth, async (req, res) => {
 
 router.delete("/deleteUser/:id", requireAuth, async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id);
+    const user = await User.findOneAndDelete({ userID: req.params.id });
     res.status(200).send(user);
   } catch (e) {
     res.status(500).json({ error: "Unable to delete user" + e.message });

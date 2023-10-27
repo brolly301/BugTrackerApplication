@@ -25,7 +25,7 @@ export default function UserShow({ user }) {
       </div>
       <Link
         style={{ textDecoration: "none" }}
-        to={`/manageUsers/user/${user._id}`}
+        to={`/manageUsers/user/${user.userID}`}
         state={{ user: user }}>
         <button className="user-show-button">View</button>
       </Link>

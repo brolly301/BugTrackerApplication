@@ -7,7 +7,7 @@ import EditSaveModal from "../../Modals/EditSaveModal";
 
 export default function UserEditForm({ user, handleEdit }) {
   const [editForm, setEditForm] = useState({
-    _id: user._id || "",
+    userID: user.userID || "",
     firstName: user.firstName || "",
     surname: user.surname || "",
     phoneNumber: user.phoneNumber || "",
