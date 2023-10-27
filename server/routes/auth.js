@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-const { registerValidator } = require("../middleware/validation");
+const {
+  registerValidator,
+  profileValidator,
+} = require("../middleware/validation");
 const requireAuth = require("../middleware/requireAuth");
 
 router.post("/register", registerValidator, async (req, res) => {
@@ -75,15 +78,20 @@ router.get("/userDetails", requireAuth, async (req, res) => {
   }
 });
 
-router.patch("/editProfile", requireAuth, async (req, res) => {
-  try {
-    const user = await User.findByIdAndUpdate(req.user._id, req.body);
-    await user.save();
-    res.send({ message: "User details successfully updated" });
-  } catch (e) {
-    res.status(422).send({ error: "Unable to edit user details" });
+router.patch(
+  "/editProfile",
+  requireAuth,
+  profileValidator,
+  async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.user._id, req.body);
+      await user.save();
+      res.send({ message: "User details successfully updated" });
+    } catch (e) {
+      res.status(422).send({ error: "Unable to edit user details" });
+    }
   }
-});
+);
 
 router.get("/allUsers", requireAuth, async (req, res) => {
   try {

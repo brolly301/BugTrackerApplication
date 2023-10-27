@@ -28,7 +28,7 @@ router.post("/createProject", projectValidator, async (req, res) => {
   }
 });
 
-router.patch("/editProject", async (req, res) => {
+router.patch("/editProject", projectValidator, async (req, res) => {
   try {
     const project = await Project.findOneAndUpdate(
       { projectID: req.body.projectID },

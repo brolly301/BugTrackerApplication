@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const Ticket = require("../models/ticket");
 const Project = require("../models/project");
-const { ticketValidator } = require("../middleware/validation");
+const {
+  ticketValidator,
+  commentValidator,
+} = require("../middleware/validation");
 const requireAuth = require("../middleware/requireAuth");
 const Comment = require("../models/comment");
 
@@ -36,7 +39,7 @@ router.post("/createTicket", ticketValidator, async (req, res) => {
   }
 });
 
-router.patch("/editTicket", async (req, res) => {
+router.patch("/editTicket", ticketValidator, async (req, res) => {
   try {
     const ticket = await Ticket.findOneAndUpdate(
       { ticketID: req.body.ticketID },
@@ -57,7 +60,7 @@ router.delete("/deleteTicket/:id", async (req, res) => {
   }
 });
 
-router.post("/createComment", async (req, res) => {
+router.post("/createComment", commentValidator, async (req, res) => {
   const { ticketID, commentID, comment, userID, date } = req.body;
   try {
     const newComment = new Comment({ commentID, comment, userID, date });
@@ -71,7 +74,7 @@ router.post("/createComment", async (req, res) => {
   }
 });
 
-router.patch("/editComment", async (req, res) => {
+router.patch("/editComment", commentValidator, async (req, res) => {
   try {
     const comment = await Comment.findOneAndUpdate(
       { commentID: req.body.commentID },

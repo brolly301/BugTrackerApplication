@@ -35,7 +35,7 @@ const port = 8080;
 app.listen(port, () => console.log(`Running on Server ${port}`));
 
 //routes
-app.use("/", require("./routes/user"));
+app.use("/", require("./routes/auth"));
 app.use("/tickets", require("./routes/ticket"));
 app.use("/projects", require("./routes/project"));
-app.use("/userData", require("./routes/userData"));
+app.use("/userData", require("./routes/manageUsers"));

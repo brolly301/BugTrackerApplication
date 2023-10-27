@@ -102,3 +102,14 @@ h6 {
 .ticket-comment-comment-container {
   display: flex;
 }
+
+.ticket-comment-error {
+  color: red;
+  font-size: 12px;
+  margin-left: 30px;
+}
+
+.ticket-edit-comment-error {
+  color: red;
+  font-size: 11px;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useTicketContext from "../../../hooks/useTicketContext";
+import { validation } from "../../../functions/Validation/commentValidation";
 
 export default function TicketCommentsEditShow({
   comment,
@@ -9,18 +10,28 @@ export default function TicketCommentsEditShow({
 }) {
   const { editComment } = useTicketContext();
   const [updatedComment, setUpdatedComment] = useState(comment.comment);
+  const [errors, setErrors] = useState({});
 
-  const handleSubmit = async () => {
-    await editComment(
-      {
-        commentID: comment.commentID,
-        ticketID: ticket.ticketID,
-        comment: updatedComment,
-      },
-      () => {
-        handleEdit();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validationError = validation({ comment: updatedComment });
+    if (Object.keys(validationError).length === 0) {
+      try {
+        await editComment(
+          {
+            commentID: comment.commentID,
+            ticketID: ticket.ticketID,
+            comment: updatedComment,
+          },
+          () => {
+            handleEdit();
+          }
+        );
+      } catch (e) {
+        console.log(e);
       }
-    );
+    }
+    setErrors(validationError);
   };
 
   const handleChange = (e) => {
@@ -34,6 +45,9 @@ export default function TicketCommentsEditShow({
           <h5>{`${user?.firstName} ${user?.surname}`}</h5>
           <h6>{comment.date}</h6>
         </div>
+        {errors.comment && (
+          <p className="ticket-edit-comment-error">{errors.comment}</p>
+        )}
         <p className="ticket-comment-comment">
           <input onChange={handleChange} type="text" value={updatedComment} />
         </p>

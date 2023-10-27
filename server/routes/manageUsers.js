@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const requireAuth = require("../middleware/requireAuth");
+const { profileValidator } = require("../middleware/validation");
 
-router.patch("/editUser", requireAuth, async (req, res) => {
+router.patch("/editUser", requireAuth, profileValidator, async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
       { userID: req.body.userID },
