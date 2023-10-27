@@ -23,7 +23,7 @@ const reducer = (state, action) => {
       });
     case "create_comment":
       return state.map((ticket) => {
-        if (ticket._id === action.payload._id) {
+        if (ticket.ticketID === action.payload.ticketID) {
           return {
             ...ticket,
             comments: [...ticket?.comments, action.payload], // Add the new comment
@@ -115,7 +115,7 @@ const createComment = (dispatch) => async (ticketDetails, callback) => {
     await Server.post("/tickets/createComment", {
       ...ticketDetails,
     });
-    dispatch({ type: "create_comment", payload: ticketDetails });
+    dispatch({ type: "create_comment", payload: { ...ticketDetails } });
     if (callback) {
       callback();
     }

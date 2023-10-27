@@ -9,7 +9,7 @@ import ProjectTicketShow from "../../components/Projects/ProjectDetails/ProjectT
 export default function ProjectDetailsPage() {
   const { state } = useProjectContext();
   const { id } = useParams();
-  const project = state.find((project) => project._id === id);
+  const project = state.find((project) => project.projectID === id);
 
   return (
     <HeaderPanel title={"Project Details"}>

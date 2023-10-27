@@ -1,10 +1,8 @@
 import React from "react";
 import MyTicketsShow from "./MyTicketsShow";
 import "../../CSS/Tickets/TicketList.css";
-import { Link } from "react-router-dom";
 
 export default function MyTicketsList({ state }) {
-  console.log(state);
   return (
     <div>
       <table className="all-tickets-table">

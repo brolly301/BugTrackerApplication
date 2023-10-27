@@ -59,7 +59,9 @@ export default function TicketShow({ ticket, view }) {
         {ticket.assignee?.firstName} {ticket.assignee?.surname}
       </td>
 
-      <Link to={`/allTickets/tickets/${ticket._id}`} state={{ ticket: ticket }}>
+      <Link
+        to={`/allTickets/tickets/${ticket.ticketID}`}
+        state={{ ticket: ticket }}>
         <button className="ticket-view-button">View</button>
       </Link>
     </>

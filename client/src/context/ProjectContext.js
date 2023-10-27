@@ -10,10 +10,10 @@ const reducer = (state, action) => {
     case "get_projects":
       return action.payload;
     case "delete_project":
-      return state.filter((project) => project._id !== action.payload);
+      return state.filter((project) => project.projectID !== action.payload);
     case "edit_project":
       return state.map((project) => {
-        return project._id === action.payload._id
+        return project.projectID === action.payload.projectID
           ? { ...project, ...action.payload }
           : project;
       });
@@ -45,10 +45,10 @@ const getProjects = (dispatch) => async () => {
   }
 };
 
-const deleteProject = (dispatch) => async (id, callback) => {
+const deleteProject = (dispatch) => async (projectID, callback) => {
   try {
-    await Server.delete(`/projects/deleteProject/${id}`);
-    dispatch({ type: "delete_project", payload: id });
+    await Server.delete(`/projects/deleteProject/${projectID}`);
+    dispatch({ type: "delete_project", payload: projectID });
     if (callback) {
       callback();
     }

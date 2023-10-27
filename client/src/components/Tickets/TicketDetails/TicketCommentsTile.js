@@ -13,9 +13,11 @@ export default function TicketCommentsTile({ ticket }) {
     setComment(e.target.value);
   };
 
+  console.log(ticket);
+
   const handleSubmit = async () => {
     await createComment({
-      _id: ticket._id,
+      ticketID: ticket.ticketID,
       commentID: `${state.userDetails._id}${Math.floor(
         Math.random() * 100
       )}${Date.now()}`,

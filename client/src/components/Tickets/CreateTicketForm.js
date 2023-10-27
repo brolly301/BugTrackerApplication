@@ -22,6 +22,7 @@ export default function CreateTicketForm() {
     priority: "",
     status: "",
     assignee: "",
+    comments: [],
   });
   const [errors, setErrors] = useState({});
   const { state: projects } = useProjectContext();

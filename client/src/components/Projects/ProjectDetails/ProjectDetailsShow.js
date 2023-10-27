@@ -22,7 +22,7 @@ export default function ProjectDetailsShow({ project }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await deleteProject(project._id, () => {
+    await deleteProject(project.projectID, () => {
       redirect("/allProjects");
       toast.success("Project deleted successfully");
       setModalVisible(false);

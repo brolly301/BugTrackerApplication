@@ -9,7 +9,7 @@ import TicketCommentsTile from "../../components/Tickets/TicketDetails/TicketCom
 export default function TicketDetailsPage() {
   const { state } = useTicketContext();
   const { id } = useParams();
-  const ticket = state?.find((ticket) => ticket?._id === id);
+  const ticket = state?.find((ticket) => ticket?.ticketID === id);
 
   return (
     <HeaderPanel title={"Ticket Details"}>

@@ -10,7 +10,7 @@ import EditSaveForm from "../../Modals/EditSaveModal";
 
 export default function ProjectEditForm({ project, handleEdit }) {
   const [formData, setFormData] = useState({
-    _id: project._id || "",
+    projectID: project.projectID || "",
     name: project.name || "",
     description: project.description || "",
     projectManager: project.projectManager || "",

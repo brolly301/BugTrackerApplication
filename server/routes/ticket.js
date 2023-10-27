@@ -58,11 +58,11 @@ router.delete("/deleteTicket/:id", async (req, res) => {
 });
 
 router.post("/createComment", async (req, res) => {
-  const { _id, commentID, comment, userID, date } = req.body;
+  const { ticketID, commentID, comment, userID, date } = req.body;
   try {
     const newComment = new Comment({ commentID, comment, userID, date });
     await newComment.save();
-    const ticket = await Ticket.findById(_id);
+    const ticket = await Ticket.findOne({ ticketID: ticketID });
     ticket.comments.push(newComment._id);
     await ticket.save();
     res.status(200).send(ticket);

@@ -7,8 +7,6 @@ export default function MyTicketsShow({ ticket }) {
   const [priorityPillColor, setPriorityPillColor] = useState("");
   const [statusPillColor, setStatusPillColor] = useState("");
 
-  console.log(ticket);
-
   useEffect(() => {
     if (ticket.issueType === "Bug") {
       setIssuePillColor("issue-bug-pill");

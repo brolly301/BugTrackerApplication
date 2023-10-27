@@ -8,17 +8,19 @@ import useUserContext from "../../hooks/useUserContext";
 import { toast } from "react-toastify";
 
 export default function CreateProjectForm() {
+  const { state } = useUserContext();
+  const [errors, setErrors] = useState({});
+  const { createProject } = useProjectContext();
+
   const [formData, setFormData] = useState({
+    projectID: `${state.userDetails._id}${Math.floor(
+      Math.random() * 100
+    )}${Date.now()}`,
     name: "",
     description: "",
     projectManager: "",
     teamMembers: [],
   });
-  console.log(formData);
-  const [errors, setErrors] = useState({});
-  const { state } = useUserContext();
-
-  const { createProject } = useProjectContext();
 
   //   this can be made into a submit handler for every create form
   const handleSubmit = async (e) => {
