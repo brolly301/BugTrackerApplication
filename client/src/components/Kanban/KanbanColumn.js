@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import KanbanItem from "./KanbanItem";
 import "../../CSS/Kanban/KanbanColumn.css";
 import { useDroppable } from "@dnd-kit/core";
+import Placeholder from "../Placeholder";
 
 export default function KanbanColumn({ label, tickets }) {
   const [labelColor, setLabelColor] = useState("");
@@ -27,12 +28,23 @@ export default function KanbanColumn({ label, tickets }) {
     }
   }, [labelColor]);
 
+  console.log(tickets);
+
   return (
     <div className="kanban-column-container" ref={setNodeRef} style={style}>
       <label className={`kanban-column-label ${labelColor}`}>{label}</label>
-      {tickets.map((ticket) => {
-        return <KanbanItem key={ticket._id} ticket={ticket} />;
-      })}
+
+      {tickets.length < 1 ? (
+        <Placeholder
+          type={"ticket"}
+          buttonText={"submit"}
+          link={"/submitTicket"}
+        />
+      ) : (
+        tickets.map((ticket) => {
+          return <KanbanItem key={ticket._id} ticket={ticket} />;
+        })
+      )}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import useUserContext from "../../hooks/useUserContext";
 import FilterBy from "../../components/FilterBy";
 import { manageUserFilters } from "../../functions/FilterOptions";
 import HeaderPanel from "../../components/HeaderPanel";
+import { Link } from "react-router-dom";
 
 export default function ManageUsersPage() {
   const { state } = useUserContext();
@@ -25,7 +26,15 @@ export default function ManageUsersPage() {
       <div className="manage-user-search-container">
         <SearchBar search={search} setSearch={setSearch} />
         <view style={{ margin: "0px 5px 0px 5px" }} />
-        <FilterBy filterOptions={manageUserFilters} setFilter={setFilter} />
+        <FilterBy
+          filterOptions={manageUserFilters}
+          setFilter={setFilter}
+          value={"Role"}
+        />
+        <view style={{ margin: "0px 5px 0px 5px" }} />
+        <Link to={"/manageUsers/createUser"}>
+          <button>Add User</button>
+        </Link>
       </div>
       <UserList state={searchBy} />
     </HeaderPanel>

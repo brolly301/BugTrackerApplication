@@ -18,6 +18,7 @@ export default function Navbar({ currentPage }) {
   const handleLogout = async () => {
     await logout(() => {
       toast.success("Logout successful!");
+      localStorage.removeItem("token");
       redirect("/");
     });
   };

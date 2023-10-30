@@ -11,6 +11,7 @@ import HeaderPanel from "../../components/HeaderPanel";
 import useTicketContext from "../../hooks/useTicketContext";
 import useUserContext from "../../hooks/useUserContext";
 import { AssigneeDetails } from "../../functions/ObjectData";
+import Placeholder from "../../components/Placeholder";
 
 export default function MyTicketsPage() {
   const [search, setSearch] = useState("");
@@ -34,18 +35,39 @@ export default function MyTicketsPage() {
     }
   });
 
+  console.log(searchBy);
+
   return (
     <HeaderPanel title={"My Tickets"}>
       <div className="ticket-search-container">
         <SearchBar search={search} setSearch={setSearch} />
         <view style={{ margin: "0px 5px 0px 5px" }} />
-        <FilterBy setFilter={setFilter} filterOptions={ticketStatusFilters} />
+        <FilterBy
+          setFilter={setFilter}
+          filterOptions={ticketStatusFilters}
+          value={"Status"}
+        />
         <view style={{ margin: "0px 5px 0px 5px" }} />
-        <FilterBy setFilter={setFilter} filterOptions={ticketPriorityFilters} />
+        <FilterBy
+          setFilter={setFilter}
+          filterOptions={ticketPriorityFilters}
+          value={"Priority"}
+        />
         <view style={{ margin: "0px 5px 0px 5px" }} />
-        <FilterBy setFilter={setFilter} filterOptions={ticketTypeFilters} />
+        <FilterBy
+          setFilter={setFilter}
+          filterOptions={ticketTypeFilters}
+          value={"Issue Type"}
+        />
       </div>
       <MyTicketsList state={searchBy} />
+      {searchBy?.length < 1 ? (
+        <Placeholder
+          type={"ticket"}
+          buttonText={"submit"}
+          link={"/submitTicket"}
+        />
+      ) : null}
     </HeaderPanel>
   );
 }

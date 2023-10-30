@@ -21,6 +21,7 @@ import TicketDetailsPage from "./pages/Tickets/TicketDetailsPage";
 import KanbanPage from "./pages/KanbanPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CreateUserPage from "./pages/ManageUsers/CreateUserPage";
 
 function App() {
   const { state } = useUserContext();
@@ -60,6 +61,10 @@ function App() {
               <Route path="/myProjects" element={<MyProjectsPage />} />
               <Route path="/createProject" element={<CreateProjectPage />} />
               <Route path="/manageUsers" element={<ManageUsersPage />} />
+              <Route
+                path="/manageUsers/createUser"
+                element={<CreateUserPage />}
+              />
               <Route
                 path="/manageUsers/user/:id"
                 element={<UserDetailsPage />}

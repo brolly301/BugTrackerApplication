@@ -4,3 +4,21 @@
   height: 40px;
   justify-content: space-between;
 }
+
+.manage-user-search-container button {
+  width: 142px;
+  height: 100%;
+  color: white;
+  background-color: rgb(141, 140, 140);
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.manage-user-search-container button:hover {
+  width: 142px;
+  height: 100%;
+  color: white;
+  background-color: var(--primary-color);
+  font-weight: 600;
+  border-radius: 10px;
+}

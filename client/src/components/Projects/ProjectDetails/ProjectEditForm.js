@@ -8,6 +8,7 @@ import Dropdown from "../../Dropdown";
 import { toast } from "react-toastify";
 import EditSaveForm from "../../Modals/EditSaveModal";
 import { ProjectManagerDetails } from "../../../functions/ObjectData";
+import TeamMembersInput from "../../TeamMembersInput";
 
 export default function ProjectEditForm({ project, handleEdit }) {
   const projectManager = ProjectManagerDetails(project.projectManager);
@@ -39,6 +40,8 @@ export default function ProjectEditForm({ project, handleEdit }) {
     }
     setErrors(validationErrors);
   };
+
+  console.log(formData);
 
   return (
     <>
@@ -79,15 +82,11 @@ export default function ProjectEditForm({ project, handleEdit }) {
                   value: user._id,
                 }))}
             />
-            <Dropdown
-              label="Team Members"
+            <TeamMembersInput
               setData={setFormData}
-              data={formData}
-              errors={errors.teamMembers}
-              values={state?.allUsers?.map((user) => {
-                return { label: user.firstName, value: user._id };
-              })}
-              multiple={true}
+              data={state.allUsers}
+              project={project}
+              formData={formData}
             />
           </div>
           <div className="ticket-details-tile-button-container">

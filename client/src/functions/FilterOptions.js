@@ -3,10 +3,6 @@ import useUserContext from "../hooks/useUserContext";
 
 export const manageUserFilters = [
   {
-    name: "All Users",
-    label: "",
-  },
-  {
     name: "Admin",
     label: "Admin",
   },

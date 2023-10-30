@@ -1,15 +1,9 @@
 .user-list-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
-  align-content: flex-start; /* Align items to the start of the flex container */
-  margin-top: 20px;
-  justify-content: space-between;
-  align-items: flex-start; /* Align items to the start of each line */
-}
-
-.user-list-container::after {
-  height: 0;
-  width: 38%;
-  content: "";
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  /* flex-flow: row wrap; */
 }

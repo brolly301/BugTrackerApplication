@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar";
 import FilterBy from "../../components/FilterBy";
 import { ProjectManagerFilters } from "../../functions/FilterOptions";
 import HeaderPanel from "../../components/HeaderPanel";
+import Placeholder from "../../components/Placeholder";
 
 export default function ProjectsPage() {
   const [search, setSearch] = useState("");
@@ -31,9 +32,17 @@ export default function ProjectsPage() {
         <FilterBy
           filterOptions={ProjectManagerFilters()}
           setFilter={setFilter}
+          value={"Project Manager"}
         />
       </div>
       <ProjectList state={searchBy} />
+      {searchBy?.length < 1 ? (
+        <Placeholder
+          type={"project"}
+          buttonText={"create"}
+          link={"/createProject"}
+        />
+      ) : null}
     </HeaderPanel>
   );
 }

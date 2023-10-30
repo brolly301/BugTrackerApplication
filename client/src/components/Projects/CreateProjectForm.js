@@ -60,6 +60,7 @@ export default function CreateProjectForm() {
           label="Project Manager"
           setData={setFormData}
           data={formData}
+          value={"Select.."}
           errors={errors.projectManager}
           values={state?.allUsers
             ?.filter((user) => user.role === "Project Manager")

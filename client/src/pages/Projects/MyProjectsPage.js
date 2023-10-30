@@ -7,6 +7,7 @@ import HeaderPanel from "../../components/HeaderPanel";
 import useUserContext from "../../hooks/useUserContext";
 import useProjectContext from "../../hooks/useProjectContext";
 import { AssigneeDetails } from "../../functions/ObjectData";
+import Placeholder from "../../components/Placeholder";
 
 export default function MyProjectsPage() {
   const [search, setSearch] = useState("");
@@ -38,9 +39,17 @@ export default function MyProjectsPage() {
         <FilterBY
           setFilter={setFilter}
           filterOptions={ProjectManagerFilters()}
+          value={"Project Manager"}
         />
       </div>
       <MyProjectsList state={searchBy} />
+      {searchBy?.length < 1 ? (
+        <Placeholder
+          type={"project"}
+          buttonText={"create"}
+          link={"/createProject"}
+        />
+      ) : null}
     </HeaderPanel>
   );
 }

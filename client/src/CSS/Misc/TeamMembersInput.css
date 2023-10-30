@@ -1,0 +1,15 @@
+.team-members-input-container {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.team-member-member-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #000000;
+}
