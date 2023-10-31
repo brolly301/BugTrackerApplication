@@ -15,6 +15,8 @@ const reducer = (state, action) => {
       return { token: null, errorMessage: "", userDetails: {} };
     case "get_user_details":
       return { ...state, userDetails: action.payload };
+    case "add_all_users":
+      return { ...state, allUsers: [...state.allUsers, action.payload] };
     case "get_all_users":
       return { ...state, allUsers: action.payload };
     case "edit_all_users":
@@ -105,6 +107,18 @@ const getAllUsers = (dispatch) => async () => {
   }
 };
 
+const addAllUsers = (dispatch) => async (userDetails, callback) => {
+  try {
+    await Server.post("/register", { ...userDetails });
+    dispatch({ type: "add_all_users", payload: userDetails });
+    if (callback) {
+      callback();
+    }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
 const editAllUsers = (dispatch) => async (userDetails, callback) => {
   try {
     await Server.patch("/userData/editUser", { ...userDetails });
@@ -140,6 +154,7 @@ export const { Provider, Context } = createDataContext(
     getAllUsers,
     editAllUsers,
     deleteAllUsers,
+    addAllUsers,
   },
   {
     errorMessage: "",

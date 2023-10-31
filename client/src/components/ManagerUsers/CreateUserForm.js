@@ -9,9 +9,10 @@ import Button from "../Button";
 
 export default function CreateUserForm() {
   const [errors, setErrors] = useState({});
-  const { register } = useUserContext();
+  const { register, state, addAllUsers } = useUserContext();
 
   const [userDetails, setUserDetails] = useState({
+    userID: "user" + Math.floor(Math.random() * 1000000) + 1,
     firstName: "",
     surname: "",
     role: "",
@@ -25,9 +26,9 @@ export default function CreateUserForm() {
     const validationErrors = validation(userDetails);
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await register(userDetails, () => {
+        await addAllUsers(userDetails, () => {
           setErrors({});
-          toast.success(`User succressfully created.`);
+          toast.success(`User successfully created.`);
         });
       } catch (error) {
         console.log(error);
@@ -36,8 +37,6 @@ export default function CreateUserForm() {
       setErrors(validationErrors);
     }
   };
-
-  console.log(userDetails);
 
   return (
     <div>
