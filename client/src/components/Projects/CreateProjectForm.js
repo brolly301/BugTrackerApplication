@@ -6,6 +6,7 @@ import { validation } from "../../functions/Validation/projectValidation";
 import Dropdown from "../Dropdown";
 import useUserContext from "../../hooks/useUserContext";
 import { toast } from "react-toastify";
+import TeamMembersInput from "../TeamMembersInput";
 
 export default function CreateProjectForm() {
   const { state } = useUserContext();
@@ -21,6 +22,8 @@ export default function CreateProjectForm() {
     projectManager: "",
     teamMembers: [],
   });
+
+  console.log(formData);
 
   //   this can be made into a submit handler for every create form
   const handleSubmit = async (e) => {
@@ -60,6 +63,7 @@ export default function CreateProjectForm() {
           label="Project Manager"
           setData={setFormData}
           data={formData}
+          margin={true}
           value={"Select.."}
           errors={errors.projectManager}
           values={state?.allUsers
@@ -69,15 +73,10 @@ export default function CreateProjectForm() {
               value: user._id,
             }))}
         />
-        <Dropdown
-          label="Team Members"
+        <TeamMembersInput
           setData={setFormData}
-          data={formData}
-          errors={errors.teamMembers}
-          values={state?.allUsers?.map((user) => {
-            return { label: user.firstName, value: user._id };
-          })}
-          multiple={true}
+          formData={formData}
+          data={state.allUsers}
         />
         <Button label="Create" />
       </form>

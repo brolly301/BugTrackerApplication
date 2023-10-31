@@ -1,19 +1,27 @@
 .dropdown-container {
   display: flex;
   flex-direction: column;
-  background-color: #f0eeee;
 }
 
 .dropdown-label {
-  font-size: 16px;
-  font-weight: 500;
-  margin: 15px 0 5px 0;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .dropdown-select {
   padding: 10px;
-  border-radius: 8px;
-  background-color: #f0eeee;
+
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.dropdown-select-margin {
+  padding: 10.5px 0px 10.5px 6px;
+  margin-bottom: 25px;
+  font-size: 15px;
+  margin-top: 8px;
+  border-radius: 5px;
+  font-family: "Open Sans";
 }
 
 .dropdown-error {

@@ -10,6 +10,7 @@ export default function Dropdown({
   errors,
   multiple,
   value,
+  margin,
 }) {
   const field = (string) => {
     const label = string.split(" ");
@@ -26,7 +27,7 @@ export default function Dropdown({
       {errors && <p className="input-error">{errors}</p>}
       <select
         multiple={multiple}
-        className="dropdown-select"
+        className={margin ? "dropdown-select-margin" : "dropdown-select"}
         onChange={(e) => {
           if (multiple) {
             const selectedOptions = Array.from(

@@ -70,6 +70,7 @@ export default function CreateTicketForm() {
           setData={setFormData}
           data={formData}
           errors={errors.project}
+          margin={true}
         />
         <Dropdown
           label={dropdownData.issueType.label}
@@ -77,6 +78,7 @@ export default function CreateTicketForm() {
           setData={setFormData}
           data={formData}
           errors={errors.issueType}
+          margin={true}
         />
         <Dropdown
           label={dropdownData.priority.label}
@@ -84,6 +86,7 @@ export default function CreateTicketForm() {
           setData={setFormData}
           data={formData}
           errors={errors.priority}
+          margin={true}
         />
         <Dropdown
           label={dropdownData.status.label}
@@ -91,6 +94,7 @@ export default function CreateTicketForm() {
           setData={setFormData}
           data={formData}
           errors={errors.status}
+          margin={true}
         />
         <Dropdown
           label={"Assignee"}
@@ -100,6 +104,7 @@ export default function CreateTicketForm() {
           setData={setFormData}
           data={formData}
           errors={errors.assignee}
+          margin={true}
         />
         <Button label="Submit" />
       </form>

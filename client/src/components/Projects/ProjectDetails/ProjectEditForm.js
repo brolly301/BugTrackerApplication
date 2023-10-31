@@ -50,9 +50,10 @@ export default function ProjectEditForm({ project, handleEdit }) {
         onRequestClose={() => setModalVisible(!modalVisible)}
         isOpen={modalVisible}
       />
-      <div className="ticket-details-tile">
-        <div className="ticket-details-tile-container">
-          <div className="ticket-details-tile-summary-container">
+      <div className="project-edit-tile-container">
+        <h1>Edit Project Details</h1>
+        <div className="project-edit-tile-data-container ">
+          <div className="project-edit-tile-details-container ">
             <Input
               label="Name"
               setData={setFormData}
@@ -67,12 +68,11 @@ export default function ProjectEditForm({ project, handleEdit }) {
               errors={errors.description}
               value={formData.description}
             />
-          </div>
-          <div className="ticket-details-tile-project-container">
             <Dropdown
               label="Project Manager"
               setData={setFormData}
               data={formData}
+              margin={true}
               errors={errors.projectManager}
               value={`${formData.projectManager.firstName} ${formData.projectManager.surname}`}
               values={state?.allUsers
@@ -82,19 +82,21 @@ export default function ProjectEditForm({ project, handleEdit }) {
                   value: user._id,
                 }))}
             />
+          </div>
+          <div className="project-edit-tile-members-container">
             <TeamMembersInput
               setData={setFormData}
               data={state.allUsers}
-              project={project}
               formData={formData}
             />
           </div>
-          <div className="ticket-details-tile-button-container">
-            <button onClick={() => setModalVisible(!modalVisible)}>Save</button>
-            <button type="button" onClick={handleEdit}>
-              Cancel
-            </button>
-          </div>
+        </div>
+
+        <div className="project-edit-tile-button-container">
+          <button onClick={() => setModalVisible(!modalVisible)}>Save</button>
+          <button type="button" onClick={handleEdit}>
+            Cancel
+          </button>
         </div>
       </div>
     </>

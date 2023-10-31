@@ -1,33 +1,36 @@
 import React from "react";
 import "../../../CSS/Projects/ProjectTeamMembersShow.css";
 import { useState, useEffect } from "react";
+import { AssigneeDetails } from "../../../functions/ObjectData";
 
 export default function ProjectTeamMembersShow({ teamMember }) {
   const [userRoleColor, setUserRoleColor] = useState("");
 
+  const member = AssigneeDetails(teamMember);
+
   useEffect(() => {
-    if (teamMember?.role === "Admin") {
+    if (member?.role === "Admin") {
       setUserRoleColor("role-admin-pill");
-    } else if (teamMember?.role === "Project Manager") {
+    } else if (member?.role === "Project Manager") {
       setUserRoleColor("role-projectManager-pill");
-    } else if (teamMember?.role === "Developer") {
+    } else if (member?.role === "Developer") {
       setUserRoleColor("role-developer-pill");
-    } else if (teamMember?.role === "Test Engineer") {
+    } else if (member?.role === "Test Engineer") {
       setUserRoleColor("role-testEngineer-pill");
-    } else if (teamMember?.role === "Support") {
+    } else if (member?.role === "Support") {
       setUserRoleColor("role-support-pill");
     }
-  }, [teamMember?.role]);
+  }, [member?.role]);
 
   return (
     <>
-      <td className="team-members-table-text">{teamMember?.firstName}</td>
-      <td className="team-members-table-text">{teamMember?.surname}</td>
-      <td className="team-members-table-text">{teamMember?.phoneNumber}</td>
-      <td className="team-members-table-text">{teamMember?.emailAddress}</td>
+      <td className="team-members-table-text">{member?.firstName}</td>
+      <td className="team-members-table-text">{member?.surname}</td>
+      <td className="team-members-table-text">{member?.phoneNumber}</td>
+      <td className="team-members-table-text">{member?.emailAddress}</td>
       <td>
         <p className={`team-members-list-pill ${userRoleColor}`}>
-          {teamMember?.role}
+          {member?.role}
         </p>
       </td>
     </>

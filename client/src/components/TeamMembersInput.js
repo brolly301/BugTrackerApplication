@@ -1,25 +1,23 @@
 import React from "react";
 import "../CSS/Misc/TeamMembersInput.css";
-import { handleChange } from "../functions/HandleChange";
 
-export default function TeamMembersInput({ data, setData, project, formData }) {
+export default function TeamMembersInput({ data, setData, formData }) {
   const handleChange = (e) => [
     setData({
       ...formData,
-      teamMembers: [...project.teamMembers, e.target.value],
+      teamMembers: e.target.checked
+        ? [...formData.teamMembers, { _id: e.target.value }]
+        : formData.teamMembers.filter(
+            (teamMember) => teamMember._id !== e.target.value
+          ),
     }),
   ];
 
   return (
     <div className="team-members-input-container">
       <h1>Team Members</h1>
-
-      {data.map((member) => {
-        const isChecked = project.teamMembers.some(
-          (teamMember) => teamMember._id === member._id
-        );
-
-        return (
+      <div className="team-member-list-container">
+        {data.map((member) => (
           <div key={member._id} className="team-member-member-container">
             <p>
               {member?.firstName} {member?.surname}
@@ -28,11 +26,13 @@ export default function TeamMembersInput({ data, setData, project, formData }) {
               onChange={handleChange}
               type="checkbox"
               value={member._id}
-              checked={isChecked}
+              checked={formData.teamMembers.some(
+                (teamMember) => teamMember._id === member._id
+              )}
             />
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 }

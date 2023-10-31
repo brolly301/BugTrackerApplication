@@ -1,8 +1,32 @@
 .team-members-input-container {
   width: 100%;
-  margin-bottom: 20px;
-  border: 1px solid #000000;
-  border-radius: 10px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.team-members-input-container > h1 {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0;
+}
+
+.team-members-input-container > div::-webkit-scrollbar {
+  width: 8px;
+}
+
+.team-members-input-container > div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.team-members-input-container > div::-webkit-scrollbar-thumb {
+  background-color: #525151;
+  border-radius: 4px;
+}
+
+.team-members-input-container > div {
+  overflow-y: scroll;
+  max-height: 360px;
 }
 
 .team-member-member-container {
@@ -12,4 +36,10 @@
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #000000;
+  position: relative;
+}
+
+.team-member-list-container {
+  border: 1px solid #000000;
+  background-color: white;
 }

@@ -55,6 +55,7 @@ export default function TicketEditForm({ ticket, handleEdit }) {
         onSave={handleSubmit}
       />
       <div className="ticket-details-tile">
+        <h1>Edit Ticket Details</h1>
         <div className="ticket-details-tile-container">
           <div className="ticket-details-tile-summary-container">
             <Input
@@ -70,6 +71,7 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               data={formData}
               errors={errors.description}
               value={formData.description}
+              height={"345px"}
             />
           </div>
           <div className="ticket-details-tile-project-container">
@@ -85,6 +87,7 @@ export default function TicketEditForm({ ticket, handleEdit }) {
                     ""
               }
               setData={setFormData}
+              margin={true}
               data={formData}
               errors={errors.project}
             />
@@ -110,6 +113,7 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               setData={setFormData}
               data={formData}
               errors={errors.assignee}
+              margin={true}
             />
             <Dropdown
               label={dropdownData.issueType.label}
@@ -118,6 +122,7 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               setData={setFormData}
               data={formData}
               errors={errors.issueType}
+              margin={true}
             />
             <Dropdown
               label={dropdownData.status.label}
@@ -126,6 +131,7 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               setData={setFormData}
               data={formData}
               errors={errors.status}
+              margin={true}
             />
             <Dropdown
               label={dropdownData.priority.label}
@@ -134,6 +140,7 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               setData={setFormData}
               data={formData}
               errors={errors.priority}
+              margin={true}
             />
           </div>
         </div>
