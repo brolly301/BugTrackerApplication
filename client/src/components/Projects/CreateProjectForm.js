@@ -44,41 +44,49 @@ export default function CreateProjectForm() {
   };
 
   return (
-    <div>
-      <h1 className="create-project-title">Enter your project details</h1>
+    <div className='project-details-tile-container'>
+      <h1>Project Details</h1>
       <form onSubmit={handleSubmit}>
-        <Input
-          label="Name"
-          setData={setFormData}
-          data={formData}
-          errors={errors.name}
-        />
-        <Input
-          label="Description"
-          setData={setFormData}
-          data={formData}
-          errors={errors.description}
-        />
-        <Dropdown
-          label="Project Manager"
-          setData={setFormData}
-          data={formData}
-          margin={true}
-          value={"Select.."}
-          errors={errors.projectManager}
-          values={state?.allUsers
-            ?.filter((user) => user.role === "Project Manager")
-            .map((user) => ({
-              label: user.firstName,
-              value: user._id,
-            }))}
-        />
-        <TeamMembersInput
-          setData={setFormData}
-          formData={formData}
-          data={state.allUsers}
-        />
-        <Button label="Create" />
+        <div className='project-details-tile-data-container'>
+          <div className='project-details-tile-details-container'>
+            <Input
+              label='Name'
+              setData={setFormData}
+              data={formData}
+              errors={errors.name}
+            />
+            <Input
+              label='Description'
+              setData={setFormData}
+              data={formData}
+              errors={errors.description}
+            />
+            <Dropdown
+              label='Project Manager'
+              setData={setFormData}
+              data={formData}
+              margin={true}
+              value={"Select.."}
+              errors={errors.projectManager}
+              values={state?.allUsers
+                ?.filter((user) => user.role === "Project Manager")
+                .map((user) => ({
+                  label: user.firstName,
+                  value: user._id,
+                }))}
+            />
+          </div>
+          <div className='project-details-tile-members-container'>
+            <TeamMembersInput
+              setData={setFormData}
+              formData={formData}
+              data={state.allUsers}
+            />
+          </div>
+        </div>
+        <div className='ticket-form-button-container'>
+          <Button label='Create' />
+        </div>
       </form>
     </div>
   );

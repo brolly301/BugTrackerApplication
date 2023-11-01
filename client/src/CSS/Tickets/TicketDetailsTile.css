@@ -93,3 +93,8 @@
   font-size: 16px;
   font-weight: 500;
 }
+
+.ticket-form-button-container {
+    display: flex;
+    margin: 10px 30px 10px 30px
+}

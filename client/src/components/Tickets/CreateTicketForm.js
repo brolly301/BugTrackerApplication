@@ -47,66 +47,79 @@ export default function CreateTicketForm() {
   };
 
   return (
-    <div>
-      <h1 className="create-ticket-title">Enter your ticket details</h1>
+    <div className='ticket-details-tile'>
+      <h1>Ticket Details</h1>
       <form onSubmit={handleSubmit}>
-        <Input
-          label="Summary"
-          setData={setFormData}
-          data={formData}
-          errors={errors.summary}
-        />
-        <Input
-          label="Description"
-          setData={setFormData}
-          data={formData}
-          errors={errors.description}
-        />
-        <Dropdown
-          label={"Project"}
-          values={projects?.map((project) => {
-            return { label: project.name, value: project._id };
-          })}
-          setData={setFormData}
-          data={formData}
-          errors={errors.project}
-          margin={true}
-        />
-        <Dropdown
-          label={dropdownData.issueType.label}
-          values={dropdownData.issueType.values}
-          setData={setFormData}
-          data={formData}
-          errors={errors.issueType}
-          margin={true}
-        />
-        <Dropdown
-          label={dropdownData.priority.label}
-          values={dropdownData.priority.values}
-          setData={setFormData}
-          data={formData}
-          errors={errors.priority}
-          margin={true}
-        />
-        <Dropdown
-          label={dropdownData.status.label}
-          values={dropdownData.status.values}
-          setData={setFormData}
-          data={formData}
-          errors={errors.status}
-          margin={true}
-        />
-        <Dropdown
-          label={"Assignee"}
-          values={state?.allUsers?.map((user) => {
-            return { label: user.firstName, value: user._id };
-          })}
-          setData={setFormData}
-          data={formData}
-          errors={errors.assignee}
-          margin={true}
-        />
-        <Button label="Submit" />
+        <div className='ticket-details-tile-container'>
+          <div className='ticket-details-tile-summary-container'>
+            <Input
+              label='Summary'
+              setData={setFormData}
+              data={formData}
+              errors={errors.summary}
+            />
+            <Input
+              label='Description'
+              setData={setFormData}
+              data={formData}
+              errors={errors.description}
+            />
+          </div>
+          <div className='ticket-details-tile-project-container'>
+            <Dropdown
+              label={"Project"}
+              values={projects?.map((project) => {
+                return { label: project.name, value: project._id };
+              })}
+              setData={setFormData}
+              data={formData}
+              errors={errors.project}
+              margin={true}
+              value={"Select.."}
+            />
+            <Dropdown
+              label={dropdownData.issueType.label}
+              values={dropdownData.issueType.values}
+              setData={setFormData}
+              data={formData}
+              errors={errors.issueType}
+              margin={true}
+              value={"Select.."}
+            />
+            <Dropdown
+              label={dropdownData.priority.label}
+              values={dropdownData.priority.values}
+              setData={setFormData}
+              data={formData}
+              errors={errors.priority}
+              margin={true}
+              value={"Select.."}
+            />
+            <Dropdown
+              label={dropdownData.status.label}
+              values={dropdownData.status.values}
+              setData={setFormData}
+              data={formData}
+              errors={errors.status}
+              margin={true}
+              value={"Select.."}
+            />
+            <Dropdown
+              label={"Assignee"}
+              values={state?.allUsers?.map((user) => {
+                return { label: user.firstName, value: user._id };
+              })}
+              setData={setFormData}
+              data={formData}
+              errors={errors.assignee}
+              margin={true}
+              value={"Select.."}
+            />
+          </div>
+        </div>
+        <div className='ticket-form-button-container'>
+          <Button label='Submit' />
+        </div>
       </form>
     </div>
   );
