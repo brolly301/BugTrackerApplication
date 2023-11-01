@@ -12,8 +12,6 @@ export default function TicketShow({ ticket }) {
   const assignee = AssigneeDetails(ticket?.assignee);
   const project = ProjectDetails(ticket?.projectid);
 
-  console.log(project);
-
   useEffect(() => {
     if (ticket?.issueType === "Bug") {
       setIssuePillColor("issue-bug-pill");
@@ -66,7 +64,7 @@ export default function TicketShow({ ticket }) {
       </td>
 
       <Link
-        to={`/allTickets/tickets/${ticket.ticketID}`}
+        to={`/allTickets/tickets/${ticket?.ticketID}`}
         state={{ ticket: ticket }}
       >
         <button className='ticket-view-button'>View</button>

@@ -109,7 +109,7 @@ const getAllUsers = (dispatch) => async () => {
 
 const addAllUsers = (dispatch) => async (userDetails, callback) => {
   try {
-    await Server.post("/register", { ...userDetails });
+    await Server.post("/userData/createUser", { ...userDetails });
     dispatch({ type: "add_all_users", payload: userDetails });
     if (callback) {
       callback();

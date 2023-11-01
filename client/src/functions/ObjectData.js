@@ -3,8 +3,8 @@ import useProjectContext from "../hooks/useProjectContext";
 
 export const AssigneeDetails = (assignee) => {
   const { state } = useUserContext();
-  const user = state.allUsers.find(
-    (user) => user.userID === assignee || user.userID === assignee?.userID
+  const user = state?.allUsers?.find(
+    (user) => user?.userID === assignee || user?.userID === assignee?.userID
   );
   return user;
 };
