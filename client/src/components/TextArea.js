@@ -1,9 +1,8 @@
 import React from "react";
-import "../CSS/Misc/Input.css";
 import { handleChange } from "../functions/HandleChange";
+import "../CSS/Misc/TextArea.css";
 
-export default function Input({ label, errors, setData, data, value }) {
-  //Converts the label  camelcasing for the field name
+export default function TextArea({ setData, data, label, errors, value }) {
   const field = (string) => {
     const label = string.split(" ");
     let field = label[0].toLowerCase();
@@ -14,18 +13,18 @@ export default function Input({ label, errors, setData, data, value }) {
   };
 
   return (
-    <div className='input-container'>
-      <label className='label'>{label}</label>
+    <div className='text-area-container'>
+      <label className='text-area-label'>{label}</label>
       {errors && <p className='input-error'>{errors}</p>}
 
-      <input
+      <textarea
+        rows={25}
+        className='text-area'
         value={value}
-        className='input'
-        type='text'
         onChange={(e) =>
           handleChange(setData, data, field(label), e.target.value)
         }
-      />
+      ></textarea>
     </div>
   );
 }

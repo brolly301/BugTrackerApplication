@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import EditSaveForm from "../../Modals/EditSaveModal";
 import { ProjectManagerDetails } from "../../../functions/ObjectData";
 import TeamMembersInput from "../../TeamMembersInput";
+import TextArea from "../../TextArea";
 
 export default function ProjectEditForm({ project, handleEdit }) {
   const projectManager = ProjectManagerDetails(project.projectManager);
@@ -50,26 +51,26 @@ export default function ProjectEditForm({ project, handleEdit }) {
         onRequestClose={() => setModalVisible(!modalVisible)}
         isOpen={modalVisible}
       />
-      <div className="project-edit-tile-container">
+      <div className='project-edit-tile-container'>
         <h1>Edit Project Details</h1>
-        <div className="project-edit-tile-data-container ">
-          <div className="project-edit-tile-details-container ">
+        <div className='project-edit-tile-data-container '>
+          <div className='project-edit-tile-details-container '>
             <Input
-              label="Name"
+              label='Name'
               setData={setFormData}
               data={formData}
               errors={errors.name}
               value={formData.name}
             />
-            <Input
-              label="Description"
+            <TextArea
+              label='Description'
               setData={setFormData}
               data={formData}
               errors={errors.description}
               value={formData.description}
             />
             <Dropdown
-              label="Project Manager"
+              label='Project Manager'
               setData={setFormData}
               data={formData}
               margin={true}
@@ -83,7 +84,7 @@ export default function ProjectEditForm({ project, handleEdit }) {
                 }))}
             />
           </div>
-          <div className="project-edit-tile-members-container">
+          <div className='project-edit-tile-members-container'>
             <TeamMembersInput
               setData={setFormData}
               data={state.allUsers}
@@ -92,9 +93,9 @@ export default function ProjectEditForm({ project, handleEdit }) {
           </div>
         </div>
 
-        <div className="project-edit-tile-button-container">
+        <div className='project-edit-tile-button-container'>
           <button onClick={() => setModalVisible(!modalVisible)}>Save</button>
-          <button type="button" onClick={handleEdit}>
+          <button type='button' onClick={handleEdit}>
             Cancel
           </button>
         </div>

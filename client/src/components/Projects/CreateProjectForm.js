@@ -7,6 +7,7 @@ import Dropdown from "../Dropdown";
 import useUserContext from "../../hooks/useUserContext";
 import { toast } from "react-toastify";
 import TeamMembersInput from "../TeamMembersInput";
+import TextArea from "../TextArea";
 
 export default function CreateProjectForm() {
   const { state } = useUserContext();
@@ -55,7 +56,7 @@ export default function CreateProjectForm() {
               data={formData}
               errors={errors.name}
             />
-            <Input
+            <TextArea
               label='Description'
               setData={setFormData}
               data={formData}

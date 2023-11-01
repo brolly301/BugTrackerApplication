@@ -8,6 +8,7 @@ import useUserContext from "../../hooks/useUserContext";
 import { dropdownData } from "../../functions/CreateTicketDropdownData";
 import useProjectContext from "../../hooks/useProjectContext";
 import { toast } from "react-toastify";
+import TextArea from "../TextArea";
 
 export default function CreateTicketForm() {
   const { state } = useUserContext();
@@ -46,6 +47,8 @@ export default function CreateTicketForm() {
     }
   };
 
+  console.log(formData);
+
   return (
     <div className='ticket-details-tile'>
       <h1>Ticket Details</h1>
@@ -58,7 +61,7 @@ export default function CreateTicketForm() {
               data={formData}
               errors={errors.summary}
             />
-            <Input
+            <TextArea
               label='Description'
               setData={setFormData}
               data={formData}

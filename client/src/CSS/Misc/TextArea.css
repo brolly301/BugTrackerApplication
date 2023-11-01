@@ -1,0 +1,12 @@
+.text-area {
+
+}
+.text-area-label{
+    font-weight: 600;
+  margin-bottom: 10px;
+
+}
+.text-area-container {
+    display: flex;
+    flex-direction: column;
+}

@@ -8,6 +8,7 @@ import { validation } from "../../../functions/Validation/ticketValidation";
 import useTicketContext from "../../../hooks/useTicketContext";
 import { toast } from "react-toastify";
 import EditSaveModal from "../../Modals/EditSaveModal";
+import TextArea from "../../TextArea";
 
 export default function TicketEditForm({ ticket, handleEdit }) {
   const { state: tickets, editTicket } = useTicketContext();
@@ -47,6 +48,8 @@ export default function TicketEditForm({ ticket, handleEdit }) {
     }
   };
 
+  console.log(formData);
+
   return (
     <>
       <EditSaveModal
@@ -54,27 +57,26 @@ export default function TicketEditForm({ ticket, handleEdit }) {
         isOpen={modalVisible}
         onSave={handleSubmit}
       />
-      <div className="ticket-details-tile">
+      <div className='ticket-details-tile'>
         <h1>Edit Ticket Details</h1>
-        <div className="ticket-details-tile-container">
-          <div className="ticket-details-tile-summary-container">
+        <div className='ticket-details-tile-container'>
+          <div className='ticket-details-tile-summary-container'>
             <Input
-              label="Summary"
+              label='Summary'
               setData={setFormData}
               data={formData}
               errors={errors.summary}
               value={formData.summary}
             />
-            <Input
-              label="Description"
+            <TextArea
+              label='Description'
               setData={setFormData}
               data={formData}
               errors={errors.description}
               value={formData.description}
-              height={"345px"}
             />
           </div>
-          <div className="ticket-details-tile-project-container">
+          <div className='ticket-details-tile-project-container'>
             <Dropdown
               label={"Project"}
               values={projects?.map((project) => {
@@ -144,9 +146,9 @@ export default function TicketEditForm({ ticket, handleEdit }) {
             />
           </div>
         </div>
-        <div className="ticket-details-tile-button-container">
+        <div className='ticket-details-tile-button-container'>
           <button onClick={() => setModalVisible(!modalVisible)}>Save</button>
-          <button type="button" onClick={handleEdit}>
+          <button type='button' onClick={handleEdit}>
             Cancel
           </button>
         </div>
