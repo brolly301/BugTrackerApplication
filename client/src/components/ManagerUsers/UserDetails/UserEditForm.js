@@ -5,6 +5,8 @@ import useUserContext from "../../../hooks/useUserContext";
 import { toast } from "react-toastify";
 import EditSaveModal from "../../Modals/EditSaveModal";
 import { useLocation } from "react-router-dom";
+import Dropdown from "../../Dropdown";
+import { manageUserFilters } from "../../../functions/FilterOptions";
 
 export default function UserEditForm({ user, handleEdit }) {
   const [editForm, setEditForm] = useState({
@@ -13,6 +15,7 @@ export default function UserEditForm({ user, handleEdit }) {
     surname: user.surname || "",
     phoneNumber: user.phoneNumber || "",
     emailAddress: user.emailAddress || "",
+    role: user.role || "",
   });
   const [errors, setErrors] = useState({});
   const { editAllUsers, editProfile } = useUserContext();
@@ -41,6 +44,8 @@ export default function UserEditForm({ user, handleEdit }) {
     setErrors(validationErrors);
   };
 
+  console.log(editForm);
+
   return (
     <>
       <EditSaveModal
@@ -48,17 +53,18 @@ export default function UserEditForm({ user, handleEdit }) {
         isOpen={modalVisible}
         onSave={handleSubmit}
       />
-      <div className="user-details-tile-container">
+      <div className='user-details-tile-container'>
         <h3
-          className="user-details-tile-title"
-          style={{ marginTop: 20, marginBottom: 10 }}>
+          className='user-details-tile-title'
+          style={{ marginTop: 20, marginBottom: 10 }}
+        >
           Edit Details
         </h3>
-        <div className="edit-details-tile-email-container">
-          <label htmlFor="" style={{ fontWeight: 600, marginBottom: "5px" }}>
+        <div className='edit-details-tile-email-container'>
+          <label htmlFor='' style={{ fontWeight: 600, marginBottom: "5px" }}>
             Profile Image
           </label>
-          <input type="file" placeholder="hey" />
+          <input type='file' placeholder='hey' />
           <Input
             label={"First Name"}
             value={editForm.firstName}
@@ -88,16 +94,27 @@ export default function UserEditForm({ user, handleEdit }) {
             data={editForm}
             setData={setEditForm}
           />
-          <div className="user-details-tile-button-container">
+          <Dropdown
+            label={"Role"}
+            value={editForm.role}
+            values={manageUserFilters}
+            errors={errors.role}
+            data={editForm}
+            setData={setEditForm}
+          />
+
+          <div className='user-details-tile-button-container'>
             <button
               onClick={() => setModalVisible(!modalVisible)}
-              style={{ width: "100%" }}>
+              style={{ width: "100%" }}
+            >
               Save
             </button>
             <button
               onClick={handleEdit}
               style={{ width: "100%" }}
-              type="button">
+              type='button'
+            >
               Cancel
             </button>
           </div>
