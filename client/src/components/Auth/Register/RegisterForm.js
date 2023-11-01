@@ -13,6 +13,7 @@ export default function RegisterForm() {
   const redirect = useNavigate();
 
   const [registerDetails, setRegisterDetails] = useState({
+    userID: "user" + Math.floor(Math.random() * 1000000) + 1,
     firstName: "",
     surname: "",
     phoneNumber: "",
@@ -41,7 +42,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="register-form-container">
+    <div className='register-form-container'>
       <form onSubmit={handleSubmit}>
         <Input
           label={"First Name"}
@@ -73,9 +74,9 @@ export default function RegisterForm() {
           data={registerDetails}
           errors={errors.password}
         />
-        <Button type="submit" label={"Register"} />
+        <Button type='submit' label={"Register"} />
         <Link to={"/"}>
-          <Button type="button" label={"Login"} />
+          <Button type='button' label={"Login"} />
         </Link>
       </form>
     </div>

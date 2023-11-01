@@ -8,9 +8,9 @@ export default function ProjectTeamMembersList({ teamMembers }) {
 
   return (
     <div>
-      <table className="team-members-table">
-        <thead className="team-members-table-header">
-          <tr className="team-members-row">
+      <table className='team-members-table'>
+        <thead className='team-members-table-header'>
+          <tr className='team-members-row'>
             <th>First Name</th>
             <th>Surname</th>
             <th>Phone Number</th>
@@ -20,12 +20,12 @@ export default function ProjectTeamMembersList({ teamMembers }) {
         </thead>
         <tbody>
           {teamMembers?.map((member) => (
-            <tr key={member._id} className="team-members-row">
+            <tr key={member._id} className='team-members-row'>
               <ProjectTeamMembersShow
                 teamMember={
                   typeof member === "object"
                     ? member
-                    : state.allUsers.find((u) => u._id === member)
+                    : state.allUsers.find((u) => u.userID === member)
                 }
               />
             </tr>

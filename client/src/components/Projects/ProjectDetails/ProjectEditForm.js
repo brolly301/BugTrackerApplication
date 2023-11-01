@@ -19,10 +19,10 @@ export default function ProjectEditForm({ project, handleEdit }) {
   const { editProject } = useProjectContext();
 
   const [formData, setFormData] = useState({
-    projectID: project.projectID || "",
+    projectid: project.projectid || "",
     name: project.name || "",
     description: project.description || "",
-    projectManager: projectManager || "",
+    projectManager: projectManager.userID || "",
     teamMembers: project.teamMembers || [],
   });
 
@@ -75,12 +75,12 @@ export default function ProjectEditForm({ project, handleEdit }) {
               data={formData}
               margin={true}
               errors={errors.projectManager}
-              value={`${formData.projectManager.firstName} ${formData.projectManager.surname}`}
+              value={`${projectManager.firstName} ${projectManager.surname}`}
               values={state?.allUsers
                 ?.filter((user) => user.role === "Project Manager")
                 .map((user) => ({
                   label: `${user.firstName} ${user.surname}`,
-                  value: user._id,
+                  value: user.userID,
                 }))}
             />
           </div>

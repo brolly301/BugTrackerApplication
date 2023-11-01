@@ -18,7 +18,7 @@ export default function CreateTicketForm() {
     )}${Date.now()}`,
     summary: "",
     description: "",
-    project: "",
+    projectid: "",
     issueType: "",
     priority: "",
     status: "",
@@ -70,13 +70,13 @@ export default function CreateTicketForm() {
           </div>
           <div className='ticket-details-tile-project-container'>
             <Dropdown
-              label={"Project"}
+              label={"ProjectID"}
               values={projects?.map((project) => {
-                return { label: project.name, value: project._id };
+                return { label: project.name, value: project.projectid };
               })}
               setData={setFormData}
               data={formData}
-              errors={errors.project}
+              // errors={errors.project}
               margin={true}
               value={"Select.."}
             />
@@ -110,7 +110,7 @@ export default function CreateTicketForm() {
             <Dropdown
               label={"Assignee"}
               values={state?.allUsers?.map((user) => {
-                return { label: user.firstName, value: user._id };
+                return { label: user.firstName, value: user.userID };
               })}
               setData={setFormData}
               data={formData}

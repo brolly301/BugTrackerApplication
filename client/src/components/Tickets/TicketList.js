@@ -1,13 +1,12 @@
 import React from "react";
 import TicketShow from "./TicketShow";
 import "../../CSS/Tickets/TicketList.css";
-
-export default function TicketList({ state, view }) {
+export default function TicketList({ state }) {
   return (
     <div>
-      <table className="all-tickets-table">
-        <thead className="all-tickets-table-header">
-          <tr className="all-tickets-row">
+      <table className='all-tickets-table'>
+        <thead className='all-tickets-table-header'>
+          <tr className='all-tickets-row'>
             <th>Summary</th>
             <th>Project</th>
             <th>Issue Type</th>
@@ -19,8 +18,8 @@ export default function TicketList({ state, view }) {
         </thead>
         <tbody>
           {state?.map((item, index) => (
-            <tr key={index} className="all-tickets-row">
-              <TicketShow ticket={item} view={view} />
+            <tr key={index} className='all-tickets-row'>
+              <TicketShow ticket={item} />
             </tr>
           ))}
         </tbody>

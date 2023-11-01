@@ -9,9 +9,9 @@ export const validation = (values) => {
     errors.description = "Description is required";
   }
 
-  if (!values.project) {
-    errors.project = "Project is required";
-  }
+  // if (!values.project) {
+  //   errors.project = "Project is required";
+  // }
 
   if (!values.priority) {
     errors.priority = "Priority is required";

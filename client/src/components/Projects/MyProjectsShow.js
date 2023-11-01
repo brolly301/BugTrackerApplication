@@ -8,23 +8,24 @@ export default function MyProjectsShow({ project }) {
 
   return (
     <>
-      <td className="projects--table-text">{project.name}</td>
-      <td className="projects--table-text">{project.description}</td>
-      <td className="projects--table-text">{`${projectManager?.firstName} ${projectManager?.surname}`}</td>
+      <td className='projects--table-text'>{project.name}</td>
+      <td className='projects--table-text'>{project.description}</td>
+      <td className='projects--table-text'>{`${projectManager?.firstName} ${projectManager?.surname}`}</td>
       <td>
-        <p className="project-list-pill members">
+        <p className='project-list-pill members'>
           {project.teamMembers?.length || 0}
         </p>
       </td>
       <td>
-        <p className="project-list-pill tickets">
+        <p className='project-list-pill tickets'>
           {project.tickets?.length || 0}
         </p>
       </td>
       <Link
-        to={`/allProjects/projects/${project.projectID}`}
-        state={{ project: project }}>
-        <button className="ticket-view-button">View</button>
+        to={`/allProjects/projects/${project.projectid}`}
+        state={{ project: project }}
+      >
+        <button className='ticket-view-button'>View</button>
       </Link>
     </>
   );

@@ -10,11 +10,11 @@ import { ProjectManagerDetails } from "../../functions/ObjectData";
 export default function ProjectDetailsPage() {
   const { state } = useProjectContext();
   const { id } = useParams();
-  const project = state.find((project) => project.projectID === id);
+  const project = state.find((project) => project.projectid === id);
 
   return (
     <HeaderPanel title={"Project Details"}>
-      <div className="project-details-page-container">
+      <div className='project-details-page-container'>
         <ProjectDetailsShow project={project} />
         <ProjectTicketShow project={project} />
       </div>

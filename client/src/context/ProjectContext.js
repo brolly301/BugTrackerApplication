@@ -10,10 +10,10 @@ const reducer = (state, action) => {
     case "get_projects":
       return action.payload;
     case "delete_project":
-      return state.filter((project) => project.projectID !== action.payload);
+      return state.filter((project) => project.projectid !== action.payload);
     case "edit_project":
       return state.map((project) => {
-        return project.projectID === action.payload.projectID
+        return project.projectid === action.payload.projectid
           ? { ...project, ...action.payload }
           : project;
       });

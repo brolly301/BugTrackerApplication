@@ -5,10 +5,7 @@ const { projectValidator } = require("../middleware/validation");
 
 router.get("/getProjects", async (req, res) => {
   try {
-    const project = await Project.find({})
-      .populate("tickets")
-      .populate("projectManager")
-      .populate("teamMembers");
+    const project = await Project.find({});
     res.status(200).send(project);
   } catch (e) {
     res
@@ -31,7 +28,7 @@ router.post("/createProject", projectValidator, async (req, res) => {
 router.patch("/editProject", projectValidator, async (req, res) => {
   try {
     const project = await Project.findOneAndUpdate(
-      { projectID: req.body.projectID },
+      { projectid: req.body.projectid },
       req.body
     );
     res.status(200).send(project);
@@ -43,7 +40,7 @@ router.patch("/editProject", projectValidator, async (req, res) => {
 router.delete("/deleteProject/:id", async (req, res) => {
   try {
     const project = await Project.findOneAndDelete({
-      projectID: req.params.id,
+      projectid: req.params.id,
     });
     res.status(200).send(project);
   } catch (e) {

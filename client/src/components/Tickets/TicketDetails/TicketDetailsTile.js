@@ -9,7 +9,7 @@ import { AssigneeDetails, ProjectDetails } from "../../../functions/ObjectData";
 
 export default function TicketShow({ ticket }) {
   const assignee = AssigneeDetails(ticket?.assignee);
-  const project = ProjectDetails(ticket?.project);
+  const project = ProjectDetails(ticket?.projectid);
 
   const [isEdit, setIsEdit] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -30,22 +30,22 @@ export default function TicketShow({ ticket }) {
   };
 
   let content = (
-    <div className="ticket-details-tile">
+    <div className='ticket-details-tile'>
       <DeleteModal
         isOpen={modalVisible}
         onRequestClose={() => setModalVisible(false)}
         onDelete={handleSubmit}
-        type="Ticket"
+        type='Ticket'
       />
       <h1>Ticket Details</h1>
-      <div className="ticket-details-tile-container">
-        <div className="ticket-details-tile-summary-container">
+      <div className='ticket-details-tile-container'>
+        <div className='ticket-details-tile-summary-container'>
           <label>Summary</label>
           <h4>{ticket?.summary}</h4>
           <label>Description</label>
           <h4>{ticket?.description}</h4>
         </div>
-        <div className="ticket-details-tile-project-container">
+        <div className='ticket-details-tile-project-container'>
           <label>Project</label>
           <h4>{project?.name}</h4>
           <label>Assignee</label>
@@ -60,8 +60,8 @@ export default function TicketShow({ ticket }) {
           <h4>{ticket?.priority}</h4>
         </div>
       </div>
-      <div className="ticket-details-tile-button-container">
-        <button type="button" onClick={handleEdit}>
+      <div className='ticket-details-tile-button-container'>
+        <button type='button' onClick={handleEdit}>
           Edit Ticket
         </button>
         <button onClick={() => setModalVisible(!modalVisible)}>

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
-  projectID: {
+  projectid: {
     type: String,
   },
   name: {
@@ -12,19 +12,16 @@ const projectSchema = new Schema({
     type: String,
   },
   projectManager: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
   },
   teamMembers: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+      type: String,
     },
   ],
   tickets: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Ticket",
+      type: String,
     },
   ],
 });

@@ -40,7 +40,7 @@ export default function CreateUserForm() {
 
   return (
     <div>
-      <h1 className="create-ticket-title">Enter all the user details</h1>
+      <h1 className='create-ticket-title'>Enter all the user details</h1>
       <form onSubmit={handleSubmit}>
         <Input
           label={"First Name"}

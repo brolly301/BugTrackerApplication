@@ -11,10 +11,8 @@ const Comment = require("../models/comment");
 
 router.get("/getTickets", async (req, res) => {
   try {
-    const ticket = await Ticket.find({})
-      .populate("project")
-      .populate("assignee")
-      .populate("comments");
+    const ticket = await Ticket.find({});
+
     res.status(200).send(ticket);
   } catch (e) {
     res
@@ -23,14 +21,17 @@ router.get("/getTickets", async (req, res) => {
   }
 });
 
-router.post("/createTicket", ticketValidator, async (req, res) => {
+router.post("/createTicket", async (req, res) => {
   try {
     const ticket = new Ticket(req.body);
     await ticket.save();
 
-    await Project.findByIdAndUpdate(req.body.project, {
-      $push: { tickets: ticket._id },
-    });
+    await Project.findOneAndUpdate(
+      { projectid: req.body.projectid },
+      {
+        $push: { tickets: ticket.ticketID },
+      }
+    );
 
     res.status(200).send(ticket);
   } catch (e) {
@@ -39,7 +40,7 @@ router.post("/createTicket", ticketValidator, async (req, res) => {
   }
 });
 
-router.patch("/editTicket", ticketValidator, async (req, res) => {
+router.patch("/editTicket", async (req, res) => {
   try {
     const ticket = await Ticket.findOneAndUpdate(
       { ticketID: req.body.ticketID },

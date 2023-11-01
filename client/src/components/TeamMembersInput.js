@@ -6,28 +6,28 @@ export default function TeamMembersInput({ data, setData, formData }) {
     setData({
       ...formData,
       teamMembers: e.target.checked
-        ? [...formData.teamMembers, { _id: e.target.value }]
+        ? [...formData.teamMembers, e.target.value]
         : formData.teamMembers.filter(
-            (teamMember) => teamMember._id !== e.target.value
+            (teamMember) => teamMember !== e.target.value
           ),
     }),
   ];
 
   return (
-    <div className="team-members-input-container">
+    <div className='team-members-input-container'>
       <h1>Team Members</h1>
-      <div className="team-member-list-container">
+      <div className='team-member-list-container'>
         {data.map((member) => (
-          <div key={member._id} className="team-member-member-container">
+          <div key={member.userID} className='team-member-member-container'>
             <p>
               {member?.firstName} {member?.surname}
             </p>
             <input
               onChange={handleChange}
-              type="checkbox"
-              value={member._id}
+              type='checkbox'
+              value={member.userID}
               checked={formData.teamMembers.some(
-                (teamMember) => teamMember._id === member._id
+                (teamMember) => teamMember === member.userID
               )}
             />
           </div>

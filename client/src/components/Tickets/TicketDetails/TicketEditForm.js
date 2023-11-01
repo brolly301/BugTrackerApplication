@@ -9,6 +9,7 @@ import useTicketContext from "../../../hooks/useTicketContext";
 import { toast } from "react-toastify";
 import EditSaveModal from "../../Modals/EditSaveModal";
 import TextArea from "../../TextArea";
+import { AssigneeDetails, ProjectDetails } from "../../../functions/ObjectData";
 
 export default function TicketEditForm({ ticket, handleEdit }) {
   const { state: tickets, editTicket } = useTicketContext();
@@ -20,14 +21,18 @@ export default function TicketEditForm({ ticket, handleEdit }) {
     ticketID: ticket?.ticketID || "",
     summary: ticket?.summary || "",
     description: ticket?.description || "",
-    project: ticket?.project || "",
+    projectid: ticket?.projectid || "",
     issueType: ticket?.issueType || "",
     priority: ticket?.priority || "",
     status: ticket?.status || "",
     assignee: ticket?.assignee || "",
   });
 
+  console.log(formData);
+
   const [errors, setErrors] = useState({});
+  const project = ProjectDetails(ticket?.projectid);
+  const assignee = AssigneeDetails(ticket?.assignee);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,14 +85,9 @@ export default function TicketEditForm({ ticket, handleEdit }) {
             <Dropdown
               label={"Project"}
               values={projects?.map((project) => {
-                return { label: project.name, value: project._id };
+                return { label: project.name, value: project.projectid };
               })}
-              value={
-                typeof formData.project === "object"
-                  ? formData?.project?.name
-                  : projects?.find((p) => p._id === formData?.project)?.name ||
-                    ""
-              }
+              value={project?.name}
               setData={setFormData}
               margin={true}
               data={formData}
@@ -98,20 +98,10 @@ export default function TicketEditForm({ ticket, handleEdit }) {
               values={state?.allUsers?.map((user) => {
                 return {
                   label: `${user.firstName} ${user.surname}`,
-                  value: user._id,
+                  value: user.userID,
                 };
               })}
-              value={
-                typeof formData.assignee === "object"
-                  ? `${formData?.assignee?.firstName} ${formData?.assignee?.surname}`
-                  : `${
-                      state.allUsers.find((u) => u._id === formData?.assignee)
-                        ?.firstName || ""
-                    } ${
-                      state.allUsers.find((u) => u._id === formData?.assignee)
-                        ?.surname || ""
-                    }`
-              }
+              value={assignee?.firstName}
               setData={setFormData}
               data={formData}
               errors={errors.assignee}

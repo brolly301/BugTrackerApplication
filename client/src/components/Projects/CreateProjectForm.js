@@ -15,7 +15,7 @@ export default function CreateProjectForm() {
   const { createProject } = useProjectContext();
 
   const [formData, setFormData] = useState({
-    projectID: `${state.userDetails._id}${Math.floor(
+    projectid: `${state.userDetails._id}${Math.floor(
       Math.random() * 100
     )}${Date.now()}`,
     name: "",
@@ -73,7 +73,7 @@ export default function CreateProjectForm() {
                 ?.filter((user) => user.role === "Project Manager")
                 .map((user) => ({
                   label: user.firstName,
-                  value: user._id,
+                  value: user.userID,
                 }))}
             />
           </div>
