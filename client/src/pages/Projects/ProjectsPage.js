@@ -6,11 +6,14 @@ import FilterBy from "../../components/FilterBy";
 import { ProjectManagerFilters } from "../../functions/FilterOptions";
 import HeaderPanel from "../../components/HeaderPanel";
 import Placeholder from "../../components/Placeholder";
+import { Pagination } from "../../functions/Pagination";
 
 export default function ProjectsPage() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const { state } = useProjectContext();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ticketsPerPage, setTicketsPerPage] = useState(10);
 
   const searchBy = state?.filter((project) => {
     return (
@@ -22,7 +25,8 @@ export default function ProjectsPage() {
     );
   });
 
-  console.log(filter);
+  const { currentTickets, paginate, indexOfLastTicket, indexOfFirstTicket } =
+    Pagination(currentPage, setCurrentPage, ticketsPerPage, searchBy);
 
   return (
     <HeaderPanel title={"All Projects"}>
@@ -35,7 +39,7 @@ export default function ProjectsPage() {
           value={"Project Manager"}
         />
       </div>
-      <ProjectList state={searchBy} />
+      <ProjectList state={currentTickets} />
       {searchBy?.length < 1 ? (
         <Placeholder
           type={"project"}
@@ -43,6 +47,26 @@ export default function ProjectsPage() {
           link={"/createProject"}
         />
       ) : null}
+
+      <div className="pagination-container">
+        <div className="pagination-previous-button">
+          {indexOfFirstTicket === 0 ? null : (
+            <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+          )}
+        </div>
+        <div className="pagination-page-number">
+          {searchBy.length < ticketsPerPage
+            ? null
+            : `${currentPage} of ${Math.ceil(
+                searchBy.length / ticketsPerPage
+              )}`}
+        </div>
+        <div className="pagination-next-button">
+          {indexOfLastTicket >= searchBy.length ? null : (
+            <button onClick={() => paginate(currentPage + 1)}>Next</button>
+          )}
+        </div>
+      </div>
     </HeaderPanel>
   );
 }

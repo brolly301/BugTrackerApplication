@@ -42,8 +42,8 @@ export default function TicketShow({ ticket }) {
 
   return (
     <>
-      <td className='ticket--table-text'>{ticket?.summary}</td>
-      <td className='ticket--table-text'>{project?.name}</td>
+      <td className="ticket--table-text">{ticket?.summary}</td>
+      <td className="ticket--table-text">{project?.name}</td>
       <td>
         <p className={`tickets-list-pill ${issuePillColor}`}>
           {ticket?.issueType}
@@ -59,16 +59,17 @@ export default function TicketShow({ ticket }) {
           {ticket?.status}
         </p>
       </td>
-      <td className='ticket--table-text'>
+      <td className="ticket--table-text">
         {assignee?.firstName} {assignee?.surname}
       </td>
 
-      <Link
-        to={`/allTickets/tickets/${ticket?.ticketID}`}
-        state={{ ticket: ticket }}
-      >
-        <button className='ticket-view-button'>View</button>
-      </Link>
+      <td>
+        <Link
+          to={`/allTickets/tickets/${ticket?.ticketID}`}
+          state={{ ticket: ticket }}>
+          <button className="ticket-view-button">View</button>
+        </Link>
+      </td>
     </>
   );
 }

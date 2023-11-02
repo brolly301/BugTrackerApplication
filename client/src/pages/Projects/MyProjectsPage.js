@@ -8,12 +8,15 @@ import useUserContext from "../../hooks/useUserContext";
 import useProjectContext from "../../hooks/useProjectContext";
 import { AssigneeDetails } from "../../functions/ObjectData";
 import Placeholder from "../../components/Placeholder";
+import { Pagination } from "../../functions/Pagination";
 
 export default function MyProjectsPage() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const { state } = useUserContext();
   const { state: projects } = useProjectContext();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ticketsPerPage, setTicketsPerPage] = useState(10);
 
   const searchBy = projects?.filter((project) => {
     const teamMember = project?.teamMembers?.find((member) => {
@@ -30,6 +33,8 @@ export default function MyProjectsPage() {
       );
     }
   });
+  const { currentTickets, paginate, indexOfLastTicket, indexOfFirstTicket } =
+    Pagination(currentPage, setCurrentPage, ticketsPerPage, searchBy);
 
   return (
     <HeaderPanel title={"My Projects"}>
@@ -42,7 +47,7 @@ export default function MyProjectsPage() {
           value={"Project Manager"}
         />
       </div>
-      <MyProjectsList state={searchBy} />
+      <MyProjectsList state={currentTickets} />
       {searchBy?.length < 1 ? (
         <Placeholder
           type={"project"}
@@ -50,6 +55,26 @@ export default function MyProjectsPage() {
           link={"/createProject"}
         />
       ) : null}
+
+      <div className="pagination-container">
+        <div className="pagination-previous-button">
+          {indexOfFirstTicket === 0 ? null : (
+            <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+          )}
+        </div>
+        <div className="pagination-page-number">
+          {searchBy.length < ticketsPerPage
+            ? null
+            : `${currentPage} of ${Math.ceil(
+                searchBy.length / ticketsPerPage
+              )}`}
+        </div>
+        <div className="pagination-next-button">
+          {indexOfLastTicket >= searchBy.length ? null : (
+            <button onClick={() => paginate(currentPage + 1)}>Next</button>
+          )}
+        </div>
+      </div>
     </HeaderPanel>
   );
 }
