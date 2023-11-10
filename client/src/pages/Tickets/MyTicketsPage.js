@@ -13,6 +13,7 @@ import useUserContext from "../../hooks/useUserContext";
 import { AssigneeDetails } from "../../functions/ObjectData";
 import Placeholder from "../../components/Placeholder";
 import { Pagination } from "../../functions/Pagination";
+import { PiCaretLeft, PiCaretRight } from "react-icons/pi";
 
 export default function MyTicketsPage() {
   const [search, setSearch] = useState("");
@@ -87,7 +88,7 @@ export default function MyTicketsPage() {
       <div className="pagination-container">
         <div className="pagination-previous-button">
           {indexOfFirstTicket === 0 ? null : (
-            <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+            <PiCaretLeft onClick={() => paginate(currentPage - 1)} />
           )}
         </div>
         <div className="pagination-page-number">
@@ -99,7 +100,7 @@ export default function MyTicketsPage() {
         </div>
         <div className="pagination-next-button">
           {indexOfLastTicket >= searchBy.length ? null : (
-            <button onClick={() => paginate(currentPage + 1)}>Next</button>
+            <PiCaretRight onClick={() => paginate(currentPage + 1)} />
           )}
         </div>
       </div>

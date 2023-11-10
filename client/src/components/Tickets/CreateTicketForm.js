@@ -9,13 +9,12 @@ import { dropdownData } from "../../functions/CreateTicketDropdownData";
 import useProjectContext from "../../hooks/useProjectContext";
 import { toast } from "react-toastify";
 import TextArea from "../TextArea";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreateTicketForm() {
   const { state } = useUserContext();
   const [formData, setFormData] = useState({
-    ticketID: `${state.userDetails._id}${Math.floor(
-      Math.random() * 100
-    )}${Date.now()}`,
+    ticketID: "",
     summary: "",
     description: "",
     projectid: "",
@@ -31,14 +30,24 @@ export default function CreateTicketForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = validation(formData);
+    const newTicketID = uuidv4();
+    const validationErrors = validation({
+      ...formData,
+      ticketID: newTicketID,
+    });
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await createTicket(formData, () => {
-          setErrors({});
-          toast.success("Ticket created successfully");
-        });
+        await createTicket(
+          {
+            ...formData,
+            ticketID: newTicketID,
+          },
+          () => {
+            setErrors({});
+            toast.success("Ticket created successfully");
+          }
+        );
       } catch (error) {
         console.log(error);
       }
@@ -50,25 +59,25 @@ export default function CreateTicketForm() {
   console.log(formData);
 
   return (
-    <div className='ticket-details-tile'>
+    <div className="ticket-details-tile">
       <h1>Ticket Details</h1>
       <form onSubmit={handleSubmit}>
-        <div className='ticket-details-tile-container'>
-          <div className='ticket-details-tile-summary-container'>
+        <div className="ticket-details-tile-container">
+          <div className="ticket-details-tile-summary-container">
             <Input
-              label='Summary'
+              label="Summary"
               setData={setFormData}
               data={formData}
               errors={errors.summary}
             />
             <TextArea
-              label='Description'
+              label="Description"
               setData={setFormData}
               data={formData}
               errors={errors.description}
             />
           </div>
-          <div className='ticket-details-tile-project-container'>
+          <div className="ticket-details-tile-project-container">
             <Dropdown
               label={"ProjectID"}
               values={projects?.map((project) => {
@@ -120,8 +129,8 @@ export default function CreateTicketForm() {
             />
           </div>
         </div>
-        <div className='ticket-form-button-container'>
-          <Button label='Submit' />
+        <div className="ticket-form-button-container">
+          <Button label="Submit" />
         </div>
       </form>
     </div>

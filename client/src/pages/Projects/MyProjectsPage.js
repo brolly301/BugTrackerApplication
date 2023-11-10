@@ -9,6 +9,7 @@ import useProjectContext from "../../hooks/useProjectContext";
 import { AssigneeDetails } from "../../functions/ObjectData";
 import Placeholder from "../../components/Placeholder";
 import { Pagination } from "../../functions/Pagination";
+import { PiCaretLeft, PiCaretRight } from "react-icons/pi";
 
 export default function MyProjectsPage() {
   const [search, setSearch] = useState("");
@@ -59,7 +60,7 @@ export default function MyProjectsPage() {
       <div className="pagination-container">
         <div className="pagination-previous-button">
           {indexOfFirstTicket === 0 ? null : (
-            <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+            <PiCaretLeft onClick={() => paginate(currentPage - 1)} />
           )}
         </div>
         <div className="pagination-page-number">
@@ -71,7 +72,7 @@ export default function MyProjectsPage() {
         </div>
         <div className="pagination-next-button">
           {indexOfLastTicket >= searchBy.length ? null : (
-            <button onClick={() => paginate(currentPage + 1)}>Next</button>
+            <PiCaretRight onClick={() => paginate(currentPage + 1)} />
           )}
         </div>
       </div>

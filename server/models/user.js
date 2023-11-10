@@ -21,6 +21,9 @@ const UserSchema = new Schema({
   phoneNumber: {
     type: String,
   },
+  image: {
+    type: String,
+  },
   role: {
     type: String,
     enum: ["Admin", "Project Manager", "Developer", "Test Engineer", "Support"],

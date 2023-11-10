@@ -6,8 +6,6 @@ const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 const expressValidator = require("express-validator");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const MongoStore = require("connect-mongo");
 
 const app = express();
 

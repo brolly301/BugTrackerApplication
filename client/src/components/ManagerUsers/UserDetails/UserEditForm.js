@@ -7,6 +7,7 @@ import EditSaveModal from "../../Modals/EditSaveModal";
 import { useLocation } from "react-router-dom";
 import Dropdown from "../../Dropdown";
 import { manageUserFilters } from "../../../functions/FilterOptions";
+import ImageUpload from "./ImageUpload";
 
 export default function UserEditForm({ user, handleEdit }) {
   const [editForm, setEditForm] = useState({
@@ -53,18 +54,17 @@ export default function UserEditForm({ user, handleEdit }) {
         isOpen={modalVisible}
         onSave={handleSubmit}
       />
-      <div className='user-details-tile-container'>
+      <div className="user-details-tile-container">
         <h3
-          className='user-details-tile-title'
-          style={{ marginTop: 20, marginBottom: 10 }}
-        >
+          className="user-details-tile-title"
+          style={{ marginTop: 20, marginBottom: 10 }}>
           Edit Details
         </h3>
-        <div className='edit-details-tile-email-container'>
-          <label htmlFor='' style={{ fontWeight: 600, marginBottom: "5px" }}>
+        <div className="edit-details-tile-email-container">
+          {/* <label htmlFor="" style={{ fontWeight: 600, marginBottom: "5px" }}>
             Profile Image
-          </label>
-          <input type='file' placeholder='hey' />
+          </label> */}
+          <ImageUpload />
           <Input
             label={"First Name"}
             value={editForm.firstName}
@@ -103,18 +103,16 @@ export default function UserEditForm({ user, handleEdit }) {
             setData={setEditForm}
           />
 
-          <div className='user-details-tile-button-container'>
+          <div className="user-details-tile-button-container">
             <button
               onClick={() => setModalVisible(!modalVisible)}
-              style={{ width: "100%" }}
-            >
+              style={{ width: "100%" }}>
               Save
             </button>
             <button
               onClick={handleEdit}
               style={{ width: "100%" }}
-              type='button'
-            >
+              type="button">
               Cancel
             </button>
           </div>

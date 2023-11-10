@@ -8,6 +8,7 @@ import useUserContext from "../../hooks/useUserContext";
 import { toast } from "react-toastify";
 import TeamMembersInput from "../TeamMembersInput";
 import TextArea from "../TextArea";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreateProjectForm() {
   const { state } = useUserContext();
@@ -15,27 +16,33 @@ export default function CreateProjectForm() {
   const { createProject } = useProjectContext();
 
   const [formData, setFormData] = useState({
-    projectid: `${state.userDetails._id}${Math.floor(
-      Math.random() * 100
-    )}${Date.now()}`,
+    projectid: "",
     name: "",
     description: "",
     projectManager: "",
     teamMembers: [],
   });
 
-  console.log(formData);
-
   //   this can be made into a submit handler for every create form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = validation(formData);
+    const newProjectID = uuidv4();
+    const validationErrors = validation({
+      ...formData,
+      projectid: newProjectID,
+    });
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await createProject(formData, () => {
-          toast.success("Project created successfully");
-          setErrors({});
-        });
+        await createProject(
+          {
+            ...formData,
+            projectid: newProjectID,
+          },
+          () => {
+            toast.success("Project created successfully");
+            setErrors({});
+          }
+        );
       } catch (error) {
         console.log(error);
       }
@@ -45,25 +52,25 @@ export default function CreateProjectForm() {
   };
 
   return (
-    <div className='project-details-tile-container'>
+    <div className="project-details-tile-container">
       <h1>Project Details</h1>
       <form onSubmit={handleSubmit}>
-        <div className='project-details-tile-data-container'>
-          <div className='project-details-tile-details-container'>
+        <div className="project-details-tile-data-container">
+          <div className="project-details-tile-details-container">
             <Input
-              label='Name'
+              label="Name"
               setData={setFormData}
               data={formData}
               errors={errors.name}
             />
             <TextArea
-              label='Description'
+              label="Description"
               setData={setFormData}
               data={formData}
               errors={errors.description}
             />
             <Dropdown
-              label='Project Manager'
+              label="Project Manager"
               setData={setFormData}
               data={formData}
               margin={true}
@@ -77,7 +84,7 @@ export default function CreateProjectForm() {
                 }))}
             />
           </div>
-          <div className='project-details-tile-members-container'>
+          <div className="project-details-tile-members-container">
             <TeamMembersInput
               setData={setFormData}
               formData={formData}
@@ -85,8 +92,8 @@ export default function CreateProjectForm() {
             />
           </div>
         </div>
-        <div className='ticket-form-button-container'>
-          <Button label='Create' />
+        <div className="ticket-form-button-container">
+          <Button label="Create" />
         </div>
       </form>
     </div>

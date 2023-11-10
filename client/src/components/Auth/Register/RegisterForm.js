@@ -18,6 +18,7 @@ export default function RegisterForm() {
     surname: "",
     phoneNumber: "",
     emailAddress: "",
+    role: "Support",
     password: "",
   });
 
@@ -42,7 +43,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className='register-form-container'>
+    <div className="register-form-container">
       <form onSubmit={handleSubmit}>
         <Input
           label={"First Name"}
@@ -74,9 +75,9 @@ export default function RegisterForm() {
           data={registerDetails}
           errors={errors.password}
         />
-        <Button type='submit' label={"Register"} />
+        <Button type="submit" label={"Register"} />
         <Link to={"/"}>
-          <Button type='button' label={"Login"} />
+          <Button type="button" label={"Login"} />
         </Link>
       </form>
     </div>

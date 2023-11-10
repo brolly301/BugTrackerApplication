@@ -6,13 +6,15 @@ import { toast } from "react-toastify";
 import Dropdown from "../Dropdown";
 import { manageUserFilters } from "../../functions/FilterOptions";
 import Button from "../Button";
+import { v4 as uuidv4 } from "uuid";
+import "../../CSS/ManageUsers/CreateUserForm.css";
 
 export default function CreateUserForm() {
   const [errors, setErrors] = useState({});
-  const { register, state, addAllUsers } = useUserContext();
+  const { addAllUsers } = useUserContext();
 
   const [userDetails, setUserDetails] = useState({
-    userID: "user" + Math.floor(Math.random() * 1000000) + 1,
+    userID: "",
     firstName: "",
     surname: "",
     role: "",
@@ -23,13 +25,23 @@ export default function CreateUserForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = validation(userDetails);
+    const newUserID = uuidv4();
+    const validationErrors = validation({
+      ...userDetails,
+      userID: newUserID,
+    });
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await addAllUsers(userDetails, () => {
-          setErrors({});
-          toast.success(`User successfully created.`);
-        });
+        await addAllUsers(
+          {
+            ...userDetails,
+            userID: newUserID,
+          },
+          () => {
+            setErrors({});
+            toast.success(`User successfully created.`);
+          }
+        );
       } catch (error) {
         console.log(error);
       }
@@ -39,48 +51,56 @@ export default function CreateUserForm() {
   };
 
   return (
-    <div>
-      <h1 className='create-ticket-title'>Enter all the user details</h1>
+    <div className="create-user-form">
+      <h1 className="create-user-title">Enter all the users details</h1>
       <form onSubmit={handleSubmit}>
-        <Input
-          label={"First Name"}
-          errors={errors.firstName}
-          setData={setUserDetails}
-          data={userDetails}
-        />
-        <Input
-          label={"Surname"}
-          setData={setUserDetails}
-          data={userDetails}
-          errors={errors.surname}
-        />
-        <Dropdown
-          label={"Role"}
-          value={"Select.."}
-          setData={setUserDetails}
-          data={userDetails}
-          errors={errors.surname}
-          values={manageUserFilters}
-        />
-        <Input
-          label={"Phone Number"}
-          setData={setUserDetails}
-          data={userDetails}
-          errors={errors.phoneNumber}
-        />
-        <Input
-          label={"Email Address"}
-          setData={setUserDetails}
-          data={userDetails}
-          errors={errors.emailAddress}
-        />
-        <Input
-          label={"Password"}
-          setData={setUserDetails}
-          data={userDetails}
-          errors={errors.password}
-        />
-        <Button label={"Submit"} />
+        <div className="create-user-details-container">
+          <div className="create-user-input-container">
+            <Input
+              label={"First Name"}
+              errors={errors.firstName}
+              setData={setUserDetails}
+              data={userDetails}
+            />
+            <Input
+              label={"Surname"}
+              setData={setUserDetails}
+              data={userDetails}
+              errors={errors.surname}
+            />
+            <Dropdown
+              label={"Role"}
+              value={"Select.."}
+              setData={setUserDetails}
+              data={userDetails}
+              errors={errors.surname}
+              values={manageUserFilters}
+            />
+          </div>
+          <div className="create-user-input-container">
+            <Input
+              label={"Phone Number"}
+              setData={setUserDetails}
+              data={userDetails}
+              errors={errors.phoneNumber}
+            />
+            <Input
+              label={"Email Address"}
+              setData={setUserDetails}
+              data={userDetails}
+              errors={errors.emailAddress}
+            />
+            <Input
+              label={"Password"}
+              setData={setUserDetails}
+              data={userDetails}
+              errors={errors.password}
+            />
+          </div>
+        </div>
+        <div className="create-user-form-button-container">
+          <Button label={"Submit"} />
+        </div>
       </form>
     </div>
   );

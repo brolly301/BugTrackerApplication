@@ -11,9 +11,9 @@ import FilterBy from "../../components/FilterBy";
 import "../../CSS/Pages/TicketsPage.css";
 import "../../CSS/Misc/Pagination.css";
 import HeaderPanel from "../../components/HeaderPanel";
-import { useLocation } from "react-router-dom";
 import Placeholder from "../../components/Placeholder";
 import { Pagination } from "../../functions/Pagination";
+import { PiCaretLeft, PiCaretRight } from "react-icons/pi";
 
 export default function TicketsPage() {
   const { state } = useTicketContext();
@@ -87,19 +87,17 @@ export default function TicketsPage() {
       <div className="pagination-container">
         <div className="pagination-previous-button">
           {indexOfFirstTicket === 0 ? null : (
-            <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+            <PiCaretLeft onClick={() => paginate(currentPage - 1)} />
           )}
         </div>
         <div className="pagination-page-number">
           {searchBy.length < ticketsPerPage
             ? null
-            : `${currentPage} of ${Math.ceil(
-                searchBy.length / ticketsPerPage
-              )}`}
+            : `${currentPage} / ${Math.ceil(searchBy.length / ticketsPerPage)}`}
         </div>
         <div className="pagination-next-button">
           {indexOfLastTicket >= searchBy.length ? null : (
-            <button onClick={() => paginate(currentPage + 1)}>Next</button>
+            <PiCaretRight onClick={() => paginate(currentPage + 1)} />
           )}
         </div>
       </div>

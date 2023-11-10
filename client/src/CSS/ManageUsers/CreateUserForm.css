@@ -1,0 +1,32 @@
+.create-user-form {
+  background-color: #f0eeee;
+  border: 1px solid #000000;
+  margin: 25px 0 10px 0;
+}
+
+.create-user-title {
+  font-size: 25px;
+  font-weight: 600;
+  margin-left: 28px;
+}
+
+.create-user-details-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.create-user-input-container {
+  width: 48%;
+  margin: 0 30px 0 30px;
+}
+
+.create-user-input-container:nth-of-type(1) {
+  margin-bottom: 30px;
+}
+
+.create-user-form-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0px 30px 15px 30px;
+}
