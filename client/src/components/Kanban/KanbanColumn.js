@@ -4,7 +4,7 @@ import "../../CSS/Kanban/KanbanColumn.css";
 import { useDroppable } from "@dnd-kit/core";
 import Placeholder from "../Placeholder";
 
-export default function KanbanColumn({ label, tickets }) {
+export default function KanbanColumn({ label, tickets, isDragging }) {
   const [labelColor, setLabelColor] = useState("");
 
   const { isOver, setNodeRef } = useDroppable({
@@ -33,7 +33,13 @@ export default function KanbanColumn({ label, tickets }) {
       <label className={`kanban-column-label ${labelColor}`}>{label}</label>
 
       {tickets.map((ticket) => {
-        return <KanbanItem key={ticket._id} ticket={ticket} />;
+        return (
+          <KanbanItem
+            isDragging={isDragging}
+            key={ticket.ticketID}
+            ticket={ticket}
+          />
+        );
       })}
     </div>
   );

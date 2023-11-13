@@ -3,12 +3,12 @@ import "../../CSS/Kanban/KanbanItem.css";
 import { useDraggable } from "@dnd-kit/core";
 import { Link } from "react-router-dom";
 
-export default function KanbanItem({ ticket }) {
+export default function KanbanItem({ ticket, isDragging }) {
   const [priorityColor, setPriorityColor] = useState("");
   const [issueTypeColor, setIssueTypeColor] = useState("");
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: ticket._id,
+    id: ticket.ticketID,
   });
 
   const style = {
@@ -41,6 +41,8 @@ export default function KanbanItem({ ticket }) {
     // You can use the react-router-dom history for programmatic navigation
   };
 
+  //use 2 different components, one without link and one with link, if is dragging, only use the non linked component
+
   return (
     <div
       ref={setNodeRef}
@@ -50,7 +52,7 @@ export default function KanbanItem({ ticket }) {
       className="kanban-item-container">
       <Link
         style={{ textDecoration: "none", color: "black" }}
-        to={`/allTickets/tickets/${ticket._id}`}
+        to={`/allTickets/tickets/${ticket.ticketID}`}
         state={{ ticket: ticket }}
         onClick={handleLinkClick}>
         <div className="kanban-item-type-container">
