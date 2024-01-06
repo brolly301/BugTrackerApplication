@@ -31,8 +31,18 @@ const ticketSchema = new Schema({
   },
   comments: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Comment",
+      commentID: {
+        type: String,
+      },
+      comment: {
+        type: String,
+      },
+      userID: {
+        type: String,
+      },
+      date: {
+        type: String,
+      },
     },
   ],
 });

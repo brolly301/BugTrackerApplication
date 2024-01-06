@@ -32,6 +32,10 @@
   width: 100%;
 }
 
+sidebar-list-item-link:hover {
+  background-color: var(--primary-color);
+}
+
 .sidebar-hr {
   width: 90%;
   border: 1px solid rgba(184, 184, 184, 0.445);

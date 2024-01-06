@@ -140,7 +140,7 @@ const editComment = (dispatch) => async (ticketDetails, callback) => {
 
 const deleteComment = (dispatch) => async (ticketID, commentID, callback) => {
   try {
-    await Server.delete(`/tickets/deleteComment/${commentID}`);
+    await Server.delete(`/tickets/deleteComment/${ticketID}/${commentID}`);
     dispatch({ type: "delete_comment", payload: { ticketID, commentID } });
     if (callback) {
       callback();

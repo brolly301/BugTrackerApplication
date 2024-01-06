@@ -64,11 +64,12 @@ router.delete("/deleteTicket/:id", async (req, res) => {
 router.post("/createComment", commentValidator, async (req, res) => {
   const { ticketID, commentID, comment, userID, date } = req.body;
   try {
-    const newComment = new Comment({ commentID, comment, userID, date });
-    await newComment.save();
-    const ticket = await Ticket.findOne({ ticketID: ticketID });
-    ticket.comments.push(newComment._id);
-    await ticket.save();
+    const ticket = await Ticket.findOneAndUpdate(
+      { ticketID: ticketID },
+      { $push: { comments: { commentID, comment, userID, date } } },
+      { new: true }
+    );
+
     res.status(200).send(ticket);
   } catch (e) {
     res.status(500).json({ error: "Unable to create comment" + e.message });
@@ -76,25 +77,30 @@ router.post("/createComment", commentValidator, async (req, res) => {
 });
 
 router.patch("/editComment", commentValidator, async (req, res) => {
+  const { ticketID, commentID, comment } = req.body;
+
   try {
-    const comment = await Comment.findOneAndUpdate(
-      { commentID: req.body.commentID },
-      {
-        comment: req.body.comment,
-      }
+    const ticket = await Ticket.findOneAndUpdate(
+      { ticketID: ticketID, "comments.commentID": commentID },
+      { $set: { "comments.$.comment": comment } },
+      { new: true }
     );
-    res.status(200).send(comment);
+    res.status(200).send(ticket);
   } catch (e) {
     res.status(500).json({ error: "Unable to edit comment" + e.message });
   }
 });
 
-router.delete("/deleteComment/:id", async (req, res) => {
+router.delete("/deleteComment/:ticketID/:commentID", async (req, res) => {
   try {
-    const comment = await Comment.findOneAndDelete({
-      commentID: req.params.id,
-    });
-    res.status(200).send(comment);
+    const { ticketID, commentID } = req.params;
+
+    const ticket = await Ticket.findOneAndUpdate(
+      { ticketID: ticketID },
+      { $pull: { comments: { commentID: commentID } } },
+      { new: true }
+    );
+    res.status(200).send(ticket);
   } catch (e) {
     res.status(500).json({ error: "Unable to delete comment" + e.message });
   }

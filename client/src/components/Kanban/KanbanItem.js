@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../CSS/Kanban/KanbanItem.css";
 import { useDraggable } from "@dnd-kit/core";
 import { Link } from "react-router-dom";
+import { AssigneeDetails } from "../../functions/ObjectData";
 
 export default function KanbanItem({ ticket, isDragging }) {
   const [priorityColor, setPriorityColor] = useState("");
@@ -41,6 +42,8 @@ export default function KanbanItem({ ticket, isDragging }) {
     // You can use the react-router-dom history for programmatic navigation
   };
 
+  const assignee = AssigneeDetails(ticket.assignee);
+
   //use 2 different components, one without link and one with link, if is dragging, only use the non linked component
 
   return (
@@ -64,7 +67,7 @@ export default function KanbanItem({ ticket, isDragging }) {
         <div className="kanban-item-assignee-container">
           <p>Assignee:</p>
           <p>
-            {ticket.assignee?.firstName} {ticket.assignee?.surname}
+            {assignee.firstName} {assignee.surname}
           </p>
         </div>
       </Link>

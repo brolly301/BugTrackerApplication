@@ -11,6 +11,8 @@ export default function TicketCommentsTile({ ticket }) {
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState({});
 
+  console.log(ticket);
+
   const handleChange = (e) => {
     setComment(e.target.value);
   };
