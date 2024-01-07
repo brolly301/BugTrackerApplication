@@ -7,7 +7,6 @@ const {
   commentValidator,
 } = require("../middleware/validation");
 const requireAuth = require("../middleware/requireAuth");
-const Comment = require("../models/comment");
 
 router.get("/getTickets", async (req, res) => {
   try {

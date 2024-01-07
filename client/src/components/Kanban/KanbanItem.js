@@ -53,24 +53,26 @@ export default function KanbanItem({ ticket, isDragging }) {
       {...listeners}
       {...attributes}
       className="kanban-item-container">
-      <Link
-        style={{ textDecoration: "none", color: "black" }}
-        to={`/allTickets/tickets/${ticket.ticketID}`}
-        state={{ ticket: ticket }}
-        onClick={handleLinkClick}>
-        <div className="kanban-item-type-container">
-          <p className={issueTypeColor}>{ticket.issueType}</p>
-          <p className={priorityColor}>{ticket.priority}</p>
-        </div>
-        <div className="kanban-item-summary-container"> {ticket.summary}</div>
-        <hr style={{ border: 0, borderTop: "0.5px solid grey" }} />
-        <div className="kanban-item-assignee-container">
-          <p>Assignee:</p>
-          <p>
-            {assignee.firstName} {assignee.surname}
-          </p>
-        </div>
-      </Link>
+      {isDragging ? null : (
+        <Link
+          style={{ textDecoration: "none", color: "black" }}
+          to={isDragging ? null : `/allTickets/tickets/${ticket.ticketID}`}
+          state={{ ticket: ticket }}
+          onClick={handleLinkClick}>
+          <div className="kanban-item-type-container">
+            <p className={issueTypeColor}>{ticket.issueType}</p>
+            <p className={priorityColor}>{ticket.priority}</p>
+          </div>
+          <div className="kanban-item-summary-container"> {ticket.summary}</div>
+          <hr style={{ border: 0, borderTop: "0.5px solid grey" }} />
+          <div className="kanban-item-assignee-container">
+            <p>Assignee:</p>
+            <p>
+              {assignee.firstName} {assignee.surname}
+            </p>
+          </div>
+        </Link>
+      )}
     </div>
   );
 }

@@ -10,6 +10,7 @@ export default function KanbanColumn({ label, tickets, isDragging }) {
   const { isOver, setNodeRef } = useDroppable({
     id: label,
   });
+  console.log(isOver);
 
   const style = {
     fontWeight: isOver ? "bold" : undefined,
@@ -35,7 +36,7 @@ export default function KanbanColumn({ label, tickets, isDragging }) {
       {tickets.map((ticket) => {
         return (
           <KanbanItem
-            isDragging={isDragging}
+            isDragging={isOver}
             key={ticket.ticketID}
             ticket={ticket}
           />
