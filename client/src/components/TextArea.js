@@ -13,13 +13,13 @@ export default function TextArea({ setData, data, label, errors, value }) {
   };
 
   return (
-    <div className='text-area-container'>
-      <label className='text-area-label'>{label}</label>
-      {errors && <p className='input-error'>{errors}</p>}
+    <div className="text-area-container">
+      <label className="text-area-label">{label}</label>
+      {errors && <p className="input-error">{errors}</p>}
 
       <textarea
-        rows={25}
-        className='text-area'
+        rows={24}
+        className="text-area"
         value={value}
         onChange={(e) =>
           handleChange(setData, data, field(label), e.target.value)

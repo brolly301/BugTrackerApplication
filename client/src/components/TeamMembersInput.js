@@ -14,17 +14,17 @@ export default function TeamMembersInput({ data, setData, formData }) {
   ];
 
   return (
-    <div className='team-members-input-container'>
-      <h1>Team Members</h1>
-      <div className='team-member-list-container'>
+    <div className="team-members-input-container">
+      <h1 className="team-members-input-title">Team Members</h1>
+      <div className="team-member-list-container">
         {data.map((member) => (
-          <div key={member.userID} className='team-member-member-container'>
+          <div key={member.userID} className="team-member-member-container">
             <p>
               {member?.firstName} {member?.surname}
             </p>
             <input
               onChange={handleChange}
-              type='checkbox'
+              type="checkbox"
               value={member.userID}
               checked={formData.teamMembers.some(
                 (teamMember) => teamMember === member.userID

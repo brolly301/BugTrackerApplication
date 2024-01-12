@@ -20,7 +20,7 @@ router.post("/register", registerValidator, async (req, res) => {
     const user = new User(req.body);
     await user.save();
     const token = jwt.sign({ userId: user._id }, "MY_SECRET_KEY", {
-      expiresIn: "12h",
+      expiresIn: "2h",
     });
 
     res.cookie("jwt", token, { expire: new Date() + 1, httpOnly: true });

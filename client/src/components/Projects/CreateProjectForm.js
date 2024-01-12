@@ -69,6 +69,13 @@ export default function CreateProjectForm() {
               data={formData}
               errors={errors.description}
             />
+          </div>
+          <div className="project-details-tile-members-container">
+            <TeamMembersInput
+              setData={setFormData}
+              formData={formData}
+              data={state.allUsers}
+            />
             <Dropdown
               label="Project Manager"
               setData={setFormData}
@@ -82,13 +89,6 @@ export default function CreateProjectForm() {
                   label: user.firstName,
                   value: user.userID,
                 }))}
-            />
-          </div>
-          <div className="project-details-tile-members-container">
-            <TeamMembersInput
-              setData={setFormData}
-              formData={formData}
-              data={state.allUsers}
             />
           </div>
         </div>
