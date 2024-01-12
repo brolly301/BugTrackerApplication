@@ -1,12 +1,13 @@
 .text-area {
-
+  padding: 10px;
+  font-family: "Verdana";
+  font-size: 15px;
 }
-.text-area-label{
-    font-weight: 600;
+.text-area-label {
+  font-weight: 600;
   margin-bottom: 10px;
-
 }
 .text-area-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }

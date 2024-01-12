@@ -18,7 +18,7 @@ export default function TextArea({ setData, data, label, errors, value }) {
       {errors && <p className="input-error">{errors}</p>}
 
       <textarea
-        rows={24}
+        rows={20}
         className="text-area"
         value={value}
         onChange={(e) =>
