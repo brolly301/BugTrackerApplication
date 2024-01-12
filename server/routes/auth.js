@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const Token = require("../models/token");
+const nodemailer = require("nodemailer");
+const bcrypt = require("bcrypt");
+
 const {
   registerValidator,
   profileValidator,
@@ -100,6 +104,88 @@ router.get("/allUsers", requireAuth, async (req, res) => {
   } catch (e) {
     res.status(422).send({ error: "Unable to fetch users" });
   }
+});
+
+router.post("/forgotPassword", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const validUser = await User.findOne({ emailAddress: email });
+
+    if (!validUser) {
+      return res.status(422).json({
+        message: "Invalid User",
+      });
+    }
+
+    const token = await Token.findOne({ email: validUser.emailAddress });
+
+    if (token) {
+      await Token.findOneAndDelete({ email: validUser.emailAddress });
+    }
+
+    const newToken = (Math.random() * 2023238912).toFixed(0);
+
+    await new Token({
+      email: email,
+      token: newToken,
+    }).save();
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "marcrobertjohn@gmail.com",
+        pass: "qklbtfcwnloxeckw",
+      },
+    });
+
+    const options = {
+      from: "marcrobertjohn@gmail.com",
+      to: "marcrobertjohn@gmail.com",
+      subject: "Reset Password",
+      html: `Your password reset link: http://localhost:3000/forgotPassword/${newToken}/${validUser._id}`,
+    };
+
+    transporter.sendMail(options, function (err, info) {
+      if (err) {
+        console.log(err);
+      }
+      res.send.JSON({
+        message: "Message successfully sent.",
+      });
+    });
+
+    res.status(200).json({
+      message: "Success",
+    });
+  } catch (e) {
+    res.status(422).send({ error: "Unable to send out password reset email" });
+    console.log(e);
+  }
+});
+
+router.post("/passwordReset", async (req, res) => {
+  const {
+    password: { password },
+    token,
+    id,
+  } = req.body;
+
+  bcrypt.genSalt(10, async function (err, salt) {
+    if (err) return next(err);
+
+    bcrypt.hash(password, salt, async function (err, hash) {
+      if (err) return next(err);
+
+      await User.findByIdAndUpdate(id, { password: hash });
+    });
+  });
+
+  await Token.deleteOne({ token: token });
+
+  res.status(200).json({
+    message: "Success",
+  });
 });
 
 module.exports = router;

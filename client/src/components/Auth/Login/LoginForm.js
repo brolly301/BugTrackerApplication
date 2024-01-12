@@ -44,6 +44,11 @@ export default function LoginForm() {
           setData={setLoginDetails}
           data={loginDetails}
         />
+        <Link to={"/forgotPassword"}>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            Forgot Password?
+          </div>
+        </Link>
         <p className="input-error">{user.errorMessage}</p>
         <Button label={"Login"} />
         <Link to={"/register"}>

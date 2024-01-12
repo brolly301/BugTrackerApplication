@@ -7,6 +7,8 @@ const reducer = (state, action) => {
       return { ...state, errorMessage: action.payload };
     case "login":
       return { token: action.payload, errorMessage: "" };
+    case "forgot_password":
+      return state;
     case "register":
       return { token: action.payload, errorMessage: "" };
     case "edit_profile":
@@ -143,6 +145,28 @@ const deleteAllUsers = (dispatch) => async (id, callback) => {
   }
 };
 
+const sendPasswordReset = (dispatch) => async (email, callback) => {
+  try {
+    await Server.post(`/forgotPassword`, email);
+    if (callback) {
+      callback();
+    }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
+const newUserPassword = (dispatch) => async (userDetails, callback) => {
+  try {
+    await Server.post(`/passwordReset`, { ...userDetails });
+    if (callback) {
+      callback();
+    }
+  } catch (e) {
+    dispatch({ type: "error_message", payload: e.response.data.error });
+  }
+};
+
 export const { Provider, Context } = createDataContext(
   reducer,
   {
@@ -155,6 +179,8 @@ export const { Provider, Context } = createDataContext(
     editAllUsers,
     deleteAllUsers,
     addAllUsers,
+    sendPasswordReset,
+    newUserPassword,
   },
   {
     errorMessage: "",

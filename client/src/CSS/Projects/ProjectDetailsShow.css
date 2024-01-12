@@ -1,7 +1,6 @@
 .project-details-tile-container {
   background-color: #f0eeee;
   border: 1px solid black;
-  /* margin-top: 25px; */
 }
 
 .project-details-tile-container > h1 {
@@ -78,4 +77,9 @@
   padding: 5px;
   font-size: 16px;
   font-weight: 500;
+}
+
+.project-form-button-container {
+  display: flex;
+  margin: 0 30px 0px 30px;
 }

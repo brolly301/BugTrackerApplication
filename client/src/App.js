@@ -22,6 +22,9 @@ import KanbanPage from "./pages/KanbanPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateUserPage from "./pages/ManageUsers/CreateUserPage";
+import ForgotPasswordPage from "./pages/Auth/ForgotPasswordPage";
+import TokenAuthPage from "./pages/Auth/TokenAuthPage";
+import ResetConfirmation from "./pages/Auth/ResetConfirmation";
 
 function App() {
   const { state } = useUserContext();
@@ -35,6 +38,15 @@ function App() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
+            <Route
+              path="/forgotPassword/:token/:id"
+              element={<TokenAuthPage />}
+            />
+            <Route
+              path="/forgotPassword/resetConfirmation"
+              element={<ResetConfirmation />}
+            />
           </Routes>
         </>
       ) : (

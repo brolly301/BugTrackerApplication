@@ -92,7 +92,7 @@ export default function CreateProjectForm() {
             />
           </div>
         </div>
-        <div className="ticket-form-button-container">
+        <div className="project-form-button-container">
           <Button label="Create" />
         </div>
       </form>
