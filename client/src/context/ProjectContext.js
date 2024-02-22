@@ -18,7 +18,7 @@ const reducer = (state, action) => {
           : project;
       });
     default:
-      return state;
+    // return state;
   }
 };
 
